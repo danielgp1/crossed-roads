@@ -55,7 +55,7 @@ function Welcome() {
               name="txt"
               placeholder="First Name"
               required
-              title='Please enter your first nam'
+              title='Please enter your first name'
               onChange={(e) => formState.setFirstName(e.target.value)}
               value={formState.firstName}
             />
