@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/crossed_roads
+    username: root
+    password: 12345678
+    pool-size: 30
+
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
