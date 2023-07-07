@@ -48,7 +48,7 @@ export function useFormState() {
   };
 }
 
-export function handleRegistration(navigate: NavigateFunction, registrationData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string}) {
+export async function handleRegistration(navigate: NavigateFunction, registrationData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string}) {
   axios
     .post('http://localhost:8080/api/auth/register', registrationData)
     .then((response) => {
@@ -63,7 +63,7 @@ export function handleRegistration(navigate: NavigateFunction, registrationData:
     });
 }
 
-export function handleLogin(navigate: NavigateFunction, loginData: { email: string; password: string; }) {
+export async function handleLogin(navigate: NavigateFunction, loginData: { email: string; password: string; }) {
   axios
     .post('http://localhost:8080/api/auth/authenticate', loginData)
     .then((response) => {
@@ -78,7 +78,7 @@ export function handleLogin(navigate: NavigateFunction, loginData: { email: stri
     });
 }
 
-export function handleTogglePasswordVisibility(inputId: string, setEyeClass: { (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (arg0: { (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; }): void; }) {
+export async function handleTogglePasswordVisibility(inputId: string, setEyeClass: { (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (arg0: { (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; }): void; }) {
   if (inputId === 'reg_password') {
     setEyeClass((prevClass) =>
       prevClass === faEye ? faEyeSlash : faEye
@@ -101,6 +101,6 @@ export function handleTogglePasswordVisibility(inputId: string, setEyeClass: { (
  
 }
 
-export function handleLoginVisibility(setLoginVisibility: { (value: SetStateAction<boolean>): void; (value: SetStateAction<boolean>): void; (arg0: boolean): void; }, isLoginVisible: boolean) {
+export async function handleLoginVisibility(setLoginVisibility: { (value: SetStateAction<boolean>): void; (value: SetStateAction<boolean>): void; (arg0: boolean): void; }, isLoginVisible: boolean) {
   setLoginVisibility(!isLoginVisible);
 }
