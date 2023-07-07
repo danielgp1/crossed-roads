@@ -2,6 +2,7 @@ import { SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { IconDefinition, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { NavigateFunction } from 'react-router';
+import useSound from 'use-sound'
 
 export function useFormState() {
   const [regPwdEyeClass, setRegPwdEyeClass] = useState(faEye);

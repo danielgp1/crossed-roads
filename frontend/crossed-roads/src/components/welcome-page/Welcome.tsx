@@ -3,9 +3,13 @@ import logo from './logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { useFormState, handleRegistration, handleLogin, handleTogglePasswordVisibility, handleLoginVisibility } from './FormFunctions';
+import useSound from 'use-sound'
 
 
 function Welcome() {
+  const myAudio = require("./klakson-telolet-indonesian-big-bus-custom-horn-31303.mp3")
+  const [playSound] = useSound(myAudio, { volume: 0.7 })
+
   const navigate = useNavigate();
   const formState = useFormState();
 
@@ -162,7 +166,11 @@ function Welcome() {
                 id="login_password"
                 placeholder="Password"
                 required
-                onChange={(e) => formState.setLoginPassword(e.target.value)}
+                onChange={(e) => {
+                  formState.setLoginPassword(e.target.value);
+                  playSound();
+                }}
+                
                 value={formState.loginPassword}
               />
               <FontAwesomeIcon
