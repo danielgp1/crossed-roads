@@ -49,33 +49,27 @@ export function useFormState() {
 }
 
 export async function handleRegistration(navigate: NavigateFunction, registrationData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string}) {
-  axios
-    .post('http://localhost:8080/api/auth/register', registrationData)
-    .then((response) => {
-      alert('Welcome to Crossed Roads!');
-      
-      const token = response.data.token;
-      sessionStorage.setItem("userToken", token);
-      navigate('/dashboard');
-    })
-    .catch((error) => {
-      alert(error.response.data.message);
-    });
+  try {
+    const response = await axios.post('http://localhost:8080/api/auth/register', registrationData);
+    alert('Welcome to Crossed Roads!');
+    const token = response.data.token;
+    localStorage.setItem("userToken", token);
+    navigate('/homepage');
+  } catch (error: any) {
+    alert(error.response.data.message);
+  }
 }
 
 export async function handleLogin(navigate: NavigateFunction, loginData: { email: string; password: string; }) {
-  axios
-    .post('http://localhost:8080/api/auth/authenticate', loginData)
-    .then((response) => {
-      alert(`Welcome back ${loginData.email}!`);
-
-      const token = response.data.token;
-      sessionStorage.setItem("userToken", token);
-      navigate('/dashboard');
-    })
-    .catch((error) => {
-      alert(error.response.data.message);
-    });
+  try {
+    const response = await axios.post('http://localhost:8080/api/auth/authenticate', loginData);
+    alert(`Welcome back ${loginData.email}!`);
+    const token = response.data.token;
+    localStorage.setItem("userToken", token);
+    navigate('/homepage');
+  } catch (error: any) {
+    alert(error.response.data.message);
+  }
 }
 
 export async function handleTogglePasswordVisibility(inputId: string, setEyeClass: { (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (arg0: { (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; }): void; }) {

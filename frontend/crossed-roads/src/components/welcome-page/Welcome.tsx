@@ -9,7 +9,7 @@ function Welcome() {
   const navigate = useNavigate();
   const formState = useFormState();
 
-  const registration = (event: { preventDefault: () => void; }) => {
+  const registration = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     const registrationData = {
       first_name: formState.firstName,
@@ -19,17 +19,17 @@ function Welcome() {
       date_of_birth: formState.birthdate
     };
 
-    handleRegistration(navigate, registrationData);
+    await handleRegistration(navigate, registrationData);
   };
 
-  const login = (event: { preventDefault: () => void; }) => {
+  const login = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     const loginData = {
       email: formState.loginEmail,
       password: formState.loginPassword,
     };
 
-    handleLogin(navigate, loginData);
+    await handleLogin(navigate, loginData);
   };
 
   return (
@@ -87,6 +87,7 @@ function Welcome() {
               placeholder="Birthdate"
               required
               title='Enter your birthdate'
+              max={new Date().toISOString().split("T")[0]}
               onChange={(e) => formState.setBirthdate(e.target.value)}
               value={formState.birthdate}
             />
