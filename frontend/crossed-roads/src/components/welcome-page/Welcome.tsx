@@ -7,7 +7,7 @@ import useSound from 'use-sound'
 
 
 function Welcome() {
-  const myAudio = require("./klakson-telolet-indonesian-big-bus-custom-horn-31303.mp3")
+  const myAudio = require("./car-horn-beep-beep-two-beeps-honk-honk-6188.mp3")
   const [playSound] = useSound(myAudio, { volume: 0.7 })
 
   const navigate = useNavigate();
