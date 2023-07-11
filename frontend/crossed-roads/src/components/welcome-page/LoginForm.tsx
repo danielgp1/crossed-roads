@@ -31,7 +31,6 @@ export function LoginForm() {
                 <input
                     className="welcome-input"
                     type="email"
-                    name="email"
                     placeholder="Email"
                     required
                     onChange={(e) => formState.setLoginEmail(e.target.value)}
@@ -41,7 +40,6 @@ export function LoginForm() {
                     <input
                         className="welcome-input"
                         type="password"
-                        name="pwd"
                         id="login_password"
                         placeholder="Password"
                         required

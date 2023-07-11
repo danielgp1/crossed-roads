@@ -34,7 +34,6 @@ export function RegisterForm() {
                 <input
                     className="welcome-input"
                     type="text"
-                    name="txt"
                     placeholder="First Name"
                     required
                     title="Please enter your first name"
@@ -44,7 +43,6 @@ export function RegisterForm() {
                 <input
                     className="welcome-input"
                     type="text"
-                    name="txt"
                     placeholder="Last Name"
                     required
                     title="Please enter your last name"
@@ -54,7 +52,6 @@ export function RegisterForm() {
                 <input
                     className="welcome-input"
                     type="email"
-                    name="email"
                     placeholder="Email"
                     required
                     pattern="([a-z0-9]+\.)*[a-z0-9]+@([a-z0-9]+\.)+[a-z0-9]+"
@@ -65,7 +62,6 @@ export function RegisterForm() {
                 <input
                     className='welcome-input'
                     type="date"
-                    name="date"
                     placeholder="Birthdate"
                     required
                     title='Enter your birthdate'
@@ -77,7 +73,6 @@ export function RegisterForm() {
                     <input
                         className='welcome-input'
                         type="password"
-                        name="pwd"
                         id="reg_password"
                         placeholder="Password"
                         required
@@ -95,7 +90,6 @@ export function RegisterForm() {
                     <input
                         className='welcome-input'
                         type="password"
-                        name="cpwd"
                         id="confirm_password"
                         placeholder="Confirm Password"
                         required
