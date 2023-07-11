@@ -6,7 +6,7 @@
 	align-items: center;
 	min-height: 100vh;
 	font-family: 'Jost', sans-serif;
-	background-image: url(road.png);
+	background-image: url(./assets/road.png);
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;

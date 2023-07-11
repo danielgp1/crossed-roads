@@ -1,4 +1,4 @@
-import logo from './logo.png';
+import logo from './assets/logo.png';
 import { useFormState, handleLogin, handleLoginVisibility, handleTogglePasswordVisibility } from './FormFunctions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
