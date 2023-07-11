@@ -32,6 +32,8 @@ export function LoginForm() {
                     className="welcome-input"
                     type="email"
                     placeholder="Email"
+                    pattern="([a-z0-9]+\.)*[a-z0-9]+@([a-z0-9]+\.)+[a-z0-9]+"
+                    title="Enter a valid e-mail address"
                     required
                     onChange={(e) => formState.setLoginEmail(e.target.value)}
                     value={formState.loginEmail}

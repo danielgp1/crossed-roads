@@ -8,9 +8,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Route for Welcome Page - This is the default route */}
         <Route path="/" element={<Welcome />} />
-        {/* Route for  Homepage */}
         <Route path="/homepage" element={<Homepage />} />
       </Routes>
     </Router>

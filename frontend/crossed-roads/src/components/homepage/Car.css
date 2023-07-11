@@ -1,0 +1,88 @@
+.car {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .window {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 70px;
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+    background-color: lightblue;
+  }
+  
+  .pfp {
+    height: 60px;
+    width: 60px;
+  }
+  
+  .body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 160px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: blue
+  }
+  
+  .headlights {
+    display: flex;
+    flex-direction: row;    
+    margin-bottom: 0;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .headlight {
+    width: 25px;
+    height:25px;
+    background-color: #f9d71c;
+    border-radius: 50%;
+  }
+  
+  .headlight:nth-child(1) {
+    margin-right: 58px;
+  }
+  
+  .car-plate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 20px;
+    background-color: #ffffff;
+    border: 1px solid black;
+  }
+  
+  .car-plate p {
+    margin: 0;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  
+  .wheels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .wheel {
+    width: 35px;
+    height: 20px; 
+    background-color: black;
+    border-radius: 0 0 50% 50%;
+  }
+  
+  .wheel:nth-child(1) {
+    margin-right: 75px;
+  }
+  
