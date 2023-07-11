@@ -4,8 +4,8 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
+  position: fixed;
+  top: 0;
 }
 
 .mask {
