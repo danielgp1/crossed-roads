@@ -20,7 +20,7 @@ export function useFormState() {
 
   const [isLoginVisible, setLoginVisibility] = useState(false);
 
-  return {
+  return {  
     regPwdEyeClass,
     setRegPwdEyeClass,
     confirmPwdEyeClass,
@@ -60,7 +60,7 @@ export async function handleRegistration(navigate: NavigateFunction, registratio
     alert('Welcome to Crossed Roads!');
     const token = response.data.token;
     localStorage.setItem("userToken", token);
-    navigate('/homepage');
+    navigate('/');
   } catch (error: any) {
     alert(error.response.data.message);
   }
@@ -72,13 +72,13 @@ export async function handleLogin(navigate: NavigateFunction, loginData: { email
     alert(`Welcome back ${loginData.email}!`);
     const token = response.data.token;
     localStorage.setItem("userToken", token);
-    navigate('/homepage');
+    navigate('/');
   } catch (error: any) {
     alert(error.response.data.message);
   }
 }
 
-export async function handleTogglePasswordVisibility(inputId: string, setEyeClass: (value: SetStateAction<IconDefinition>) => void) {
+export function handleTogglePasswordVisibility(inputId: string, setEyeClass: (value: SetStateAction<IconDefinition>) => void) {
   setEyeClass((prevClass) =>
     prevClass === faEye ? faEyeSlash : faEye
   );
@@ -89,6 +89,6 @@ export async function handleTogglePasswordVisibility(inputId: string, setEyeClas
   }
 }
 
-export async function handleLoginVisibility(setLoginVisibility: (value: SetStateAction<boolean>) => void, isLoginVisible: boolean) {
+export function handleLoginVisibility(setLoginVisibility: (value: SetStateAction<boolean>) => void, isLoginVisible: boolean) {
   setLoginVisibility(!isLoginVisible);
 }

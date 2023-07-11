@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import Welcome from './components/welcome-page/Welcome';
 import Homepage from './components/homepage/Homepage';
@@ -8,8 +7,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/welcome" element={<Welcome />} />
       </Routes>
     </Router>
   );

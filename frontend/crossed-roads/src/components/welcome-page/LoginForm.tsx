@@ -1,10 +1,11 @@
 import logo from './assets/logo.png';
-import { useFormState, handleLogin, handleLoginVisibility, handleTogglePasswordVisibility } from './FormFunctions';
+import { handleLogin, handleLoginVisibility, handleTogglePasswordVisibility } from './FormFunctions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
-export function LoginForm() {
-    const formState = useFormState();
+export function LoginForm(
+    {formState}: {formState: any}
+) {
     const navigate = useNavigate();
 
     const login = async (event: React.FormEvent) => {

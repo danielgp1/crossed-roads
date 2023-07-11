@@ -1,10 +1,11 @@
 import React from 'react';
-import { useFormState, handleRegistration, handleLoginVisibility, handleTogglePasswordVisibility } from './FormFunctions';
+import { handleRegistration, handleLoginVisibility, handleTogglePasswordVisibility } from './FormFunctions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
-export function RegisterForm() {
-    const formState = useFormState();
+export function RegisterForm(
+    {formState}: { formState: any}
+) {
     const navigate = useNavigate();
 
     const registration = async (event: React.FormEvent) => {
