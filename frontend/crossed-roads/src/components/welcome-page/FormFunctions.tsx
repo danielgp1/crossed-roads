@@ -1,13 +1,15 @@
+// Rest of the code in FormFunctions.ts
+
 import { SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { IconDefinition, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { NavigateFunction } from 'react-router';
-import useSound from 'use-sound'
+import useSound from 'use-sound';
 
 export function useFormState() {
-  const [regPwdEyeClass, setRegPwdEyeClass] = useState(faEye);
-  const [confirmPwdEyeClass, setConfirmPwdEyeClass] = useState(faEye);
-  const [loginPwdEyeClass, setLoginPwdEyeClass] = useState(faEye);
+  const [regPwdEyeClass, setRegPwdEyeClass] = useState<IconDefinition>(faEye);
+  const [confirmPwdEyeClass, setConfirmPwdEyeClass] = useState<IconDefinition>(faEye);
+  const [loginPwdEyeClass, setLoginPwdEyeClass] = useState<IconDefinition>(faEye);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -49,7 +51,13 @@ export function useFormState() {
   };
 }
 
-export async function handleRegistration(navigate: NavigateFunction, registrationData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string}) {
+export async function handleRegistration(navigate: NavigateFunction, registrationData: {
+  first_name: string;
+  last_name: string;
+  email: string;
+  date_of_birth: string;
+  password: string;
+}) {
   try {
     const response = await axios.post('http://localhost:8080/api/auth/register', registrationData);
     alert('Welcome to Crossed Roads!');
@@ -73,29 +81,17 @@ export async function handleLogin(navigate: NavigateFunction, loginData: { email
   }
 }
 
-export async function handleTogglePasswordVisibility(inputId: string, setEyeClass: { (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (value: SetStateAction<IconDefinition>): void; (arg0: { (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; (prevClass: any): IconDefinition; }): void; }) {
-  if (inputId === 'reg_password') {
-    setEyeClass((prevClass) =>
-      prevClass === faEye ? faEyeSlash : faEye
-    );
-  } else if (inputId === 'confirm_password') {
-    setEyeClass((prevClass) =>
-      prevClass === faEye ? faEyeSlash : faEye
-    );
-  } else if (inputId === 'login_password') {
-    setEyeClass((prevClass) =>
-      prevClass === faEye ? faEyeSlash : faEye
-    );
-  }
-
-  const input = document.getElementById(inputId);
-  if(input) {
+export async function handleTogglePasswordVisibility(inputId: string, setEyeClass: (value: SetStateAction<IconDefinition>) => void) {
+  setEyeClass((prevClass) =>
+    prevClass === faEye ? faEyeSlash : faEye
+  );
+  const input = document.getElementById(inputId) as HTMLInputElement | null;
+  if (input) {
     const inputType = input.getAttribute('type') === 'password' ? 'text' : 'password';
     input.setAttribute('type', inputType);
   }
- 
 }
 
-export async function handleLoginVisibility(setLoginVisibility: { (value: SetStateAction<boolean>): void; (value: SetStateAction<boolean>): void; (arg0: boolean): void; }, isLoginVisible: boolean) {
+export async function handleLoginVisibility(setLoginVisibility: (value: SetStateAction<boolean>) => void, isLoginVisible: boolean) {
   setLoginVisibility(!isLoginVisible);
 }

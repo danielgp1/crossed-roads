@@ -1,10 +1,10 @@
+import React from 'react';
 import './Welcome.css';
 import logo from './logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { useFormState, handleRegistration, handleLogin, handleTogglePasswordVisibility, handleLoginVisibility } from './FormFunctions';
-import useSound from 'use-sound'
-
+import useSound from 'use-sound';
 
 function Welcome() {
   const myAudio = require("./car-horn-beep-beep-two-beeps-honk-honk-6188.mp3")
@@ -13,7 +13,7 @@ function Welcome() {
   const navigate = useNavigate();
   const formState = useFormState();
 
-  const registration = async (event: { preventDefault: () => void; }) => {
+  const registration = async (event: React.FormEvent) => {
     event.preventDefault();
     const registrationData = {
       first_name: formState.firstName,
@@ -26,7 +26,7 @@ function Welcome() {
     await handleRegistration(navigate, registrationData);
   };
 
-  const login = async (event: { preventDefault: () => void; }) => {
+  const login = async (event: React.FormEvent) => {
     event.preventDefault();
     const loginData = {
       email: formState.loginEmail,
@@ -44,12 +44,13 @@ function Welcome() {
           id="chk"
           aria-hidden="true"
         />
-        <form className="register" onSubmit={registration}>
+<form className="register" onSubmit={registration}>
           <label
             className='welcome-label'
             htmlFor="chk"
             aria-hidden="true"
-            onClick={() => handleLoginVisibility(formState.setLoginVisibility, formState.isLoginVisible)}>
+            onClick={() => handleLoginVisibility(formState.setLoginVisibility, formState.isLoginVisible)}
+          >
             Register
           </label>
           <div className={`register-box ${formState.isLoginVisible ? '' : 'show'}`}>
@@ -145,7 +146,8 @@ function Welcome() {
             className='welcome-label'
             htmlFor="chk"
             aria-hidden="true"
-            onClick={() => handleLoginVisibility(formState.setLoginVisibility, formState.isLoginVisible)}>
+            onClick={() => handleLoginVisibility(formState.setLoginVisibility, formState.isLoginVisible)}
+          >
             Login
           </label>
           <div className={`login-box ${formState.isLoginVisible ? 'show' : ''}`}>
@@ -170,7 +172,6 @@ function Welcome() {
                   formState.setLoginPassword(e.target.value);
                   playSound();
                 }}
-                
                 value={formState.loginPassword}
               />
               <FontAwesomeIcon
