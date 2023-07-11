@@ -4,14 +4,12 @@ import './Navbar.css'
 export default function Navbar() {
     return (
         <nav className="nav-horizontal">
-            <div className="mask">
-                <ul className="list">
-                    <li className='homepage-li'><Link className='homepage-a' to="/">Crossed Roads</Link></li>
-                    <li className='homepage-li'><Link className='homepage-a' to="/service">Service</Link></li>
-                    <li className='homepage-li'><Link className='homepage-a' to="/garage">Garage</Link></li>
-                    <li className='homepage-li'><Link className='homepage-a' to="/welcome">Crash Out</Link></li>
-                </ul>
+            <Link className='navbar-link' to="/">Crossed Roads</Link>
+            <div className='navbar-funcs'>
+                <Link className='navbar-link' to="/service">Service</Link>
+                <Link className='navbar-link' to="/garage">Garage</Link>
             </div>
+            <Link className='navbar-link' to="/welcome">Crash Out</Link>
         </nav>
     )
 }

@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 
 export default function Homepage() {
     return (
-        <div className='homepage-body'>
+        <div className='home-body'>
             <Navbar />
             <div className="road">
                 <Car />

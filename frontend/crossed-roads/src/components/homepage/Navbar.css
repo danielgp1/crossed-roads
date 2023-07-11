@@ -2,50 +2,31 @@
     background-color: #ffbd59;
     height: 3em;
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
     position: fixed;
     top: 0;
   }
-  
-  .mask {
-    width: 100%;
-    display: flex;
-  }
-  
-  .list {
-    display: inline-table;
-    margin: 0 auto;
-    max-width: 100%;
-  
-  }
-  
-  .homepage-li {
-    display: table-cell;
-    align-items: center;
-  }
-  
-  .homepage-a {
-    display: flex;
-    padding: 0 1em;
-    text-decoration: none;
-    color: white;
-    height: 3rem;
-    font-family: 'Jost';
-    font-size: 1.5em;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .homepage-a:hover {
-    border-bottom: 2px solid black;
-    background-color: white;
-    color: black;
-  }
-  
-  .homepage-body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    align-items: center;
-  }
+
+.navbar-funcs {
+  display: flex;
+  padding-right: 3em;
+}
+
+.navbar-link {
+  display: flex;
+  padding: 0 1em;
+  text-decoration: none;
+  color: white;
+  height: 3rem;
+  font-family: 'Jost';
+  font-size: 1.5em;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-link:hover {
+  border-bottom: 2px solid black;
+  background-color: white;
+  color: black;
+}
