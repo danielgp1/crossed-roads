@@ -1,16 +1,18 @@
 .car {
+  width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 20px;
 }
 
 .window {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 70px;
+  width: 40%;
+  height: 30%;
   border: 1px solid black;
   border-radius: 5px 5px 0 0;
   border-bottom: none;
@@ -18,70 +20,75 @@
 }
 
 .pfp {
-  height: 60px;
-  width: 60px;
+  height: 80%;
+  width: 80%;
+  border-radius: 20px;
 }
 
 .body {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
-  width: 160px;
-  height: 50px;
+  align-items: center;
+  width: 70%;
+  height: 25%;
   border: 1px solid black;
   border-radius: 10px;
   background-color: blue
 }
 
 .headlights {
+  width: 70%;
+  height: 50%;
   display: flex;
-  flex-direction: row;
-  margin-bottom: 0;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10%;
 }
 
 .headlight {
-  width: 25px;
-  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
   background-color: #f9d71c;
   border-radius: 50%;
 }
 
 .headlight:nth-child(1) {
-  margin-right: 58px;
+  margin-right: 30%;
 }
 
 .car-plate {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 20px;
+  width: 40%;
+  height: 25%;
   background-color: #ffffff;
   border: 1px solid black;
 }
 
 .car-plate p {
-  margin: 0;
-  font-size: 10px;
-  font-weight: bold;
+  font-size: 0.5em;
 }
 
 .wheels {
+  height: 7%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .wheel {
-  width: 35px;
-  height: 20px;
+  width: 15%;
+  height: 100%;
   background-color: black;
   border-radius: 0 0 50% 50%;
 }
 
 .wheel:nth-child(1) {
-  margin-right: 75px;
+  margin-right: 30%;
 }

@@ -1,0 +1,18 @@
+.grass {
+    display: grid;
+    grid-template-columns: 1.4fr 1.2fr 1.4fr 1fr;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-image: url(./assets/perfect-green-grass.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin-top: 3.5rem ;
+}
+
+.chat-container {
+    position: relative;
+}
