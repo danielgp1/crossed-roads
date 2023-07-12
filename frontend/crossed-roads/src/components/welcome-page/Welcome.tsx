@@ -1,7 +1,7 @@
 import './Welcome.css';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
-import { useFormState } from './FormFunctions';
+import { useFormState } from './WelcomeFunctions';
 
 
 export default function Welcome() {

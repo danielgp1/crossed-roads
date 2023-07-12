@@ -1,0 +1,50 @@
+.nav-horizontal {
+  background-color: gray;
+  height: 3.5em;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  border-bottom: 3px solid #fabb5c;
+}
+
+.navbar-img {
+  height: 100%;
+  width: auto;
+  padding: 0 0 0 1em;
+  cursor: pointer;
+}
+
+.navbar-group1,
+.navbar-group2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-group2 {
+  justify-content: flex-end;
+}
+
+.navbar-btn {
+  width: 20%;
+  display: flex;
+  padding: 0 1em;
+  text-decoration: none;
+  color: white;
+  height: 3.5rem;
+  font-family: 'Jost';
+  font-size: 1.7rem;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-btn:hover {
+  border-bottom: 2px solid black;
+  background-color: #fabb5c;
+  color: black;
+}
