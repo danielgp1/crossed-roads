@@ -4,7 +4,7 @@ import './Main.css'
 
 export default function Main() {
     return (
-        <div className="grass">
+        <div className="main-grid">
             <div className="billboard"></div>
             <Road />
             <div className="billboard"></div>

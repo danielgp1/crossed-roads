@@ -15,6 +15,14 @@ export default function Navbar() {
         navigate("/")
     }
 
+    const handleService = () => {
+        navigate("/service");
+    }
+
+    const handleGarage = () => {
+        navigate("/garage")
+    }
+
     return (
         <nav className="nav-horizontal">
             <div className='navbar-group1'>
@@ -29,12 +37,14 @@ export default function Navbar() {
             <div className='navbar-group2'>
                 <button 
                     className='navbar-btn' 
-                    type='button'>
+                    type='button'
+                    onClick={handleGarage}>
                     Garage
                 </button>
                 <button 
                     className='navbar-btn' 
-                    type='button'>
+                    type='button'
+                    onClick={handleService}>
                     Service
                 </button>
                 <button 
