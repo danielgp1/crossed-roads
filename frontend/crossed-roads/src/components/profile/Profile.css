@@ -21,9 +21,9 @@
 }
 
 .profile-pic {
-    height: 90%;
+    height: 85%;
     width: 85%;
-    border-radius: 100%;
+    border-radius: 5%;
     border: 2px solid #fabb5c;
 }
 
@@ -40,6 +40,23 @@
     justify-content: center;
     border-bottom: 3px dashed gray;
     font-size: 5rem;
+}
+
+.info-car {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.car-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: initial;
+    font-size: initial;
+    color:initial;
 }
 
 .other-info {

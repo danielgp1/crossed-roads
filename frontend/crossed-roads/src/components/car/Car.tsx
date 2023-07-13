@@ -1,4 +1,4 @@
-import pic from './assets/image.jpg'
+import pic from './assets/john.jpeg'
 import './Car.css'
 
 export default function Car() {
@@ -13,7 +13,7 @@ export default function Car() {
                     <div className="headlight"></div>
                 </div>
                 <div className="car-plate">
-                    <p>Daniel Petrov</p>
+                    <p>John Cena</p>
                 </div>
             </div>
             <div className="wheels">
