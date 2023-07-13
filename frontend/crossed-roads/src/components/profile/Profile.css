@@ -1,0 +1,87 @@
+.profile-grid {
+    display: grid;
+    grid-template-rows: 3.8fr 0.5fr 4fr;
+}
+
+.profile-data {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    border-bottom: 2px solid #fabb5c;
+    border-right: 2px solid #fabb5c;
+    border-left: 2px solid #fabb5c;
+    padding-right: 2%;
+}
+
+.profile-pic-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.profile-pic {
+    height: 90%;
+    width: 85%;
+    border-radius: 100%;
+    border: 2px solid #fabb5c;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-rows: 0.8fr 1.2fr;
+    font-family: 'Futurafrica', sans-serif;
+    color: #fabb5c;
+}
+
+.names {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px dashed gray;
+    font-size: 5rem;
+}
+
+.other-info {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr 1fr 1fr;
+    font-size: 1.5rem;
+}
+
+.profile-field {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr 1fr;
+}
+
+.field-span {
+    color: black;
+    font-size: 1rem;
+}
+
+.profile-buttons {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.profile-button {
+    background-color: #fabb5c;
+    border: 1px solid #ffa825;
+    font-family: 'Jost';
+    font-size: 1rem;
+    color: black;
+    cursor: pointer;
+    height: 100%;
+    transition: .2s ease-in;
+    caret-color: transparent;
+}
+
+.profile-button:hover {
+    background-color: #ffa825;
+}
+
+.profile-button:last-child {
+    border-bottom-right-radius: 15px;
+}
