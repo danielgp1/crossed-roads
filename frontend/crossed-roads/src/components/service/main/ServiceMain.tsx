@@ -1,11 +1,12 @@
 import Profile from '../../profile/Profile'
+import PurchaseCar from '../../purchase-car/PurchaseCar'
 import './ServiceMain.css'
 
 export default function ServiceMain() {
     return (
         <div className='service-main-grid'>
             <Profile />
-            <p>Cars</p>
+            <PurchaseCar />
         </div>
     )
 }

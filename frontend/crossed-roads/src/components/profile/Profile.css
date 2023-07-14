@@ -6,10 +6,9 @@
 .profile-data {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
-    border-bottom: 2px solid #fabb5c;
-    border-right: 2px solid #fabb5c;
-    border-left: 2px solid #fabb5c;
+    border-right: 2px solid #ffa825;
     padding-right: 2%;
+    background-color: #333333;
 }
 
 .profile-pic-container {
@@ -24,7 +23,7 @@
     height: 85%;
     width: 85%;
     border-radius: 5%;
-    border: 2px solid #fabb5c;
+    border: 2px solid #ffa825;
 }
 
 .profile-info {
@@ -38,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 3px dashed gray;
+    border-bottom: 3px dashed #ffa825;
     font-size: 5rem;
 }
 
@@ -73,24 +72,26 @@
 }
 
 .field-span {
-    color: black;
+    color: #ffa825;
     font-size: 1rem;
 }
 
 .profile-buttons {
+    height: 100%;
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .profile-button {
+    height: 100%;
     background-color: #fabb5c;
-    border: 1px solid #ffa825;
+    border: 2px solid #ffa825;
+    border-left: none;
     font-family: 'Jost';
     font-size: 1rem;
-    color: black;
+    color: #333333;
     cursor: pointer;
-    height: 100%;
     transition: .2s ease-in;
     caret-color: transparent;
 }
