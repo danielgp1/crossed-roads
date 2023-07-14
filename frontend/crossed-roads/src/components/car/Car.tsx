@@ -1,13 +1,17 @@
 import pic from './assets/john.jpeg'
 import './Car.css'
 
-export default function Car() {
+interface CarProps {
+    color: string;
+}
+
+const Car: React.FC<CarProps> = ({ color }) => {
     return (
         <div className="car">
             <div className="window">
                 <img className="pfp" src={pic} alt="profile_pic"></img>
             </div>
-            <div className="body">
+            <div className="body" style={{ backgroundColor: color }}>
                 <div className="headlights">
                     <div className="headlight"></div>
                     <div className="headlight"></div>
@@ -23,3 +27,5 @@ export default function Car() {
         </div>
     )
 }
+
+export default Car;

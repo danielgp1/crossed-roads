@@ -1,9 +1,10 @@
 .profile-grid {
     display: grid;
-    grid-template-rows: 3.8fr 0.5fr 4fr;
+    grid-template-rows: 3.8fr 0.5fr;
 }
 
 .profile-data {
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     border-right: 2px solid #ffa825;
@@ -20,9 +21,10 @@
 }
 
 .profile-pic {
+    box-sizing: border-box;
     height: 85%;
     width: 85%;
-    border-radius: 5%;
+    border-radius: 10px;
     border: 2px solid #ffa825;
 }
 
@@ -34,6 +36,7 @@
 }
 
 .names {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +66,7 @@
     align-items: center;
     grid-template-rows: 1fr 1fr 1fr;
     font-size: 1.5rem;
+    height: 100%;
 }
 
 .profile-field {
@@ -77,13 +81,14 @@
 }
 
 .profile-buttons {
-    height: 100%;
+    box-sizing: border-box;
     display: grid;
-    align-items: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    position:relative;
 }
 
 .profile-button {
+    box-sizing: border-box;
     height: 100%;
     background-color: #fabb5c;
     border: 2px solid #ffa825;

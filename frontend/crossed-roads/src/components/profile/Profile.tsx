@@ -27,19 +27,17 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className='car-container'>
-                            <Car />
+                            <Car color={"blue"} />
                         </div>
                     </div>
                 </div>
             </div>
             <div className='profile-buttons'>
+  
                 <button className='profile-button'>Edit Profile Data</button>
                 <button className='profile-button'>Change Password</button>
                 <button className='profile-button'>Create a Post</button>
                 <button className='profile-button'>Manage Posts</button>
-            </div>
-            <div>
-                ok
             </div>
         </div>
     )

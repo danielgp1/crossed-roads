@@ -7,6 +7,8 @@ export default function ServiceMain() {
         <div className='service-main-grid'>
             <Profile />
             <PurchaseCar />
+            <div>Profile</div>
+            <div>Choose Color</div>
         </div>
     )
 }

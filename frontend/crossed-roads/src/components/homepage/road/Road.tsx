@@ -6,7 +6,7 @@ export default function Road() {
     return (
         <div className="road">
             <div className="grid-item">
-                <Car />
+                <Car color={"red"}/>
             </div>
             <div className="grid-item">
                 <div className="line-separator"></div>
