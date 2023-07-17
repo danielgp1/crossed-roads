@@ -37,7 +37,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className='car-container'>
-                            <Car color={"blue"} />
+                            <Car color={"blue"} direction={"#f9d71c"}/>
                         </div>
                     </div>
                 </div>

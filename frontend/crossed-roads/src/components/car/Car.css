@@ -4,6 +4,7 @@
   min-width: 120px;
   min-height: 200px;
   max-width: 220px;
+  max-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +12,8 @@
 }
 
 .window {
+  box-sizing: border-box;
+  max-height: 61px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,15 +23,22 @@
   border-radius: 5px 5px 0 0;
   border-bottom: none;
   background-color: lightblue;
+  min-width: 88px;
+  min-height: 61px;
 }
 
 .pfp {
+  max-height: 50px;
+  max-width: 67px;
+  min-height: 50px;
+  min-width: 50px;
   height: 80%;
   width: 80%;
   border-radius: 20px;
 }
 
 .body {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -37,6 +47,10 @@
   height: 25%;
   border: 1px solid black;
   border-radius: 10px;
+  max-width: 147px;
+  max-height: 52px;
+  min-width: 147px;
+  box-sizing: border-box;
 }
 
 .headlights {
@@ -50,13 +64,17 @@
 
 .headlight {
   display: flex;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 22px;
+  max-height: 22px;
   justify-content: center;
   align-items: center;
   width: 20%;
   height: 100%;
-  background-color: #f9d71c;
   border-radius: 50%;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .headlight:nth-child(1) {
@@ -67,10 +85,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-height: 13px;
   width: 40%;
   height: 25%;
   background-color: #ffffff;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .car-plate p {
@@ -78,6 +98,7 @@
 }
 
 .wheels {
+  min-width: 216px;
   height: 7%;
   width: 100%;
   display: flex;
@@ -86,6 +107,8 @@
 }
 
 .wheel {
+  min-height: 14px;
+  min-width: 32px;
   width: 15%;
   height: 100%;
   background-color: black;

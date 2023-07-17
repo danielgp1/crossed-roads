@@ -1,0 +1,7 @@
+.friends-grid {
+    background-color: #333333;
+    border-right: 2px solid #ffa825;
+    border-top: 2px solid #ffa825;
+    border-top-right-radius: 15px;
+    box-sizing: border-box;
+}

@@ -4,7 +4,12 @@
     height: 94%;
     width: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5%;
+    grid-template-rows: 1fr 0fr 1fr;
+    grid-template-columns: 1fr 0fr 1fr;
+    column-gap: 1%;
+    row-gap: 2%;
+}
+
+.line-separator-2 {
+    border: 3px dashed #ffbd59;
 }

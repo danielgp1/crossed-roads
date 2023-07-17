@@ -6,9 +6,8 @@
     border-right: 10px solid black;
     background-image: url(./assets/asphat-road-texture-gray-color.jpg);
     background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    overflow-y: scroll;
+    min-width: 317px;
 }
 
 .grid-item {
@@ -18,4 +17,18 @@
 
 .line-separator {
     border: 4px dashed #ffbd59;
+}
+
+.oncoming-traffic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.your-car {
+    position: fixed;
+}
+
+.person {
+    margin: 340% 0;
 }

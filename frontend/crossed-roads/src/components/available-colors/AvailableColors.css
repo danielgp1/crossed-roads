@@ -1,0 +1,7 @@
+.available-colors-grid {
+    background-color: #333333;
+    border-left: 2px solid #ffa825;
+    border-top: 2px solid #ffa825;
+    border-top-left-radius: 15px;
+    box-sizing: border-box;
+}
