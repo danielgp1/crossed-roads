@@ -14,13 +14,24 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
     const [newPwdEyeClass, setNewPwdEyeClass] = useState<IconDefinition>(faEye);
     const [confirmNewPwdEyeClass, setConfirmNewPwdEyeClass] = useState<IconDefinition>(faEye);
 
+    const [currentPwd, setCurrentPwd] = useState('');
+    const [newPwd, setNewPwd] = useState('');
+    const [confirmNewPwd, setConfirmNewPwd] = useState('');
+
+    
     const handleCloseChangePassword = () => {
         setIsChangePasswordOpen(false);
     };
 
+    const changePass = (event: React.FormEvent) => { 
+        event.preventDefault();
+        handleCloseChangePassword();
+    }
+
+
     return (
         <div className="change-password-form-overlay">
-            <form className="change-password-form-container">
+            <form className="change-password-form-container" onSubmit={changePass}>
                 <button
                     className="close-button"
                     onClick={handleCloseChangePassword}
@@ -35,6 +46,9 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
                         id="current-password"
                         name="current-password"
                         placeholder='Current Password'
+                        onChange={(e) => setCurrentPwd(e.target.value)}
+                        value={currentPwd}
+                        required
                     />
                     <FontAwesomeIcon
                         className='icon'
@@ -50,6 +64,11 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
                         id="new-password"
                         name="new-password"
                         placeholder='New Password'
+                        pattern='[A-Za-z0-9@#$%^&+=_]{8,}'
+                        title='Password must be at least 8 characters long'
+                        onChange={(e) => setNewPwd(e.target.value)}
+                        value={newPwd}
+                        required
                     />
                     <FontAwesomeIcon
                         className='icon'
@@ -64,6 +83,11 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
                         id="confirm-new-password"
                         name="confirm-new-password"
                         placeholder='Confirm New Password'
+                        pattern={newPwd}
+                        title="Passwords don't match"
+                        onChange={(e) => setConfirmNewPwd(e.target.value)}
+                        value={confirmNewPwd}
+                        required
                     />
                     <FontAwesomeIcon
                         className='icon'
