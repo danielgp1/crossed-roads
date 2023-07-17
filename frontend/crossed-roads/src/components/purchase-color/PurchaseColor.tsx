@@ -3,7 +3,7 @@ import "./PurchaseColor.css"
 
 interface PurchaseColorProps {
     selectedColor: string;
-  }
+}
 
 export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
     return (
