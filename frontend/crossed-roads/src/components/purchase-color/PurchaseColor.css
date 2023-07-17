@@ -1,0 +1,37 @@
+.purchase-color-grid {
+    display: grid;
+    grid-template-rows: 3.8fr 0.5fr;
+}
+
+.car-preview-grid {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.purchase-button {
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #fabb5c;
+    border-top: 2px solid #ffa825;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    font-family: 'Jost';
+    font-size: 1rem;
+    color: #333333;
+    cursor: pointer;
+    transition: .2s ease-in;
+    caret-color: transparent;
+}
+
+.purchase-button:hover {
+    background-color: #ffa825;
+}
+
+.preview-lbl {
+    font-family: 'Futurafrica', sans-serif;
+    color: #fabb5c;
+    font-size: 2rem;
+}

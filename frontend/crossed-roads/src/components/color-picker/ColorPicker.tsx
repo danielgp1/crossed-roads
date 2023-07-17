@@ -2,18 +2,16 @@ import { useEffect } from 'react';
 import './ColorPicker.css';
 
 interface ColorPickerProps {
-    selectedColor: string;
     setSelectedColor: (color: string) => void;
   }
 
-export default function ColorPicker({ selectedColor, setSelectedColor }: ColorPickerProps) {
+export default function ColorPicker({ setSelectedColor }: ColorPickerProps) {
     function setHashSymbol() {
         const colorInput = document.querySelector<HTMLInputElement>('#color-input');
         if(colorInput)
         if (colorInput.value.length === 0) {
             colorInput.value = "#";
         }
-       
     }
 
     useEffect(() => {
@@ -120,7 +118,7 @@ export default function ColorPicker({ selectedColor, setSelectedColor }: ColorPi
                 setSelectedColor(codeHex);
             });
         }
-    }, []);
+    }, [setSelectedColor]);
 
     return (
         <div className='colors-container'>
