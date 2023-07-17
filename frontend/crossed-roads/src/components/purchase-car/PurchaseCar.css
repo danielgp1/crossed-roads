@@ -1,4 +1,10 @@
-.purchase-grid {
+.color-grid {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    border: 2px solid #ffa825;
+    box-sizing: border-box;
+    border-right: none;
+    border-top: none;
+    border-bottom-left-radius: 15px;
+    background-color: #333333;
 }

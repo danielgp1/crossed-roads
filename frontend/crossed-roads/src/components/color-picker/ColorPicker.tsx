@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './ColorPicker.css';
-import Car from '../car/Car';
 
-export default function ColorPicker() {
-    const [selectedColor, setSelectedColor] = useState('#FFFFFF');
+interface ColorPickerProps {
+    selectedColor: string;
+    setSelectedColor: (color: string) => void;
+  }
 
+export default function ColorPicker({ selectedColor, setSelectedColor }: ColorPickerProps) {
     function setHashSymbol() {
         const colorInput = document.querySelector<HTMLInputElement>('#color-input');
         if(colorInput)
@@ -121,26 +123,21 @@ export default function ColorPicker() {
     }, []);
 
     return (
-        <div className="color-grid">
-            <div className='colors-container'>
-                <div className='colors-header'>
-                    <label className='color-label'>Paint Shop: Choose your color</label>
-                    <input
-                        type="text"
-                        name="custom_color"
-                        placeholder="#FFFFFF"
-                        id="color-input"
-                        className="color-input"
-                        maxLength={7}
-                        onChange={setHashSymbol}
-                        onClick={setHashSymbol}
-                    />
-                </div>
-                <div className="color-palette" id="color-palette"></div>
+        <div className='colors-container'>
+            <div className='colors-header'>
+                <label className='color-label'>Paint Shop: Choose your color</label>
+                <input
+                    type="text"
+                    name="custom_color"
+                    placeholder="#FFFFFF"
+                    id="color-input"
+                    className="color-input"
+                    maxLength={7}
+                    onChange={setHashSymbol}
+                    onClick={setHashSymbol}
+                />
             </div>
-            <div className='car-preview-container'>
-                <Car color={selectedColor} />
-            </div>
+            <div className="color-palette" id="color-palette"></div>
         </div>
     );
 }

@@ -1,13 +1,3 @@
-.color-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 2px solid #ffa825;
-    border-right: none;
-    border-top: none;
-    border-bottom-left-radius: 15px;
-    background-color: #333333;
-}
-
 .colors-container {
     display: grid;
     grid-template-rows: 1fr 13fr;
@@ -20,6 +10,7 @@
     align-items: center;
     width: 100%;
     grid-template-columns: 2fr 1fr;
+    box-sizing: border-box;
     border-bottom: 2px dashed #ffa825;
     margin-top: 1%;
 }
@@ -74,10 +65,4 @@
     opacity: 0.8;
     -moz-opacity: 0.8;
     filter: alpha(opacity=8);
-}
-
-.car-preview-container {
-    display: grid;
-    justify-items: center;
-    align-items: center;
 }
