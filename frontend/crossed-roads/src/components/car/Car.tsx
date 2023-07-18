@@ -6,7 +6,7 @@ interface CarProps {
     direction: string;
 }
 
-const Car: React.FC<CarProps> = ({ color, direction }) => {
+const Car: React.FC<CarProps> = ({ color, direction }:CarProps) => {
     return (
         <div className="car">
             <div className="window">

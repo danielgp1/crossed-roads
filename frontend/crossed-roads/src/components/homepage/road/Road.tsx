@@ -7,7 +7,7 @@ export default function Road() {
         <div className="road">
             <div className="grid-item">
                 <div className="your-car">
-                    <Car color={"red"} direction={"#f9d71c"}/>
+                    <Car color="red" direction="#f9d71c"/>
                 </div>
             </div>
             <div className="grid-item">
@@ -16,25 +16,25 @@ export default function Road() {
             <div className="grid-item">
                 <div className="oncoming-traffic">
                     <div className="person">
-                        <Car color={"maroon"} direction={"red"}/>
+                        <Car color="maroon" direction="red"/>
                     </div>
                     <div className="person">
-                        <Car color={"yellow"} direction={"red"}/>
+                        <Car color="yellow" direction="red"/>
                     </div>
                     <div className="person">
-                        <Car color={"green"} direction={"red"}/>
+                        <Car color="green" direction="red"/>
                     </div>
                     <div className="person">
-                        <Car color={"blue"} direction={"red"}/>
+                        <Car color="blue" direction="red"/>
                     </div>
                     <div className="person">
-                        <Car color={"white"} direction={"red"}/>
+                        <Car color="white" direction="red"/>
                     </div>
                     <div className="person">
-                        <Car color={"purple"} direction={"red"}/>
+                        <Car color="purple" direction="red"/>
                     </div>
                     <div className="person">
-                        <Car color={"cyan"} direction={"red"}/>
+                        <Car color="cyan" direction="red"/>
                     </div>
                 </div>
             </div>
