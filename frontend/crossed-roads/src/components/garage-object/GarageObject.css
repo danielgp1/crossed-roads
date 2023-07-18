@@ -1,0 +1,37 @@
+.garage-object {
+    box-sizing: border-box;
+    border: 2px solid #fabb5c;
+    border-radius: 5px;
+    margin: 5%;
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+
+.garage-car-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.garage-object-buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.garage-object-button {
+    background-color: #fabb5c;
+    border: none;
+    transition: .2s ease-in;
+}
+
+.garage-object-button:hover {
+    background-color: #ffa825;
+}
+
+.garage-header {
+    background-color: #fabb5c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Futurafrica', sans-serif;
+    color: #333333;
+}
