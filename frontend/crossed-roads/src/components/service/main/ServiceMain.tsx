@@ -1,5 +1,5 @@
 import AvailableColors from '../../available-colors/AvailableColors'
-import Friends from '../../friends/Friends'
+import Viewers from '../../viewers/Viewers'
 import Profile from '../../profile/Profile'
 import PurchaseCar from '../../purchase-car/PurchaseCar'
 import './ServiceMain.css'
@@ -13,7 +13,7 @@ export default function ServiceMain() {
             <div className='line-separator-2'></div>
             <div className='line-separator-2'></div>
             <div className='line-separator-2'></div>
-            <Friends />
+            <Viewers />
             <div className='line-separator-2'></div>
             <AvailableColors />
         </div>

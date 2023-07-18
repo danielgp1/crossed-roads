@@ -1,0 +1,29 @@
+.viewers-grid {
+    background-color: #333333;
+    border-right: 2px solid #ffa825;
+    border-top: 2px solid #ffa825;
+    border-top-right-radius: 15px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    justify-items: center;
+}
+
+.viewers-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fabb5c;
+    font-family: 'Futurafrica', sans-serif;
+    font-size: 2rem;
+    box-sizing: border-box;
+    border-bottom: 2px dashed #ffa825;
+    width: 80%;
+}
+
+.viewers-container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+    height: 100%;
+}
