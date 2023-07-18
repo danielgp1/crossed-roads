@@ -19,7 +19,10 @@
 .billboard-rect {
     width: 150px;
     height: 100px;
-    background-color: black;
+    background-color: #333333;
+    box-sizing: border-box;
+    border: 10px solid black;
+    border-top: none;
 }
 
 .billboard-header {

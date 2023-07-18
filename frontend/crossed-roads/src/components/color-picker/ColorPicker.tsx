@@ -123,7 +123,7 @@ export default function ColorPicker({ setSelectedColor }: ColorPickerProps) {
     return (
         <div className='colors-container'>
             <div className='colors-header'>
-                <label className='color-label'>Paint Shop: Choose your color</label>
+                <label className='color-label'>Paint Shop: Choose a color</label>
                 <input
                     type="text"
                     name="custom_color"

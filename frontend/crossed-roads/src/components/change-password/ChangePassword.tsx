@@ -1,6 +1,6 @@
 import './ChangePassword.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faEye } from '@fortawesome/free-solid-svg-icons';
 import { handleTogglePasswordVisibility } from '../welcome-page/WelcomeFunctions';
 import { useState } from 'react';
 

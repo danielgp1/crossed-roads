@@ -21,6 +21,7 @@
     background-color: #fabb5c;
     border: none;
     transition: .2s ease-in;
+    cursor: pointer;
 }
 
 .garage-object-button:hover {

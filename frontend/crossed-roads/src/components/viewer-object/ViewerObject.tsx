@@ -13,8 +13,8 @@ export default function ViewerObject() {
                 <img className='viewer-profile-pic' src={pfp} alt='pfp'></img>
             </div>
             <div className='viewer-object-buttons-container'>
-                <button className='viewer-object-button'><FontAwesomeIcon icon={faUser} color='#333333' /></button>
-                <button className='viewer-object-button'><FontAwesomeIcon icon={faUserPlus} color='#333333' /></button>
+                <button className='viewer-object-button'><FontAwesomeIcon icon={faUser} size='2x' color='#333333' /></button>
+                <button className='viewer-object-button'><FontAwesomeIcon icon={faUserPlus} size='2x' color='#333333' /></button>
             </div>
         </div>
     )

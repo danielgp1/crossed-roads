@@ -2,7 +2,8 @@
     box-sizing: border-box;
     border: 2px solid #fabb5c;
     border-radius: 5px;
-    margin: 2%;
+    margin: 2% 0;
+    margin-right: 2%;
     display: grid;
     grid-template-rows: 1fr 5fr 1fr;
 }
@@ -27,6 +28,7 @@
     background-color: #fabb5c;
     border: none;
     transition: .2s ease-in;
+    cursor: pointer;
 }
 
 .viewer-object-button:hover {
@@ -43,6 +45,6 @@
 }
 
 .viewer-profile-pic {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
 }
