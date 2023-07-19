@@ -39,7 +39,7 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
                     Close
                 </button>
                 <label className="pass-lbl">Change Password</label>
-                <div className='password-container'>
+                <div className='change-password-container'>
                     <input
                         className='change-input'
                         type="password"
@@ -56,8 +56,7 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
                         onClick={() => handleTogglePasswordVisibility('current-password', setCurrentPwdEyeClass)}
                     />
                 </div>
-                <div className='password-container'>
-
+                <div className='change-password-container'>
                     <input
                         className='change-input'
                         type="password"
@@ -76,7 +75,7 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
                         onClick={() => handleTogglePasswordVisibility('new-password', setNewPwdEyeClass)}
                     />
                 </div>
-                <div className='password-container'>
+                <div className='change-password-container'>
                     <input
                         className='change-input'
                         type="password"

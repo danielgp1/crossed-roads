@@ -40,4 +40,9 @@
 
 .available-color-container {
     cursor: pointer;
+    transition: 0.1s ease-in;
+}
+
+.available-color-container:hover {
+    transform: scale(95%);
 }

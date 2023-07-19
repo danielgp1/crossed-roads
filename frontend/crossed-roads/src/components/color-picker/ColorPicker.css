@@ -58,6 +58,7 @@
     list-style-type: none;
     margin: 2px;
     border: 1px solid #DDD;
+    transition: 0.1s ease-in;
 }
 
 .color-palette .color-item:hover {
@@ -65,4 +66,5 @@
     opacity: 0.8;
     -moz-opacity: 0.8;
     filter: alpha(opacity=8);
+    transform: scale(95%);
 }
