@@ -19,7 +19,6 @@
     box-sizing: border-box;
     border-bottom: 2px dashed #ffa825;
     width: 80%;
-
     height: 100%;
 }
 
@@ -37,4 +36,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.available-color-container {
+    cursor: pointer;
 }
