@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-
 import Car from '../car/Car'
 import './Profile.css'
 import pic from './assets/john.jpeg'
