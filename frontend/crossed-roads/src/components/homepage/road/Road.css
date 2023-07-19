@@ -24,13 +24,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 520% 0;
 }
 
 .your-car {
     position: fixed;
+    margin-top: 2%;
 }
 
 .person {
-    margin: 340% 0;
-    margin-bottom: 410%;
+    margin-bottom: 1000%;
+}
+
+.person:last-child {
+    margin-bottom: 0;
 }

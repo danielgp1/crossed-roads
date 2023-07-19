@@ -1,10 +1,12 @@
 .colors-container {
+    box-sizing: border-box;
     display: grid;
     grid-template-rows: 1fr 13fr;
     border-right: 2px solid #ffa825;;
 }
 
 .colors-header {
+    box-sizing: border-box;
     display: grid;
     justify-content: center;
     align-items: center;

@@ -1,4 +1,5 @@
 .color-grid {
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr;
     border: 2px solid #ffa825;
