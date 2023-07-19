@@ -1,19 +1,17 @@
 .car {
   width: 100%;
-  height: 20%;
-  min-width: 120px;
-  min-height: 200px;
-  max-width: 220px;
-  max-height: 200px;
+  height: 125px;
+  min-width: 150px;
+  max-width: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .window {
   box-sizing: border-box;
-  max-height: 61px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +22,7 @@
   border-bottom: none;
   background-color: lightblue;
   min-width: 88px;
-  min-height: 61px;
+  min-height: 60px;
 }
 
 .pfp {
@@ -44,13 +42,12 @@
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  width: 100%;
   height: 25%;
   border: 1px solid black;
   border-radius: 10px;
-  max-width: 147px;
-  max-height: 52px;
-  min-width: 147px;
+  max-height: 50px;
+  min-height: 50px;
   box-sizing: border-box;
 }
 
@@ -86,7 +83,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 13px;
+  max-height: 12px;
+  min-height: 12px;
   width: 40%;
   height: 25%;
   background-color: #ffffff;
@@ -101,6 +99,8 @@
 
 .wheels {
   min-width: 216px;
+  max-height: 15px;
+  min-height: 15px;
   height: 7%;
   width: 100%;
   display: flex;

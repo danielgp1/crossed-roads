@@ -19,7 +19,7 @@ export default function MapsNavigation({ setIsNavigationOpen }: MapsNavigationPr
                     <span className='maps-to'>John Cena</span>
                 </div>
                 <div className='maps-google-map'>
-                    
+                        
                 </div>
             </div>
         </div>

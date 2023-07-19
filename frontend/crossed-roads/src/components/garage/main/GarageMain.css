@@ -5,7 +5,7 @@
     width: 100%;
     background-color: #333333;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 45%;
     box-sizing: border-box;
     padding: 3%;
