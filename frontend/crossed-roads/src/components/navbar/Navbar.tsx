@@ -2,6 +2,7 @@ import './Navbar.css'
 import { useNavigate } from 'react-router-dom';
 import Searchbar from './Searchbar';
 import logo from './assets/CR.png'
+import { isLoggedIn } from '../auth/auth';
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -12,15 +13,15 @@ export default function Navbar() {
     }
 
     const handleHome = () => {
-        navigate("/")
+        isLoggedIn() ? navigate("/") : handleLogout()
     }
 
     const handleService = () => {
-        navigate("/service");
+        isLoggedIn() ? navigate("/service") : handleLogout()
     }
 
     const handleGarage = () => {
-        navigate("/garage")
+        isLoggedIn() ? navigate("/garage") : handleLogout()
     }
 
     return (
