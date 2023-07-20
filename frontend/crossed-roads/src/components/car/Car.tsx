@@ -4,9 +4,10 @@ import './Car.css'
 interface CarProps {
     color: string;
     direction: string;
+    name: string;
 }
 
-const Car: React.FC<CarProps> = ({ color, direction }:CarProps) => {
+const Car: React.FC<CarProps> = ({ color, direction, name }:CarProps) => {
     return (
         <div className="car">
             <div className="window">
@@ -18,7 +19,7 @@ const Car: React.FC<CarProps> = ({ color, direction }:CarProps) => {
                     <div className="headlight" style={{backgroundColor: direction}}></div>
                 </div>
                 <div className="car-plate">
-                    <p>John Cena</p>
+                    <p>{name}</p>
                 </div>
             </div>
             <div className="wheels">

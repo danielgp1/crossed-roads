@@ -15,7 +15,7 @@ export default function ServiceMain() {
             <div className='line-separator-2'></div>
             <Viewers />
             <div className='line-separator-2'></div>
-            <AvailableColors />
+            <AvailableColors /  >
         </div>
     )
 }
