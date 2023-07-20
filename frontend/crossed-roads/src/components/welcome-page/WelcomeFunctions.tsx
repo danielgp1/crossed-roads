@@ -59,7 +59,9 @@ export async function handleRegistration(navigate: NavigateFunction, registratio
     const response = await axios.post('http://localhost:8080/api/auth/register', registrationData);
     alert('Welcome to Crossed Roads!');
     const token = response.data.token;
+    const id = response.data.id;
     localStorage.setItem("userToken", token);
+    localStorage.setItem("userID", id);
     navigate('/');
   } catch (error: any) {
     alert(error.response.data.message);
@@ -71,7 +73,9 @@ export async function handleLogin(navigate: NavigateFunction, loginData: { email
     const response = await axios.post('http://localhost:8080/api/auth/authenticate', loginData);
     alert(`Welcome back ${loginData.email}!`);
     const token = response.data.token;
+    const id = response.data.id;
     localStorage.setItem("userToken", token);
+    localStorage.setItem("userID", id);
     navigate('/');
   } catch (error: any) {
     alert(error.response.data.message);
