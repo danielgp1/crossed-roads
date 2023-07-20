@@ -16,7 +16,7 @@ export default function Billboard() {
                         <span className='billboard-time'>2023-20-06 18:00</span>
                     </div>
                 </div>
-                <span className='billboard-text'>
+                <span className='billboard-text-container'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?

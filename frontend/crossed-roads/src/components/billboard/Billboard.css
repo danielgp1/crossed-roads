@@ -62,8 +62,13 @@
     align-items: center;
 }
 
-.billboard-text {
-    white-space: pre-wrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
+.billboard-text-container {
+    padding: 2%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10; /* start showing ellipsis when 3rd line is reached */
+    white-space: pre-wrap; /* let the text wrap preserving spaces */
+    font-family: 'Jost';
+
 }
