@@ -1,5 +1,6 @@
 import './Billboard.css'
-import pfp from './assets/john.jpeg'
+import default_pic from '../assets/default_pic.png'
+
 
 export default function Billboard() {
     return (
@@ -7,7 +8,7 @@ export default function Billboard() {
             <div className='billboard-content'>
                 <div className='billboard-header'>
                     <div className='billboard-img-container'>
-                        <img className='billboard-img' src={pfp} alt='pfp'></img>
+                        <img className='billboard-img' src={default_pic} alt='pfp'></img>
                     </div>
                     <div className='billboard-info'>
                         <span className='billboard-names'>
@@ -17,6 +18,7 @@ export default function Billboard() {
                     </div>
                 </div>
                 <div className='billboard-text-container'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quos, dignissimos nihil distinctio deserunt nostrum dolores! Non impedit nam adipisci distinctio amet praesentium cumque deserunt, in dolorum perspiciatis, eaque neque?

@@ -1,5 +1,6 @@
 import './ChatBox.css'
-import img from './assets/john.jpeg'
+import default_pic from '../assets/default_pic.png'
+
 
 export default function ChatBox() {
     return (
@@ -8,7 +9,7 @@ export default function ChatBox() {
                 <div className='chatbox-status'></div>
             </div>
             <div className='chatbox-pic-container'>
-                <img className='chatbox-pic' src={img} alt='pic'></img>
+                <img className='chatbox-pic' src={default_pic} alt='pic'></img>
             </div>
             <div className='chatbox-content-wrapper'>
                 <div className='chatbox-content'>

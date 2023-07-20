@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Car from '../car/Car'
 import './Profile.css'
-import pic from './assets/john.jpeg'
+import default_pic from '../assets/default_pic.png'
 import ChangePassword from '../change-password/ChangePassword';
 import axios from 'axios';
 
@@ -16,13 +16,11 @@ export default function Profile() {
     useEffect(() => {
         const userID = localStorage.getItem('userID');
         const authToken = localStorage.getItem('userToken');
-        console.log("authToken: " + authToken);
-        console.log(localStorage);
         if (userID) {
             axios.get(`http://localhost:8080/api/users/${userID}`, {
-                // headers: {
-                //     Authorization: `Bearer ${authToken}`,
-                // },
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
             })
                 .then((response) => setUserData(response.data))
                 .catch((error) => console.error('Error fetching user data:', error));
@@ -39,7 +37,7 @@ export default function Profile() {
         <div className="profile-grid">
             <div className='profile-data'>
                 <div className='profile-pic-container'>
-                    <img className='profile-pic' alt='profile pic' src={pic} ></img>
+                    <img className='profile-pic' alt='profile pic' src={default_pic} ></img>
                 </div>
                 <div className='profile-info'>
                     <span className='names'>{first_name} {last_name}</span>
