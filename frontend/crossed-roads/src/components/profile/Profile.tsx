@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Car from '../car/Car'
 import './Profile.css'
 import default_pic from '../assets/default_pic.png'
@@ -8,6 +8,7 @@ import axios from 'axios';
 export default function Profile() {
     const [userData, setUserData] = useState(null);
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleChangePassword = () => {
         setIsChangePasswordOpen(!isChangePasswordOpen);
@@ -33,11 +34,31 @@ export default function Profile() {
 
     const { first_name, last_name, profile_name, email, date_of_birth } = userData;
 
+    const handleProfilePicClick = () => {
+        fileInputRef.current?.click();
+    };
+    
+    const handleImageChange = () => {
+        const imageInput = document.querySelector("#image-input") as HTMLInputElement;
+        const file = imageInput?.files?.[0];
+        if(file) {
+            console.log(file);
+        }
+    }
+
     return (
         <div className="profile-grid">
             <div className='profile-data'>
                 <div className='profile-pic-container'>
-                    <img className='profile-pic' alt='profile pic' src={default_pic} ></img>
+                    <img className='profile-pic' alt='profile pic' src={default_pic} onClick={handleProfilePicClick} />
+                    <input
+                        id='image-input'
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        style={{ display: 'none' }}
+                        ref={fileInputRef}
+                    />
                 </div>
                 <div className='profile-info'>
                     <span className='names'>{first_name} {last_name}</span>
@@ -57,7 +78,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className='car-container'>
-                            <Car color={"blue"} direction={"#f9d71c"} name={first_name}/>
+                            <Car color={"blue"} direction={"#f9d71c"} name={first_name} />
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,8 @@
 }
 
 .profile-pic-container {
+    position: relative;
+    /* Ensure the container is positioned relative */
     display: grid;
     align-items: center;
     justify-items: center;
@@ -26,6 +28,27 @@
     width: 85%;
     border-radius: 10px;
     border: 2px solid #ffa825;
+    cursor: pointer;
+}
+
+.profile-pic:hover {
+    filter: brightness(70%);
+}
+
+.profile-pic-container:hover::before {
+    content: 'Change Profile Picture';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fabb5c;
+    font-family: 'Jost';
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 6px 12px;
+    border-radius: 4px;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .profile-info {
@@ -58,7 +81,7 @@
     overflow: hidden;
     font-family: initial;
     font-size: initial;
-    color:initial;
+    color: initial;
 }
 
 .other-info {
@@ -84,7 +107,7 @@
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    position:relative;
+    position: relative;
 }
 
 .profile-button {
@@ -108,4 +131,3 @@
 .profile-button:last-child {
     border-bottom-right-radius: 15px;
 }
-
