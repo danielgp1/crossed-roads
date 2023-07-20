@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Service from './components/service/Service';
 import Garage from './components/garage/Garage';
 import ProtectedRoutes from './components/auth/ProtectedRoutes';
+import PageNotFound from './components/page-not-found/PageNotFound';
 
 const App = () => {
   return (
@@ -15,7 +16,7 @@ const App = () => {
           <Route path="/" element={<Homepage />} />
           <Route path="/service" element={<Service />} />
           <Route path="/garage" element={<Garage />} />
-          <Route path="*" element={<p>Error404: Page not found!</p>} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </Router>
