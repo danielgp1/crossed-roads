@@ -1,6 +1,7 @@
 package com.trading212.crossedroads.daos;
 
 import com.trading212.crossedroads.dtos.User;
+import com.trading212.crossedroads.inputs.UserInput;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ public interface UserDao {
 
     Optional<User> getUserByEmail(String email);
 
-    int updateUser(long id, User user);
+    int updateUserProfilePicUrl(long id, String url);
+    int updateUserPassword(long id, String password);
     int deleteUser(long id);
 }

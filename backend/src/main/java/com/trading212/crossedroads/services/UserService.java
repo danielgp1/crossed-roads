@@ -3,6 +3,7 @@ package com.trading212.crossedroads.services;
 import com.trading212.crossedroads.daos.UserDao;
 import com.trading212.crossedroads.dtos.User;
 import com.trading212.crossedroads.exceptions.NotFoundException;
+import com.trading212.crossedroads.inputs.UserInput;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,15 +40,17 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException(String.format("User with email %s not found", email)));
     }
 
-    public void updateUser(long id, User user) {
-        Optional<User> test = userDao.getUserByID(id);
-        if(test.isPresent()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            int res = userDao.updateUser(id, user);
-            if(res != 1) {throw new IllegalStateException("Couldn't update user");}
-        } else {
-            throw new NotFoundException(String.format("User with id %s not found", id));
+    public void updateUser(long id, UserInput userInput) {
+        Optional<User> user = userDao.getUserByID(id);
+        if(user.isEmpty()) {throw new NotFoundException(String.format("User with id %s not found", id));
         }
+       if(userInput.getNewPassword() != null && userInput.getOldPassword() != null) {
+           // validate passwords
+           userDao.updateUserPassword(id, passwordEncoder.encode(userInput.getNewPassword()));
+       }
+       if(userInput.getProfilePicUrl() != null){
+           userDao.updateUserProfilePicUrl(id, userInput.getProfilePicUrl());
+       }
     }
     public void deleteUser(long id) {
         Optional<User> user = userDao.getUserByID(id);

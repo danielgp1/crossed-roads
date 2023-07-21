@@ -2,6 +2,7 @@ package com.trading212.crossedroads.repositories;
 
 import com.trading212.crossedroads.daos.UserDao;
 import com.trading212.crossedroads.dtos.User;
+import com.trading212.crossedroads.inputs.UserInput;
 import com.trading212.crossedroads.row_mappers.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -76,15 +77,24 @@ public class UserRepository implements UserDao {
     }
 
     @Override
-    public int updateUser(long id, User user) {
+    public int updateUserProfilePicUrl(long id, String url) {
         var sql = """
             UPDATE users
-            SET first_name = ?, last_name = ?, email = ?, password = ?, date_of_birth = ?
+            SET profile_pic_url = ?
             WHERE id = ?
             """;
-        return jdbcTemplate.update(sql, user.getFirst_name(), user.getLast_name(), user.getEmail(), user.getPassword(), user.getDate_of_birth(), id);
+        return jdbcTemplate.update(sql, url, id);
     }
 
+    @Override
+    public int updateUserPassword(long id, String password) {
+        var sql = """
+            UPDATE users
+            SET password = ?
+            WHERE id = ?
+            """;
+        return jdbcTemplate.update(sql, password, id);
+    }
 
     @Override
     public int deleteUser(long id) {
@@ -94,4 +104,6 @@ public class UserRepository implements UserDao {
                 """;
         return jdbcTemplate.update(sql, id);
     }
+
+
 }
