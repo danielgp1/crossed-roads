@@ -139,7 +139,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className='car-container'>
-                            <Car color={"blue"} direction={"#f9d71c"} name={first_name} />
+                            <Car color={"blue"} direction={"#f9d71c"} name={first_name} pfp={imageURL ? imageURL : default_pic}/>
                         </div>
                     </div>
                 </div>

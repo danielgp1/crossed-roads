@@ -9,64 +9,64 @@ export default function AvailableColors() {
             </div>
             <div className='available-colors-container-grid'>
                 <div className='available-color-container'>
-                    <Car color='green' direction='#f9d71c' name=''/>
+                    <Car color='green' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='blue' direction='#f9d71c' name=''/>
+                    <Car color='blue' direction='#f9d71c' name=''  pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='red' direction='#f9d71c' name=''/>
+                    <Car color='red' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='yellow' direction='#f9d71c' name=''/>
+                    <Car color='yellow' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='cyan' direction='#f9d71c' name=''/>
+                    <Car color='cyan' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='maroon' direction='#f9d71c' name=''/>
+                    <Car color='maroon' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='black' direction='#f9d71c' name=''/>
+                    <Car color='black' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='darkblue' direction='#f9d71c' name=''/>
+                    <Car color='darkblue' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='white' direction='#f9d71c' name=''/>
+                    <Car color='white' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='purple' direction='#f9d71c' name=''/>
+                    <Car color='purple' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='green' direction='#f9d71c' name=''/>
+                    <Car color='green' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='blue' direction='#f9d71c' name=''/>
+                    <Car color='blue' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='red' direction='#f9d71c' name=''/>
+                    <Car color='red' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='yellow' direction='#f9d71c' name=''/>
+                    <Car color='yellow' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='cyan' direction='#f9d71c' name=''/>
+                    <Car color='cyan' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='maroon' direction='#f9d71c' name=''/>
+                    <Car color='maroon' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='black' direction='#f9d71c' name=''/>
+                    <Car color='black' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='darkblue' direction='#f9d71c' name=''/>
+                    <Car color='darkblue' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='white' direction='#f9d71c' name=''/>
+                    <Car color='white' direction='#f9d71c' name='' pfp=''/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='purple' direction='#f9d71c' name=''/>
+                    <Car color='purple' direction='#f9d71c' name='' pfp=''/>
                 </div>
             </div>
         </div>

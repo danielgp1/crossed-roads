@@ -7,7 +7,7 @@ export default function Road() {
         <div className="road">
             <div className="grid-item">
                 <div className="your-car">
-                    <Car color="red" direction="#f9d71c" name=''/>
+                    <Car color="red" direction="#f9d71c" name='' pfp=''/>
                 </div>
             </div>
             <div className="grid-item">
@@ -16,25 +16,25 @@ export default function Road() {
             <div className="grid-item">
                 <div className="oncoming-traffic">
                     <div className="person">
-                        <Car color="maroon" direction="red" name=''/>
+                        <Car color="maroon" direction="red" name='' pfp=''/>
                     </div>
                     <div className="person">
-                        <Car color="yellow" direction="red" name=''/>
+                        <Car color="yellow" direction="red" name='' pfp=''/>
                     </div>
                     <div className="person">
-                        <Car color="green" direction="red" name=''/>
+                        <Car color="green" direction="red" name='' pfp=''/>
                     </div>
                     <div className="person">
-                        <Car color="blue" direction="red" name=''/>
+                        <Car color="blue" direction="red" name='' pfp=''/>
                     </div>
                     <div className="person">
-                        <Car color="white" direction="red" name=''/>
+                        <Car color="white" direction="red" name='' pfp=''/>
                     </div>
                     <div className="person">
-                        <Car color="purple" direction="red" name=''/>
+                        <Car color="purple" direction="red" name='' pfp=''/>
                     </div>
                     <div className="person">
-                        <Car color="cyan" direction="red" name=''/>
+                        <Car color="cyan" direction="red" name='' pfp=''/>
                     </div>
                 </div>
             </div>

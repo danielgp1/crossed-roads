@@ -10,7 +10,7 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
         <div className="purchase-color-grid">
             <div className="car-preview-grid">
                 <label className="preview-lbl">Looking Good!</label>
-                <Car color={selectedColor} direction={"#f9d71c"} name=''/>
+                <Car color={selectedColor} direction={"#f9d71c"} name='' pfp=''/>
             </div>
             <button className='purchase-button'>Pay 2.00 leva</button>
         </div>

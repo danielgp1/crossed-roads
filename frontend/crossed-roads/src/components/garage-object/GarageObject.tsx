@@ -19,7 +19,7 @@ export default function GarageObject() {
                 John Cena
             </div>
             <div className='garage-car-container'>
-                <Car color='blue' direction='yellow' name=''/>
+                <Car color='blue' direction='yellow' name='' pfp=''/>
             </div>
             <div className='garage-object-buttons-container'>
                 <button className='garage-object-button'><FontAwesomeIcon icon={faUser} size='2x' color='#333333' /></button>
