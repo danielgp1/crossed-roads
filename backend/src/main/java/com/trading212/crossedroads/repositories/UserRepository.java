@@ -16,12 +16,17 @@ public class UserRepository implements UserDao {
     public UserRepository(JdbcTemplate jdbcTemplate){this.jdbcTemplate = jdbcTemplate;}
 
     @Override
-    public int insertUser(User user) {
+    public User insertUser(User user) {
         var sql = """
                 INSERT INTO users(first_name, last_name, profile_name, password, email, date_of_birth)
                 VALUES (?, ?, ?, ?, ?, ?);
                 """;
-        return jdbcTemplate.update(sql, user.getFirst_name(), user.getLast_name(), user.getProfile_name(), user.getPassword(), user.getEmail(), user.getDate_of_birth());
+        int rowsAffected = jdbcTemplate.update(sql, user.getFirst_name(), user.getLast_name(), user.getProfile_name(), user.getPassword(), user.getEmail(), user.getDate_of_birth());
+        if (rowsAffected > 0) {
+            return getUserByUsername(user.getProfile_name()).orElseThrow(() -> new IllegalStateException("Couldn't add user"));
+        } else {
+            return null;
+        }
     }
 
     @Override

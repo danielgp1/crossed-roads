@@ -18,10 +18,11 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void insertUser(User user) {
+    public User insertUser(User user) {
         user.setProfile_name(generateUniqueUsername(user.getFirst_name(), user.getLast_name()));
-        int res = userDao.insertUser(user);
-        if(res == -1) {throw new IllegalStateException("Couldn't add user");}
+        User insertedUser = userDao.insertUser(user);
+        if(insertedUser == null) {throw new IllegalStateException("Couldn't add user");}
+        return insertedUser;
     }
     public List<User> getUsers() {return userDao.getUsers();}
     public User getUser(long id) {
