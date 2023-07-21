@@ -4,11 +4,14 @@ import './Profile.css'
 import default_pic from '../assets/default_pic.png'
 import ChangePassword from '../change-password/ChangePassword';
 import axios from 'axios';
+import { s3 } from '../aws/aws';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 
 export default function Profile() {
     const [userData, setUserData] = useState(null);
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [imageURL, setImageURL] = useState<string | null>(null);
 
     const handleChangePassword = () => {
         setIsChangePasswordOpen(!isChangePasswordOpen);
@@ -42,15 +45,38 @@ export default function Profile() {
         const imageInput = document.querySelector("#image-input") as HTMLInputElement;
         const file = imageInput?.files?.[0];
         if(file) {
-            console.log(file);
+            uploadImageToS3(file);
         }
     }
+
+    const uploadImageToS3 = async (file: File) => {
+        try {
+          const bucketName = process.env.REACT_APP_BUCKET_NAME;
+          const key = `images/${file.name}`;
+    
+          const params = {
+            Bucket: bucketName,
+            Key: key,
+            Body: file,
+          };
+    
+          const data = await s3.send(new PutObjectCommand(params));
+          setImageURL(`https://${process.env.REACT_APP_BUCKET_NAME}.s3.${process.env.REACT_APP_REGION}.amazonaws.com/${key}`);
+          console.log("Image uploaded successfully:", data);
+        } catch (error) {
+          console.error("Error uploading image:", error);
+        }
+      };
 
     return (
         <div className="profile-grid">
             <div className='profile-data'>
                 <div className='profile-pic-container'>
-                    <img className='profile-pic' alt='profile pic' src={default_pic} onClick={handleProfilePicClick} />
+                    <img 
+                        className='profile-pic'
+                        alt='profile pic' 
+                        src={imageURL ? imageURL : default_pic} 
+                        onClick={handleProfilePicClick} />
                     <input
                         id='image-input'
                         type="file"
