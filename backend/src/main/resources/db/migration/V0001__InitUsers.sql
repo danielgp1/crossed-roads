@@ -6,6 +6,10 @@ CREATE TABLE users (
     password varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
     date_of_birth DATE NOT NULL,
+    profile_pic_url varchar(255),
+    current_color varchar(255) DEFAULT "#FFFFFF",
+    longitude double,
+    latitude double,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

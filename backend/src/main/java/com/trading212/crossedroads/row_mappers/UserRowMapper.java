@@ -18,6 +18,10 @@ public class UserRowMapper implements RowMapper<User> {
                 resultSet.getString("password"),
                 resultSet.getString("email"),
                 resultSet.getDate("date_of_birth"),
+                resultSet.getString("profile_pic_url"),
+                resultSet.getString("current_color"),
+                resultSet.getDouble("longitude"),
+                resultSet.getDouble("latitude"),
                 resultSet.getTimestamp("created_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia")),
                 resultSet.getTimestamp("updated_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia"))
         );

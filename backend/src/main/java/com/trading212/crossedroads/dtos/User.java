@@ -21,6 +21,10 @@ public class User implements UserDetails {
     private Date date_of_birth;
     private ZonedDateTime created_at;
     private ZonedDateTime updated_at;
+    private String current_color;
+    private String profile_pic_url;
+    private Double longitude;
+    private Double latitude;
     private Role role;
 
 
@@ -37,16 +41,19 @@ public class User implements UserDetails {
         this.role = Role.USER;
     }
 
-    public User(String first_name, String last_name, String profile_name, String password, String email) {
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.profile_name = profile_name;
-        this.password = password;
-        this.email = email;
-        this.role = Role.USER;
-    }
-
-    public User(long id, String first_name, String last_name, String profile_name, String password, String email, Date date_of_birth, ZonedDateTime created_at, ZonedDateTime updated_at) {
+    public User(long id,
+                String first_name,
+                String last_name,
+                String profile_name,
+                String password,
+                String email,
+                Date date_of_birth,
+                String profile_pic_url,
+                String current_color,
+                Double longitude,
+                Double latitude,
+                ZonedDateTime created_at,
+                ZonedDateTime updated_at) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -55,6 +62,10 @@ public class User implements UserDetails {
         this.email = email;
         this.role = Role.USER;
         this.date_of_birth = date_of_birth;
+        this.current_color = current_color;
+        this.profile_pic_url = profile_pic_url;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
