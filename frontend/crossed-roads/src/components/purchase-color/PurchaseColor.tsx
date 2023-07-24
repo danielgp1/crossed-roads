@@ -5,31 +5,39 @@ import def from '../assets/default_pic.png'
 import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext";
 
 interface PurchaseColorProps {
-    selectedColor: string;
+  selectedColor: string;
 }
 
 export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
-    const { user } = useUserContext();
-    const { addColor } = useAvailableColorsContext();
+  const { user } = useUserContext();
+  const { addColor, availableColors } = useAvailableColorsContext();
 
-    const handlePurchaseColor = async () => {
-        try {
-          if (user) {
-            await addColor(selectedColor);
-            console.log('Color purchased successfully!');
-          }
-        } catch (error) {
-          console.error('Error purchasing color:', error);
+  const handlePurchaseColor = async () => {
+    try {
+      if (user) {
+        const isColorAvailable = availableColors.some(
+          (color) => color.user_id.toString() === user.id.toString() && color.color_hash === selectedColor
+        );
+
+        if (isColorAvailable) {
+          alert("You already have this color!");
+        } else {
+          await addColor(selectedColor);
+          console.log('Color purchased successfully!');
         }
-      };
+      }
+    } catch (error) {
+      console.error('Error purchasing color:', error);
+    }
+  };
 
-    return (
-        <div className="purchase-color-grid">
-            <div className="car-preview-grid">
-                <label className="preview-lbl">Looking Good!</label>
-                <Car color={selectedColor} direction={"#f9d71c"} name={user?.first_name || ''} pfp={user?.profile_pic_url || def}/>
-            </div>
-            <button className='purchase-button' onClick={handlePurchaseColor}>Pay 2.00 leva</button>
-        </div>
-    )
+  return (
+    <div className="purchase-color-grid">
+      <div className="car-preview-grid">
+        <label className="preview-lbl">Looking Good!</label>
+        <Car color={selectedColor} direction={"#f9d71c"} name={user?.first_name || ''} pfp={user?.profile_pic_url || def} />
+      </div>
+      <button className='purchase-button' onClick={handlePurchaseColor}>Pay 2.00 leva</button>
+    </div>
+  )
 }

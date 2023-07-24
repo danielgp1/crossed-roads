@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import axios from 'axios';
 import { handleLogin, handleRegistration } from '../components/welcome-page/WelcomeFunctions'; 
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 
 // Define the shape of the user data
 interface UserData {
@@ -17,7 +17,6 @@ interface UserData {
   current_color: string
 }
 
-// Define the shape of the context
 interface UserContextData {
   user: UserData | null;
   setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
