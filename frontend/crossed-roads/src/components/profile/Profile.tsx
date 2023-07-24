@@ -1,44 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Car from '../car/Car'
 import './Profile.css'
 import default_pic from '../assets/default_pic.png'
 import ChangePassword from '../change-password/ChangePassword';
-import axios from 'axios';
 import { s3 } from '../aws/aws';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
+import { useUserContext } from '../../contexts/UserContext';
 
 export default function Profile() {
-    const [userData, setUserData] = useState(null);
+    const { user, updateProfilePic } = useUserContext();
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const [imageURL, setImageURL] = useState<string | null>(null);
 
     const handleChangePassword = () => {
         setIsChangePasswordOpen(!isChangePasswordOpen);
     };
 
-    useEffect(() => {
-        const userID = localStorage.getItem('userID');
-        const authToken = localStorage.getItem('userToken');
-        if (userID && authToken) {
-            axios.get(`http://localhost:8080/api/users/${userID}`, {
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
-            })
-                .then((response) => {
-                    setUserData(response.data);
-                    setImageURL(response.data.profile_pic_url);
-                })
-                .catch((error) => console.error('Error fetching user data:', error));
-        }
-    }, []);
-
-    if (!userData) {
-        return <div>Loading...</div>;
-    }
-
-    const { first_name, last_name, profile_name, email, date_of_birth } = userData;
+    const { first_name, last_name, profile_name, email, date_of_birth, profile_pic_url } = user || {};
 
     const handleProfilePicClick = () => {
         fileInputRef.current?.click();
@@ -50,7 +28,7 @@ export default function Profile() {
         if (file) {
             const imageUrl = await uploadImageToS3(file);
             if (imageUrl) {
-                updateUserProfilePicUrl(imageUrl);
+                updateProfilePic(imageUrl);
             }
         }
     }
@@ -70,7 +48,6 @@ export default function Profile() {
             console.log("Image uploaded successfully:", data);
 
             const imageUrl = `https://${process.env.REACT_APP_BUCKET_NAME}.s3.${process.env.REACT_APP_REGION}.amazonaws.com/${key}`;
-            setImageURL(imageUrl);
             return imageUrl;
 
         } catch (error) {
@@ -79,28 +56,29 @@ export default function Profile() {
         }
     };
 
-    const updateUserProfilePicUrl = async (imageUrl: string | null) => {
-        if (imageUrl) {
-            const authToken = localStorage.getItem('userToken');
-            const userID = localStorage.getItem('userID');
-            if (authToken && userID) {
-                try {
-                    await axios.put(
-                        `http://localhost:8080/api/users/${userID}`,
-                        { profile_pic_url: imageUrl },
-                        {
-                            headers: {
-                                Authorization: `Bearer ${authToken}`,
-                            },
-                        }
-                    );
-                    console.log("Profile picture URL updated successfully");
-                } catch (error) {
-                    console.error("Error updating profile picture URL:", error);
-                }
-            }
-        }
-    };
+    // const updateUserProfilePicUrl = async (imageUrl: string | null) => {
+    //     if (imageUrl) {
+    //         setImageURL(imageUrl);
+    //         const authToken = localStorage.getItem('userToken');
+    //         const userID = localStorage.getItem('userID');
+    //         if (authToken && userID) {
+    //             try {
+    //                 await axios.put(
+    //                     `http://localhost:8080/api/users/${userID}`,
+    //                     { profile_pic_url: imageUrl },
+    //                     {
+    //                         headers: {
+    //                             Authorization: `Bearer ${authToken}`,
+    //                         },
+    //                     }
+    //                 );
+    //                 console.log("Profile picture URL updated successfully");
+    //             } catch (error) {
+    //                 console.error("Error updating profile picture URL:", error);
+    //             }
+    //         }
+    //     }
+    // };
 
 
     return (
@@ -110,7 +88,7 @@ export default function Profile() {
                     <img
                         className='profile-pic'
                         alt='profile pic'
-                        src={imageURL ? imageURL : default_pic}
+                        src={profile_pic_url ? profile_pic_url : default_pic}
                         onClick={handleProfilePicClick} />
                     <input
                         id='image-input'
@@ -135,11 +113,11 @@ export default function Profile() {
                             </div>
                             <div className="profile-field">
                                 <label className='field-label'>Birthday:</label>
-                                <span className='field-span'>{date_of_birth}</span>
+                                <span className='field-span'>{date_of_birth ? new Date(date_of_birth).toLocaleDateString() : ''}</span>
                             </div>
                         </div>
                         <div className='car-container'>
-                            <Car color={"blue"} direction={"#f9d71c"} name={first_name} pfp={imageURL ? imageURL : default_pic}/>
+                            <Car color={"blue"} direction={"#f9d71c"} name={first_name ?? ''} pfp={profile_pic_url ? profile_pic_url : default_pic}/>
                         </div>
                     </div>
                 </div>

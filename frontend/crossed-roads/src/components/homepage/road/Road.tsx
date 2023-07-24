@@ -1,13 +1,15 @@
+import { useUserContext } from "../../../contexts/UserContext";
 import Car from "../../car/Car"
 import './Road.css'
-
+import def from '../../assets/default_pic.png'
 
 export default function Road() {
+    const { user } = useUserContext();
     return (
         <div className="road">
             <div className="grid-item">
                 <div className="your-car">
-                    <Car color="red" direction="#f9d71c" name='' pfp=''/>
+                    <Car color="red" direction="#f9d71c" name={user?.first_name || ''} pfp={user?.profile_pic_url || def}/>
                 </div>
             </div>
             <div className="grid-item">
