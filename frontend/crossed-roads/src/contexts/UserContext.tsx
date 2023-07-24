@@ -2,6 +2,8 @@
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import axios from 'axios';
+import { handleLogin, handleRegistration } from '../components/welcome-page/WelcomeFunctions'; 
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 // Define the shape of the user data
 interface UserData {
@@ -21,6 +23,8 @@ interface UserContextData {
   setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
   updateProfilePic: (newProfilePic: string) => Promise<void>;
   updateCurrentColor: (newColor: string) => Promise<void>;
+  handleUserLogin: (navigate:NavigateFunction, loginData: { email: string; password: string }) => Promise<void>; // Add handleUserLogin function
+  handleUserRegistration: (navigate:NavigateFunction, registerData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string,}) => Promise<void>;
 }
 
 // Create the context
@@ -42,7 +46,6 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     const userID = localStorage.getItem('userID');
     const authToken = localStorage.getItem('userToken');
-    console.log("user context");
     if (userID && authToken) {
       axios
         .get(`http://localhost:8080/api/users/${userID}`, {
@@ -56,6 +59,41 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         .catch((error) => console.error('Error fetching user data:', error));
     }
   }, []);
+
+
+  const handleUserLogin = async (navigate:NavigateFunction, loginData: { email: string; password: string }) => {
+    try {
+      await handleLogin(navigate, loginData); // Pass navigate as a parameter to handleLogin
+      const userID = localStorage.getItem('userID');
+      const authToken = localStorage.getItem('userToken');
+      const response = await axios
+        .get(`http://localhost:8080/api/users/${userID}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+      setUser(response.data); // Update user context with the received user data
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
+  };
+
+  const handleUserRegistration = async (navigate:NavigateFunction, registerData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string,}) => {
+    try {
+      await handleRegistration(navigate, registerData); // Pass navigate as a parameter to handleLogin
+      const userID = localStorage.getItem('userID');
+      const authToken = localStorage.getItem('userToken');
+      const response = await axios
+        .get(`http://localhost:8080/api/users/${userID}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+      setUser(response.data); // Update user context with the received user data
+    } catch (error) {
+      console.error('Error logging in:', error);
+    }
+  };
 
   const updateProfilePic = async (newProfilePic: string) => {
     try {
@@ -98,7 +136,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, updateProfilePic, updateCurrentColor }}>
+    <UserContext.Provider value={{ user, setUser, updateProfilePic, updateCurrentColor,  handleUserLogin, handleUserRegistration }}>
       {children}
     </UserContext.Provider>
   );

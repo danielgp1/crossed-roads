@@ -1,21 +1,23 @@
+import { useUserContext } from '../../contexts/UserContext';
 import logo from './assets/logo.png';
-import { handleLogin, handleLoginVisibility, handleTogglePasswordVisibility } from './WelcomeFunctions';
+import { handleLoginVisibility, handleTogglePasswordVisibility } from './WelcomeFunctions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
 export function LoginForm(
     {formState}: {formState: any}
 ) {
+    const { handleUserLogin } = useUserContext(); // Use the handleUserLogin function from the context
     const navigate = useNavigate();
 
     const login = async (event: React.FormEvent) => {
-        event.preventDefault();
-        const loginData = {
-            email: formState.loginEmail,
-            password: formState.loginPassword,
-        };
-
-        await handleLogin(navigate, loginData);
+      event.preventDefault();
+      const loginData = {
+        email: formState.loginEmail,
+        password: formState.loginPassword,
+      };
+  
+      await handleUserLogin(navigate, loginData); // Use handleUserLogin from the context for user login
     };
 
     return (
