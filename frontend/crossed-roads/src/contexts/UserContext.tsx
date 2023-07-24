@@ -42,7 +42,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     const userID = localStorage.getItem('userID');
     const authToken = localStorage.getItem('userToken');
-
+    console.log("user context");
     if (userID && authToken) {
       axios
         .get(`http://localhost:8080/api/users/${userID}`, {

@@ -1,6 +1,8 @@
 package com.trading212.crossedroads.services;
 
+import com.trading212.crossedroads.daos.AvailableColorDao;
 import com.trading212.crossedroads.daos.UserDao;
+import com.trading212.crossedroads.dtos.AvailableColor;
 import com.trading212.crossedroads.dtos.User;
 import com.trading212.crossedroads.exceptions.NotFoundException;
 import com.trading212.crossedroads.inputs.UserInput;
@@ -14,8 +16,11 @@ import java.util.Random;
 @Service
 public class UserService {
     private final UserDao userDao;
+    private final AvailableColorDao availableColorDao;
     private final PasswordEncoder passwordEncoder;
-    public UserService(UserDao userDao, PasswordEncoder passwordEncoder) {this.userDao = userDao;
+    public UserService(UserDao userDao, PasswordEncoder passwordEncoder, AvailableColorDao availableColorDao) {
+        this.userDao = userDao;
+        this.availableColorDao = availableColorDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -23,6 +28,7 @@ public class UserService {
         user.setProfile_name(generateUniqueUsername(user.getFirst_name(), user.getLast_name()));
         User insertedUser = userDao.insertUser(user);
         if(insertedUser == null) {throw new IllegalStateException("Couldn't add user");}
+        AvailableColor availableColor = availableColorDao.insertAvailableColor(new AvailableColor(insertedUser.getId(), "#FFFFFF"));
         return insertedUser;
     }
     public List<User> getUsers() {return userDao.getUsers();}
