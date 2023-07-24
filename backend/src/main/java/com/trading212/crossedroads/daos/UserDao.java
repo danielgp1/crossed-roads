@@ -17,6 +17,6 @@ public interface UserDao {
     int updateUserProfilePicUrl(long id, String url);
     int updateUserPassword(long id, String password);
     int updateCurrentColor(long id, String color);
-    
+
     int deleteUser(long id);
 }

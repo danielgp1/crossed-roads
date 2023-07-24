@@ -7,21 +7,24 @@ import Garage from './components/garage/Garage';
 import ProtectedRoutes from './components/auth/ProtectedRoutes';
 import PageNotFound from './components/page-not-found/PageNotFound';
 import UserProvider from './contexts/UserContext';
+import AvailableColorsProvider from './contexts/AvailableColorsContext';
 
 const App = () => {
   return (
     <UserProvider>
-      <Router>
-        <Routes>
-          <Route path="/welcome" element={<Welcome />} />
-          <Route element={<ProtectedRoutes/>} >
-              <Route path="/" element={<Homepage />} />
-              <Route path="/service" element={<Service />} />
-              <Route path="/garage" element={<Garage />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-        </Routes>
-      </Router>
+      <AvailableColorsProvider>
+        <Router>
+          <Routes>
+            <Route path="/welcome" element={<Welcome />} />
+            <Route element={<ProtectedRoutes/>} >
+                <Route path="/" element={<Homepage />} />
+                <Route path="/service" element={<Service />} />
+                <Route path="/garage" element={<Garage />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+          </Routes>
+        </Router>
+      </AvailableColorsProvider>
     </UserProvider>
   );
 };

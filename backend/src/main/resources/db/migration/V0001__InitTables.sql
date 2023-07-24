@@ -13,3 +13,10 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE available_colors (
+    user_id INT,
+    color_hash VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY (user_id, color_hash)
+);
