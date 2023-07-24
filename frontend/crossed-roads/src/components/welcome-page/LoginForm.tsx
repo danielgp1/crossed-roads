@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export function LoginForm(
     {formState}: {formState: any}
 ) {
-    const { handleUserLogin } = useUserContext(); // Use the handleUserLogin function from the context
+    const { handleUserLogin } = useUserContext();
     const navigate = useNavigate();
 
     const login = async (event: React.FormEvent) => {
@@ -17,7 +17,7 @@ export function LoginForm(
         password: formState.loginPassword,
       };
   
-      await handleUserLogin(navigate, loginData); // Use handleUserLogin from the context for user login
+      await handleUserLogin(navigate, loginData);
     };
 
     return (

@@ -10,10 +10,8 @@ export default function AvailableColors() {
 
 
     const handleColorChange = async (color: string) => {
-        // Call the updateCurrentColor function from the UserContext
         if (user) {
             await updateCurrentColor(color);
-            console.log(availableColors[0].user_id);
         }
     };
 

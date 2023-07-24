@@ -1,11 +1,8 @@
-// UserContext.tsx
-
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import axios from 'axios';
 import { handleLogin, handleRegistration } from '../components/welcome-page/WelcomeFunctions'; 
 import { NavigateFunction } from 'react-router-dom';
 
-// Define the shape of the user data
 interface UserData {
   id: string;
   first_name: string;
@@ -26,10 +23,8 @@ interface UserContextData {
   handleUserRegistration: (navigate:NavigateFunction, registerData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string,}) => Promise<void>;
 }
 
-// Create the context
 const UserContext = createContext<UserContextData | undefined>(undefined);
 
-// Create a custom hook to use the context easily
 export const useUserContext = () => {
   const context = useContext(UserContext);
   if (!context) {
@@ -38,7 +33,6 @@ export const useUserContext = () => {
   return context;
 };
 
-// Create the UserProvider component
 const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserData | null>(null);
 
@@ -62,7 +56,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleUserLogin = async (navigate:NavigateFunction, loginData: { email: string; password: string }) => {
     try {
-      await handleLogin(navigate, loginData); // Pass navigate as a parameter to handleLogin
+      await handleLogin(navigate, loginData);
       const userID = localStorage.getItem('userID');
       const authToken = localStorage.getItem('userToken');
       const response = await axios
@@ -71,7 +65,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             Authorization: `Bearer ${authToken}`,
           },
         })
-      setUser(response.data); // Update user context with the received user data
+      setUser(response.data);
     } catch (error) {
       console.error('Error logging in:', error);
     }
@@ -79,7 +73,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleUserRegistration = async (navigate:NavigateFunction, registerData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string,}) => {
     try {
-      await handleRegistration(navigate, registerData); // Pass navigate as a parameter to handleLogin
+      await handleRegistration(navigate, registerData);
       const userID = localStorage.getItem('userID');
       const authToken = localStorage.getItem('userToken');
       const response = await axios
@@ -88,7 +82,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             Authorization: `Bearer ${authToken}`,
           },
         })
-      setUser(response.data); // Update user context with the received user data
+      setUser(response.data);
     } catch (error) {
       console.error('Error logging in:', error);
     }

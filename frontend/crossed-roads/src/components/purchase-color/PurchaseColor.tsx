@@ -23,7 +23,6 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
           alert("You already have this color!");
         } else {
           await addColor(selectedColor);
-          console.log('Color purchased successfully!');
         }
       }
     } catch (error) {
