@@ -51,6 +51,9 @@ public class UserService {
        if(userInput.getProfilePicUrl() != null){
            userDao.updateUserProfilePicUrl(id, userInput.getProfilePicUrl());
        }
+       if(userInput.getCurrentColor() != null) {
+           userDao.updateCurrentColor(id, userInput.getCurrentColor());
+       }
     }
     public void deleteUser(long id) {
         Optional<User> user = userDao.getUserByID(id);

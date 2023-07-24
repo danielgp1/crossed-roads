@@ -5,11 +5,17 @@ interface CarProps {
     direction: string;
     name: string;
     pfp: string;
+    onClick?: (color: string) => void;
 }
 
-const Car: React.FC<CarProps> = ({ color, direction, name, pfp }:CarProps) => {
+const Car: React.FC<CarProps> = ({ color, direction, name, pfp, onClick }:CarProps) => {
+    const handleClick = () => {
+        if (onClick) {
+          onClick(color); // Call the onClick event handler if provided
+        }
+      };
     return (
-        <div className="car">
+        <div className="car" onClick={handleClick}>
             <div className="window">
                 <img className="pfp" src={pfp} alt="profile_pic"></img>
             </div>

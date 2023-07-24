@@ -71,7 +71,6 @@ export async function handleRegistration(navigate: NavigateFunction, registratio
 export async function handleLogin(navigate: NavigateFunction, loginData: { email: string; password: string; }) {
   try {
     const response = await axios.post('http://localhost:8080/api/auth/authenticate', loginData);
-    alert(`Welcome back ${loginData.email}!`);
     const token = response.data.token;
     const id = response.data.id;
     localStorage.setItem("userToken", token);

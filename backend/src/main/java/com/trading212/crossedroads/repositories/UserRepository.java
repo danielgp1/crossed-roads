@@ -97,6 +97,16 @@ public class UserRepository implements UserDao {
     }
 
     @Override
+    public int updateCurrentColor(long id, String color) {
+        var sql = """
+            UPDATE users
+            SET current_color = ?
+            WHERE id = ?
+            """;
+        return jdbcTemplate.update(sql, color, id);
+    }
+
+    @Override
     public int deleteUser(long id) {
         var sql = """
                 DELETE FROM users

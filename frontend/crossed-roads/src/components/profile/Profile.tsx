@@ -16,7 +16,7 @@ export default function Profile() {
         setIsChangePasswordOpen(!isChangePasswordOpen);
     };
 
-    const { first_name, last_name, profile_name, email, date_of_birth, profile_pic_url } = user || {};
+    const { first_name, last_name, profile_name, email, date_of_birth, profile_pic_url, current_color } = user || {};
 
     const handleProfilePicClick = () => {
         fileInputRef.current?.click();
@@ -28,7 +28,7 @@ export default function Profile() {
         if (file) {
             const imageUrl = await uploadImageToS3(file);
             if (imageUrl) {
-                updateProfilePic(imageUrl);
+                await updateProfilePic(imageUrl);
             }
         }
     }
@@ -117,7 +117,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className='car-container'>
-                            <Car color={"blue"} direction={"#f9d71c"} name={first_name ?? ''} pfp={profile_pic_url ? profile_pic_url : default_pic}/>
+                            <Car color={current_color!} direction={"#f9d71c"} name={first_name!} pfp={profile_pic_url ?? default_pic}/>
                         </div>
                     </div>
                 </div>

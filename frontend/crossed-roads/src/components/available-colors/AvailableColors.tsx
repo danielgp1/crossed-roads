@@ -4,7 +4,16 @@ import './AvailableColors.css'
 import def from '../assets/default_pic.png'
 
 export default function AvailableColors() {
-    const { user } = useUserContext();
+    const { user, updateCurrentColor } = useUserContext();
+
+
+    const handleColorChange = async (color: string) => {
+        // Call the updateCurrentColor function from the UserContext
+        if (user) {
+          await updateCurrentColor(color);
+        }
+      };
+
     return (
         <div className="available-colors-grid">
             <div className='available-colors-header-wrapper'>
@@ -12,64 +21,64 @@ export default function AvailableColors() {
             </div>
             <div className='available-colors-container-grid'>
                 <div className='available-color-container'>
-                    <Car color='green' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def}/>
+                    <Car color='green' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='blue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='blue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange}/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='red' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='red' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange}/>
                 </div>
                 <div className='available-color-container'>
-                    <Car color='yellow' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='yellow' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='cyan' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='cyan' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='maroon' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='maroon' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='black' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='black' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='darkblue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='darkblue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='white' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='white' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='purple' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='purple' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='green' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='green' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='blue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='blue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='red' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='red' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='yellow' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='yellow' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='cyan' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='cyan' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='maroon' direction='#f9d71c' name={user?.first_name || ''} pfp={user?.profile_pic_url || def} />
+                    <Car color='maroon' direction='#f9d71c' name={user?.first_name || ''} pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='black' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='black' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='darkblue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='darkblue' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='white' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} />
+                    <Car color='white' direction='#f9d71c' name={user?.first_name || ''}  pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
                 <div className='available-color-container'>
-                    <Car color='purple' direction='#f9d71c' name={user?.first_name || ''} pfp={user?.profile_pic_url || def} />
+                    <Car color='purple' direction='#f9d71c' name={user?.first_name || ''} pfp={user?.profile_pic_url || def} onClick={handleColorChange} />
                 </div>
             </div>
         </div>
