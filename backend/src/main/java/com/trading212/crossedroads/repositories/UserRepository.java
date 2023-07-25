@@ -2,7 +2,6 @@ package com.trading212.crossedroads.repositories;
 
 import com.trading212.crossedroads.daos.UserDao;
 import com.trading212.crossedroads.dtos.User;
-import com.trading212.crossedroads.inputs.UserInput;
 import com.trading212.crossedroads.row_mappers.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,7 +23,12 @@ public class UserRepository implements UserDao {
                 """;
         int rowsAffected = jdbcTemplate.update(sql, user.getFirst_name(), user.getLast_name(), user.getProfile_name(), user.getPassword(), user.getEmail(), user.getDate_of_birth());
         if (rowsAffected > 0) {
-            return getUserByUsername(user.getProfile_name()).orElseThrow(() -> new IllegalStateException("Couldn't add user"));
+            List<User> users = getUsersByUsername(user.getProfile_name()).orElseThrow(() -> new IllegalStateException("Couldn't add user"));
+            if (!users.isEmpty()) {
+                return users.get(0);
+            } else {
+                throw new IllegalStateException("User not found after insertion");
+            }
         } else {
             return null;
         }
@@ -53,15 +57,14 @@ public class UserRepository implements UserDao {
     }
 
     @Override
-    public Optional<User> getUserByUsername(String profile_name) {
+    public Optional<List<User>> getUsersByUsername(String profile_name) {
         var sql = """
                 SELECT *
                 FROM users
-                WHERE profile_name = ?
+                WHERE profile_name LIKE CONCAT('%', ?, '%')
                 """;
-        return jdbcTemplate.query(sql, new UserRowMapper(), profile_name)
-                .stream()
-                .findFirst();
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), profile_name);
+        return Optional.of(users);
     }
 
     @Override

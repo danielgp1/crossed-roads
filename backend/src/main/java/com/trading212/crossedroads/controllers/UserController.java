@@ -17,6 +17,11 @@ public class UserController {
     @GetMapping
     public List<User> getUsers(){return userService.getUsers();}
 
+    @GetMapping("/search")
+    public List<User> getUsersByUsername(@RequestParam("username") String username) {
+        return userService.getUsersByUsername(username);
+    }
+
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") long id){return userService.getUser(id);}
 

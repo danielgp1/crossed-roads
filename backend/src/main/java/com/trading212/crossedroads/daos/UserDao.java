@@ -11,7 +11,7 @@ public interface UserDao {
 
     List<User> getUsers();
     Optional<User> getUserByID(long id);
-    Optional<User> getUserByUsername(String profile_name);
+    Optional<List<User>> getUsersByUsername(String profile_name);
     Optional<User> getUserByEmail(String email);
 
     int updateUserProfilePicUrl(long id, String url);
