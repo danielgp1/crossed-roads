@@ -7,12 +7,13 @@ interface Friend {
     id: number;
     first_name: string;
     last_name: string;
+    profile_name: string;
     current_color: string;
     profile_pic_url: string;
 }
 
 export default function GarageMain() {
-    const [friends, setFriends] = useState<Friend[]>([]);
+    const [friends, setFriends] = useState<Friend[] | null>(null);
 
     useEffect(() => {
         const userID = localStorage.getItem('userID');
@@ -32,16 +33,26 @@ export default function GarageMain() {
 
 
     return (
-        <div className='garage-main-grid'>
-            {friends.map((friend) => (
-                <GarageObject
-                    key={friend.id}
-                    first_name={friend.first_name}
-                    last_name={friend.last_name}
-                    current_color={friend.current_color}
-                    profile_pic_url={friend.profile_pic_url}
-                />
-            ))}
-        </div>
+        <>
+            {
+                friends === null ? <div className='garage-no-friends'></div> : (friends as Friend[]).length === 0 ? (
+                    <div className='garage-no-friends'>Go Find Some Friends :(</div>
+                ) : (
+                    <div className='garage-main-grid'>
+                        {(friends as Friend[]).map((friend) => (
+                            <GarageObject
+                                key={friend.id}
+                                first_name={friend.first_name}
+                                last_name={friend.last_name}
+                                profile_name={friend.profile_name}
+                                current_color={friend.current_color}
+                                profile_pic_url={friend.profile_pic_url}
+                            />
+                        ))}
+                    </div>
+                )}
+
+
+        </>
     )
 }

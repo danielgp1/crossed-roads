@@ -13,3 +13,16 @@
     justify-content: center;
 }
 
+.garage-no-friends {
+    position: absolute;
+    top:6%;
+    height: 94%;
+    width: 100%;
+    background-color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Futurafrica', sans-serif;
+    font-size: 5rem;
+    color: #fabb5c;
+}
