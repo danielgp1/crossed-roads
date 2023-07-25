@@ -4,8 +4,18 @@ import Car from "../car/Car";
 import { faMessage, faRoute, faTrashCan, faUser } from "@fortawesome/free-solid-svg-icons";
 import './GarageObject.css'
 import MapsNavigation from "../navigation/MapsNavigation";
+import default_pic from "../assets/default_pic.png"
 
-export default function GarageObject() {
+
+interface GarageObjectProps {
+    first_name: string;
+    last_name: string;
+    current_color: string;
+    profile_pic_url: string;
+}
+
+
+const GarageObject: React.FC<GarageObjectProps> = ({ first_name, last_name, current_color, profile_pic_url }:GarageObjectProps) => {
 
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
 
@@ -16,10 +26,10 @@ export default function GarageObject() {
     return (
         <div className='garage-object'>
             <div className='garage-header'>
-                John Cena
+                {first_name} {last_name}
             </div>
             <div className='garage-car-container'>
-                <Car color='blue' direction='yellow' name='' pfp=''/>
+                <Car color={current_color} direction='#f9d71c' name={first_name} pfp={profile_pic_url ?? default_pic}/>
             </div>
             <div className='garage-object-buttons-container'>
                 <button className='garage-object-button'><FontAwesomeIcon icon={faUser} size='2x' color='#333333' /></button>
@@ -31,3 +41,5 @@ export default function GarageObject() {
         </div>
     )
 }
+
+export default GarageObject

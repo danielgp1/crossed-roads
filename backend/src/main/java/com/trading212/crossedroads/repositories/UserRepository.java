@@ -57,6 +57,18 @@ public class UserRepository implements UserDao {
     }
 
     @Override
+    public Optional<List<User>> getFriendsById(long userId) {
+        var sql = """
+                SELECT u.*
+                FROM users u
+                JOIN friendships f ON u.id = f.user2_id
+                WHERE f.user1_id = ?
+                """;
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), userId);
+        return Optional.of(users);
+    }
+
+    @Override
     public Optional<List<User>> getUsersByUsername(String profile_name) {
         var sql = """
                 SELECT *

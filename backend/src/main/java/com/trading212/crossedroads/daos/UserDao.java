@@ -11,6 +11,7 @@ public interface UserDao {
 
     List<User> getUsers();
     Optional<User> getUserByID(long id);
+    Optional<List<User>>getFriendsById(long userId);
     Optional<List<User>> getUsersByUsername(String profile_name);
     Optional<User> getUserByEmail(String email);
 

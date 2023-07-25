@@ -49,6 +49,10 @@ public class UserService {
         return userDao.getUsersByUsername(username)
                 .orElseThrow(() -> new NotFoundException(String.format("Users with username %s not found", username)));
     }
+    public List<User> getFriendsById(long userId) {
+        return userDao.getFriendsById(userId)
+                .orElseThrow(() -> new NotFoundException(String.format("User with id %s not found", userId)));
+    }
 
     public User getUserByEmail(String email) {
         return userDao.getUserByEmail(email)

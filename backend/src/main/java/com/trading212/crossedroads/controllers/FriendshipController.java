@@ -1,6 +1,7 @@
 package com.trading212.crossedroads.controllers;
 
 import com.trading212.crossedroads.dtos.Friendship;
+import com.trading212.crossedroads.dtos.User;
 import com.trading212.crossedroads.services.FriendshipService;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,11 @@ public class FriendshipController {
     @GetMapping("/users/{user1Id}/{user2Id}")
     public Optional<Friendship> getFriendshipByUserIds(@PathVariable("user1Id") long user1Id, @PathVariable("user2Id") long user2Id) {
         return friendshipService.getFriendshipByUserIds(user1Id, user2Id);
+    }
+
+    @GetMapping("/users/{userId}/friends")
+    public List<User> getFriendsByUserId(@PathVariable("userId") long userId) {
+        return friendshipService.getFriendsByUserId(userId);
     }
 
     @DeleteMapping("/users/{user1Id}/{user2Id}")
