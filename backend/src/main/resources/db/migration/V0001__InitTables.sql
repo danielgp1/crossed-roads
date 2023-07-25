@@ -20,3 +20,11 @@ CREATE TABLE available_colors (
     FOREIGN KEY (user_id) REFERENCES users(id),
     PRIMARY KEY (user_id, color_hash)
 );
+
+CREATE TABLE friendships (
+    user1_id INT,
+    user2_id INT,
+    FOREIGN KEY (user1_id) REFERENCES users(id),
+    FOREIGN KEY (user2_id) REFERENCES users(id),
+    PRIMARY KEY (user1_id, user2_id)
+);

@@ -14,7 +14,13 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers", "Authorization")
                 .exposedHeaders("Authorization")
                 .allowCredentials(true);
-        registry.addMapping("/api/availableColors/**")
+        registry.addMapping("/api/available-colors/**")
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("GET", "OPTIONS") // Specify the allowed HTTP methods
+                .allowedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers", "Authorization")
+                .exposedHeaders("Authorization")
+                .allowCredentials(true);
+        registry.addMapping("/api/friendships/**")
                 .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "OPTIONS") // Specify the allowed HTTP methods
                 .allowedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers", "Authorization")
