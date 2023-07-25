@@ -14,7 +14,6 @@
 
 .profile-pic-container {
     position: relative;
-    /* Ensure the container is positioned relative */
     display: grid;
     align-items: center;
     justify-items: center;

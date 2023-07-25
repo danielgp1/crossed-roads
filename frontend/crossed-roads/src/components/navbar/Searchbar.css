@@ -49,7 +49,7 @@
     display: none;
 }
 
-.input-search:focus+.search-results {
+.input-search:focus + .search-results {
     display: block;
 }
 

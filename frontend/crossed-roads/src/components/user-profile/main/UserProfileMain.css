@@ -1,0 +1,62 @@
+.user-profile-main {
+    position: absolute;
+    top:6%;
+    height: 94%;
+    width: 100%;
+    background-color: #333333;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-data-2 {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 2px solid #ffa825;
+    padding-right: 2%;
+    background-color: #333333;
+    border-radius: 15px;
+    margin-top: 5%;
+}
+
+.user-info-grid {
+    display: grid;
+}
+
+.profile-main-info-container {
+    width: 50%;
+}
+
+.profile-pic-container-2 {
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.profile-pic-2 {
+    box-sizing: border-box;
+    height: 85%;
+    width: 85%;
+    border-radius: 10px;
+    border: 2px solid #ffa825;
+}
+
+.add-friend-btn {
+    background-color: #fabb5c;
+    border: 1px solid #ffa825;
+    border-radius: 15px;
+    width: 50%;
+    height: 50%;
+    transition: .2s ease-in;
+    cursor: pointer;
+    font-family: 'Jost';
+}
+
+.add-friend-btn:hover {
+    background-color: #ffa825;
+}

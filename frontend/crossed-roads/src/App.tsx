@@ -8,6 +8,7 @@ import ProtectedRoutes from './components/auth/ProtectedRoutes';
 import PageNotFound from './components/page-not-found/PageNotFound';
 import UserProvider from './contexts/UserContext';
 import AvailableColorsProvider from './contexts/AvailableColorsContext';
+import UserProfile from './components/user-profile/UserProfile';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/service" element={<Service />} />
                 <Route path="/garage" element={<Garage />} />
+                <Route path="/users/:username" element={<UserProfile />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>
