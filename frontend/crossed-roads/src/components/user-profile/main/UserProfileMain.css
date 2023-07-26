@@ -5,12 +5,17 @@
     width: 100%;
     background-color: #333333;
     box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+.profile-data-wrapper {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
 .profile-data-2 {
+    width: 50%;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -18,7 +23,7 @@
     padding-right: 2%;
     background-color: #333333;
     border-radius: 15px;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .user-info-grid {
@@ -26,7 +31,7 @@
 }
 
 .profile-main-info-container {
-    width: 50%;
+    width: 100%;
 }
 
 .profile-pic-container-2 {
@@ -59,4 +64,30 @@
 
 .add-friend-btn:hover {
     background-color: #ffa825;
+}
+
+.user-wisdom {
+    display: flex;
+    justify-content: center;
+    font-family: 'Jost';
+    color: #fabb5c;
+    font-size: 4rem;
+    margin: 2% 0;
+}
+
+.user-posts-grid {
+    background-color: #333333;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 3%;
+    column-gap: 2%;
+    box-sizing: border-box;
+    padding: 3%;
+    padding-top: 0;
+}
+
+.user-post {
+    border: 2px solid #ffa825;
+    border-radius: 5px;
+    padding: 2%;
 }

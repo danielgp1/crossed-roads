@@ -69,6 +69,7 @@
     padding: 2%;
     overflow-y: scroll;
     font-family: 'Jost';
+    background-color: #fabb5c;
 }
 
 .billboard-input-container {
@@ -76,4 +77,5 @@
     font-family: 'Jost';
     resize: none;
     border: 3px solid #ffa825;
+    background-color: #fabb5c;
 }
