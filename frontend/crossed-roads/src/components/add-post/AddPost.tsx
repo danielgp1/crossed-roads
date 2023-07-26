@@ -1,19 +1,40 @@
+import { useState } from 'react';
 import './AddPost.css'
+import axios from 'axios';
 
 interface AddPostProps {
     setIsAddPostOpen: (isAddPostOpen: boolean) => void;
 }
 
 export default function AddPost({ setIsAddPostOpen }: AddPostProps) {
+    const [postContent, setPostContent] = useState('');
 
+    const handlePostChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setPostContent(event.target.value);
+    };
 
     const handleCloseChangePassword = () => {
         setIsAddPostOpen(false);
     };
 
 
-    const post = (event: React.FormEvent) => {
+    const post = async (event: React.FormEvent) => {
         event.preventDefault();
+        try {
+            const authToken = localStorage.getItem('userToken');
+            const userID = localStorage.getItem('userID');
+            const postData = {
+                user_id: userID,
+                content: postContent,
+            };
+            await axios.post('http://localhost:8080/api/posts', postData, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+        } catch (error: any) {
+            console.error("Error posting:", error);
+        }
         handleCloseChangePassword();
     }
 
@@ -27,7 +48,13 @@ export default function AddPost({ setIsAddPostOpen }: AddPostProps) {
                     Close
                 </button>
                 <label className="post-lbl">Share Your Wisdom</label>
-                <textarea className="post-area" placeholder="What's on your mind?" />
+                <textarea
+                    required
+                    className="post-area"
+                    placeholder="What's on your mind?"
+                    value={postContent}
+                    onChange={handlePostChange}
+                />
                 <button
                     className='change-button'
                     type="submit"
