@@ -25,7 +25,8 @@ export default function GarageMain() {
                     },
                 })
                 .then((response) => {
-                    setFriends(response.data);
+                    const sortedFriends = response.data.sort((a:Friend, b:Friend) => a.first_name.localeCompare(b.first_name));
+                    setFriends(sortedFriends);
                 })
                 .catch((error) => console.error('Error fetching friends:', error));
         }
@@ -42,6 +43,7 @@ export default function GarageMain() {
                         {(friends as Friend[]).map((friend) => (
                             <GarageObject
                                 key={friend.id}
+                                id={friend.id}
                                 first_name={friend.first_name}
                                 last_name={friend.last_name}
                                 profile_name={friend.profile_name}

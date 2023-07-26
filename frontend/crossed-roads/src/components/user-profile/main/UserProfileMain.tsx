@@ -85,7 +85,6 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
             }
         )
             .then((response) => {
-                console.log('Friendship added successfully:', response.data);
                 setAreFriends(true);
             })
             .catch((error) => {

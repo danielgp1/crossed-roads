@@ -6,9 +6,11 @@ import './GarageObject.css'
 import MapsNavigation from "../navigation/MapsNavigation";
 import default_pic from "../assets/default_pic.png"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 interface GarageObjectProps {
+    id: number;
     first_name: string;
     last_name: string;
     profile_name: string;
@@ -17,36 +19,57 @@ interface GarageObjectProps {
 }
 
 
-const GarageObject: React.FC<GarageObjectProps> = ({ first_name, last_name, profile_name, current_color, profile_pic_url }:GarageObjectProps) => {
+const GarageObject: React.FC<GarageObjectProps> = ({id, first_name, last_name, profile_name, current_color, profile_pic_url }: GarageObjectProps) => {
 
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+    const [areFriends, setAreFriends] = useState(true);
     const navigate = useNavigate();
 
     const handleNavigation = () => {
         setIsNavigationOpen(!isNavigationOpen);
-      };
+    };
 
-      const handleOpenProfilePage = () => {
+    const handleOpenProfilePage = () => {
         navigate(`/users/${profile_name}`);
-      };
+    };
 
-    return (
+    const handleUnfriend = () => {
+        const authToken = localStorage.getItem('userToken');
+        const userID = localStorage.getItem("userID");
+
+        axios.delete(
+            `http://localhost:8080/api/friendships/users/${userID}/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }
+        )
+        .then(() => {
+            setAreFriends(false);
+        })
+        .catch((error) => {
+            console.error('Error unfriending:', error);
+        });
+    };
+
+    return areFriends ? (
         <div className='garage-object'>
             <div className='garage-header'>
                 {first_name} {last_name}
             </div>
             <div className='garage-car-container'>
-                <Car color={current_color} direction='#f9d71c' name={first_name} pfp={profile_pic_url ?? default_pic}/>
+                <Car color={current_color} direction='#f9d71c' name={first_name} pfp={profile_pic_url ?? default_pic} />
             </div>
             <div className='garage-object-buttons-container'>
-                <button className='garage-object-button' onClick={handleOpenProfilePage}><FontAwesomeIcon icon={faUser} size='2x' color='#333333'/></button>
+                <button className='garage-object-button' onClick={handleOpenProfilePage}><FontAwesomeIcon icon={faUser} size='2x' color='#333333' /></button>
                 <button className='garage-object-button'><FontAwesomeIcon icon={faMessage} size='2x' color='#333333' /></button>
                 <button className='garage-object-button' onClick={handleNavigation}><FontAwesomeIcon icon={faRoute} size='2x' color='#333333' /></button>
-                <button className='garage-object-button'><FontAwesomeIcon icon={faTrashCan} size='2x' color='#333333' /></button>
+                <button className='garage-object-button' onClick={handleUnfriend}><FontAwesomeIcon icon={faTrashCan} size='2x' color='#333333' /></button>
             </div>
-            {isNavigationOpen && <MapsNavigation setIsNavigationOpen={setIsNavigationOpen}/>}
+            {isNavigationOpen && <MapsNavigation setIsNavigationOpen={setIsNavigationOpen} />}
         </div>
-    )
+    ) : null;
 }
 
 export default GarageObject
