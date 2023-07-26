@@ -16,7 +16,7 @@ CREATE TABLE users (
 
 CREATE TABLE available_colors (
     user_id INT,
-    color_hash VARCHAR(255),
+    color_hash VARCHAR(255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
     PRIMARY KEY (user_id, color_hash)
 );
@@ -27,4 +27,13 @@ CREATE TABLE friendships (
     FOREIGN KEY (user1_id) REFERENCES users(id),
     FOREIGN KEY (user2_id) REFERENCES users(id),
     PRIMARY KEY (user1_id, user2_id)
+);
+
+CREATE TABLE posts (
+    post_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );

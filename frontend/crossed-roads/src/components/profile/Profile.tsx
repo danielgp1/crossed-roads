@@ -52,8 +52,7 @@ export default function Profile() {
                 Body: file,
             };
 
-            const data = await s3.send(new PutObjectCommand(params));
-            console.log("Image uploaded successfully:", data);
+            await s3.send(new PutObjectCommand(params));
 
             const imageUrl = `https://${process.env.REACT_APP_BUCKET_NAME}.s3.${process.env.REACT_APP_REGION}.amazonaws.com/${key}`;
             return imageUrl;
