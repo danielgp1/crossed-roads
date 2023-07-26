@@ -35,7 +35,12 @@ export default function PostsMain() {
                 };
 
                 const response = await axios.get(`http://localhost:8080/api/posts/users/${userID}`, { headers });
-                setUserPosts(response.data);
+                const sortedPosts = response.data.sort((a: Post, b: Post) => {
+                    const dateA = new Date(a.created_at);
+                    const dateB = new Date(b.created_at);
+                    return dateB.getTime() - dateA.getTime();
+                });
+                setUserPosts(sortedPosts)
             } catch (error) {
                 console.error('Error fetching user posts:', error);
             }
