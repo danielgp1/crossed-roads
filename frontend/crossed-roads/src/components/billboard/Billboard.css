@@ -44,14 +44,16 @@
 .billboard-img {
     height: 70px;
     width: 70px;
+    border: 1px solid #ffa825;
 }
 
 .billboard-names {
-    color: #fabb5c;;
+    color: #ffa825;
 }
 
 .billboard-time {
-    color: #ffa825;
+    color: #fabb5c;
+    font-size: 1rem;
 }
 
 .billboard-info {
@@ -65,11 +67,13 @@
 
 .billboard-text-container {
     padding: 2%;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 14;
-    white-space: pre-wrap;
+    overflow-y: scroll;
     font-family: 'Jost';
-    line-height: 103%;
+}
+
+.billboard-input-container {
+    display: flex;
+    font-family: 'Jost';
+    resize: none;
+    border: 3px solid #ffa825;
 }

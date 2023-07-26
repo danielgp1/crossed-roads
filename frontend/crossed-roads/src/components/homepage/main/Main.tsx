@@ -1,4 +1,3 @@
-import Billboard from "../../billboard/Billboard";
 import Chat from "../../chat/Chat";
 import Road from "../road/Road";
 import './Main.css'

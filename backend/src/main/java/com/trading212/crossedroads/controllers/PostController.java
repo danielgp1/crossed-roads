@@ -42,7 +42,7 @@ public class PostController {
         postService.deletePost(postId);
     }
 
-    @PutMapping("/{postId}/content")
+    @PutMapping("/{postId}")
     public void updatePostContent(@PathVariable("postId") long postId, @RequestBody PostInput postInput) {
         postService.updatePostContent(postId, postInput.getContent());
     }
