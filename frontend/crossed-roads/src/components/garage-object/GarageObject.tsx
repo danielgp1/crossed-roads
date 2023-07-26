@@ -19,7 +19,7 @@ interface GarageObjectProps {
 }
 
 
-const GarageObject: React.FC<GarageObjectProps> = ({id, first_name, last_name, profile_name, current_color, profile_pic_url }: GarageObjectProps) => {
+const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, profile_name, current_color, profile_pic_url }: GarageObjectProps) => {
 
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
     const [areFriends, setAreFriends] = useState(true);
@@ -45,12 +45,12 @@ const GarageObject: React.FC<GarageObjectProps> = ({id, first_name, last_name, p
                 },
             }
         )
-        .then(() => {
-            setAreFriends(false);
-        })
-        .catch((error) => {
-            console.error('Error unfriending:', error);
-        });
+            .then(() => {
+                setAreFriends(false);
+            })
+            .catch((error) => {
+                console.error('Error unfriending:', error);
+            });
     };
 
     return areFriends ? (

@@ -25,7 +25,7 @@ export default function GarageMain() {
                     },
                 })
                 .then((response) => {
-                    const sortedFriends = response.data.sort((a:Friend, b:Friend) => a.first_name.localeCompare(b.first_name));
+                    const sortedFriends = response.data.sort((a: Friend, b: Friend) => a.first_name.localeCompare(b.first_name));
                     setFriends(sortedFriends);
                 })
                 .catch((error) => console.error('Error fetching friends:', error));
@@ -53,8 +53,6 @@ export default function GarageMain() {
                         ))}
                     </div>
                 )}
-
-
         </>
     )
 }
