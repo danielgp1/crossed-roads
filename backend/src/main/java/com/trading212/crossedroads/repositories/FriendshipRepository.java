@@ -61,6 +61,18 @@ public class FriendshipRepository implements FriendshipDao {
                 .stream()
                 .findFirst();
     }
+
+    @Override
+    public boolean areUsersFriends(long user1Id, long user2Id) {
+        var sql = """
+                SELECT COUNT(*)
+                FROM friendships
+                WHERE (user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)
+                """;
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, user1Id, user2Id, user2Id, user1Id);
+        return count != null && count > 0;
+    }
+
     @Override
     public int deleteFriendship(long user1Id, long user2Id) {
         var sql = """

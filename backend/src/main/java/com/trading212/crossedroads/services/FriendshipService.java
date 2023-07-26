@@ -47,6 +47,10 @@ public class FriendshipService {
         return friendshipDao.getFriendshipByUserIds(user1Id, user2Id);
     }
 
+    public boolean areUsersFriends(long user1Id, long user2Id) {
+        return friendshipDao.areUsersFriends(user1Id, user2Id);
+    }
+
     public void deleteFriendship(long user1Id, long user2Id) {
         int rowsAffected = friendshipDao.deleteFriendship(user1Id, user2Id);
         if (rowsAffected != 1) {

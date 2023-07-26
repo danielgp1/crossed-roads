@@ -43,6 +43,11 @@ public class FriendshipController {
         return friendshipService.getFriendsByUserId(userId);
     }
 
+    @GetMapping("/users/{user1Id}/friends/{user2Id}")
+    public boolean areUsersFriends(@PathVariable("user1Id") long user1Id, @PathVariable("user2Id") long user2Id) {
+        return friendshipService.areUsersFriends(user1Id, user2Id);
+    }
+
     @DeleteMapping("/users/{user1Id}/{user2Id}")
     public void deleteFriendship(@PathVariable("user1Id") long user1Id, @PathVariable("user2Id") long user2Id) {
         friendshipService.deleteFriendship(user1Id, user2Id);

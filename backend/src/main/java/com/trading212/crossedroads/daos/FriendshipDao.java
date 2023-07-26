@@ -11,5 +11,6 @@ public interface FriendshipDao {
     List<Friendship> getFriendships();
     List<Friendship> getFriendshipsByUserId(long userId);
     Optional<Friendship> getFriendshipByUserIds(long user1Id, long user2Id);
+    boolean areUsersFriends(long user1Id, long user2Id);
     int deleteFriendship(long user1Id, long user2Id);
 }
