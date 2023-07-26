@@ -7,16 +7,22 @@ import { s3 } from '../aws/aws';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { useUserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import AddPost from '../add-post/AddPost';
 
 export default function Profile() {
     const { user, updateProfilePic } = useUserContext();
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+    const [isAddPostOpen, setIsAddPostOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
 
     const handleChangePassword = () => {
         setIsChangePasswordOpen(!isChangePasswordOpen);
     };
+
+    const handleAddPost = () => {
+        setIsAddPostOpen(!isAddPostOpen);
+    }
 
     const { first_name, last_name, profile_name, email, date_of_birth, profile_pic_url, current_color } = user || {};
 
@@ -131,10 +137,11 @@ export default function Profile() {
             <div className='profile-buttons'>
                 <button className='profile-button'>Edit Profile Data</button>
                 <button className='profile-button' onClick={handleChangePassword}>Change Password</button>
-                <button className='profile-button'>Create a Post</button>
+                <button className='profile-button' onClick={handleAddPost}>Create a Post</button>
                 <button className='profile-button' onClick={handleOpenPosts}>Manage Posts</button>
             </div>
             {isChangePasswordOpen && <ChangePassword setIsChangePasswordOpen={setIsChangePasswordOpen} />}
+            {isAddPostOpen && <AddPost setIsAddPostOpen={setIsAddPostOpen} />}
         </div>
     )
 }
