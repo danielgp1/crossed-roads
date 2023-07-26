@@ -6,11 +6,13 @@ import ChangePassword from '../change-password/ChangePassword';
 import { s3 } from '../aws/aws';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { useUserContext } from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
     const { user, updateProfilePic } = useUserContext();
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     const handleChangePassword = () => {
         setIsChangePasswordOpen(!isChangePasswordOpen);
@@ -55,6 +57,10 @@ export default function Profile() {
             return null;
         }
     };
+
+    const handleOpenPosts = () => {
+        navigate("/posts")
+    }
 
     // const updateUserProfilePicUrl = async (imageUrl: string | null) => {
     //     if (imageUrl) {
@@ -126,7 +132,7 @@ export default function Profile() {
                 <button className='profile-button'>Edit Profile Data</button>
                 <button className='profile-button' onClick={handleChangePassword}>Change Password</button>
                 <button className='profile-button'>Create a Post</button>
-                <button className='profile-button'>Manage Posts</button>
+                <button className='profile-button' onClick={handleOpenPosts}>Manage Posts</button>
             </div>
             {isChangePasswordOpen && <ChangePassword setIsChangePasswordOpen={setIsChangePasswordOpen} />}
         </div>
