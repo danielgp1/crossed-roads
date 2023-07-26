@@ -9,7 +9,7 @@ export default function Road() {
         <div className="road">
             <div className="grid-item">
                 <div className="your-car">
-                    <Car color={user?.current_color!} direction="#f9d71c" name={user?.first_name!} pfp={user?.profile_pic_url || def}/>
+                    <Car color={user?.current_color!} direction="#f9d71c" name={user?.first_name!} pfp={user?.profile_pic_url ?? def}/>
                 </div>
             </div>
             <div className="grid-item">

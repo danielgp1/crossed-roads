@@ -8,7 +8,7 @@ export default function Main() {
         <div className="main-grid">
             <div className="main-content">
                 <div className="billboards-container-left">
-                    <div className="post-left">
+                    {/* <div className="post-left">
                         <Billboard />
                     </div>
                     <div className="post-left">
@@ -22,11 +22,11 @@ export default function Main() {
                     </div>
                     <div className="post-left">
                         <Billboard />
-                    </div>
+                    </div> */}
                 </div>
                 <Road />
                 <div className="billboards-container-right">
-                    <div className="post-right">
+                    {/* <div className="post-right">
                         <Billboard />
                     </div>
                     <div className="post-right">
@@ -40,7 +40,7 @@ export default function Main() {
                     </div>
                     <div className="post-right">
                         <Billboard />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Chat />
