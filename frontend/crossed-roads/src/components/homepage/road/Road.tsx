@@ -15,12 +15,11 @@ interface FriendSuggestion {
 
 export default function Road() {
     const { user } = useUserContext();
-
     const [friendsOfFriendsNotFriends, setFriendsOfFriendsNotFriends] = useState<FriendSuggestion[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchFriendsNotFriends = async () => {
+        const fetchFriendSuggestions = async () => {
             const authToken = localStorage.getItem('userToken');
             const userID = localStorage.getItem("userID");
 
@@ -37,10 +36,10 @@ export default function Road() {
                     console.error('Error fetching freinds of friends:', error);
                 });
         }
-        fetchFriendsNotFriends();
+        fetchFriendSuggestions();
     }, []);
 
-    const handleOpenProfile = (profile_name:string) => {
+    const handleOpenProfile = (profile_name: string) => {
         navigate(`/users/${profile_name}`);
     };
 
@@ -48,7 +47,7 @@ export default function Road() {
         <div className="road">
             <div className="grid-item">
                 <div className="your-car">
-                    <Car color={user?.current_color!} direction="#f9d71c" name={user?.first_name!} pfp={user?.profile_pic_url ?? def}/>
+                    <Car color={user?.current_color!} direction="#f9d71c" name={user?.first_name!} pfp={user?.profile_pic_url ?? def} />
                 </div>
             </div>
             <div className="grid-item">
@@ -56,7 +55,7 @@ export default function Road() {
             </div>
             <div className="grid-item">
                 <div className="oncoming-traffic">
-                {friendsOfFriendsNotFriends.map((friendSuggestion, index) => (
+                    {friendsOfFriendsNotFriends.map((friendSuggestion, index) => (
                         <div className="person" onClick={() => handleOpenProfile(friendSuggestion.profile_name)} key={index}>
                             <Car color={friendSuggestion.current_color} direction="red" name={friendSuggestion.first_name} pfp={friendSuggestion.profile_pic_url ?? def} />
                         </div>
