@@ -37,3 +37,12 @@ CREATE TABLE posts (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE visits (
+    visited_id INT,
+    visitor_id INT,
+    visited_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (visited_id, visitor_id),
+    FOREIGN KEY (visited_id) REFERENCES users(id),
+    FOREIGN KEY (visitor_id) REFERENCES users(id)
+);
