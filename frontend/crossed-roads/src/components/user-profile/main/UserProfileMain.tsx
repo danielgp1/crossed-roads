@@ -83,6 +83,21 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                             setProfileLoaded(true);
                         });
 
+                        try {
+                            const visitData = {
+                                visited_id: targetUserId,
+                                visitor_id: userID
+                            };
+                            await axios.post('http://localhost:8080/api/visits', visitData, {
+                                headers: {
+                                    Authorization: `Bearer ${authToken}`,
+                                },
+                            });
+                        } catch (error: any) {
+                            console.error("Error visiting:", error);
+                        }
+
+
                 })
                 .catch((error) => {
                     console.error('Error performing search:', error);

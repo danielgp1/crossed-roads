@@ -26,7 +26,12 @@ export default function Viewers() {
                     },
                 })
                 .then((response) => {
-                    setVisitors(response.data);
+                    const sortedVisitors = response.data.sort((a: Visitor, b: Visitor) => {
+                        const dateA = new Date(a.visited_at);
+                        const dateB = new Date(b.visited_at);
+                        return dateB.getTime() - dateA.getTime();
+                    });
+                    setVisitors(sortedVisitors);
                 })
                 .catch((error) => console.error('Error fetching friends:', error));
         }
@@ -57,7 +62,7 @@ export default function Viewers() {
             }
         </div>
     )
- 
+
 }
 
 
