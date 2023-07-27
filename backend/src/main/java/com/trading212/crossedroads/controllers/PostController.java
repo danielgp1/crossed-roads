@@ -2,6 +2,7 @@ package com.trading212.crossedroads.controllers;
 
 import com.trading212.crossedroads.dtos.Post;
 import com.trading212.crossedroads.inputs.PostInput;
+import com.trading212.crossedroads.outputs.PostOutput;
 import com.trading212.crossedroads.services.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,11 @@ public class PostController {
     @GetMapping("/users/{userId}")
     public List<Post> getPostsByUserId(@PathVariable("userId") long userId) {
         return postService.getPostsByUserId(userId);
+    }
+
+    @GetMapping("/users/{userId}/friends-posts")
+    public List<PostOutput> getPostsByFriends(@PathVariable("userId") long userId) {
+        return postService.getPostsByFriends(userId);
     }
 
     @DeleteMapping("/{postId}")

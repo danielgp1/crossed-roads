@@ -3,6 +3,8 @@ package com.trading212.crossedroads.repositories;
 import com.trading212.crossedroads.daos.PostDao;
 import com.trading212.crossedroads.dtos.Post;
 import com.trading212.crossedroads.dtos.User;
+import com.trading212.crossedroads.outputs.PostOutput;
+import com.trading212.crossedroads.outputs.RowMappers.PostOutputRowMapper;
 import com.trading212.crossedroads.row_mappers.PostRowMapper;
 import com.trading212.crossedroads.row_mappers.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -53,6 +55,19 @@ public class PostRepository implements PostDao {
                 .stream()
                 .findFirst();
     }
+
+    @Override
+    public  List<PostOutput> getPostsByFriends(long userId) {
+        var sql = """
+                SELECT p.*, u.first_name, u.last_name, u.profile_pic_url
+                FROM posts p
+                JOIN friendships f ON (p.user_id = f.user1_id OR p.user_id = f.user2_id)
+                JOIN users u ON p.user_id = u.id
+                WHERE (f.user1_id = ? OR f.user2_id = ?) AND p.user_id != ?
+                """;
+        return jdbcTemplate.query(sql, new PostOutputRowMapper(), userId, userId, userId);
+    }
+
 
     @Override
     public Optional<List<Post>> getPostsByUserId(long userId) {

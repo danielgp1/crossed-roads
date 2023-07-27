@@ -3,6 +3,7 @@ package com.trading212.crossedroads.services;
 import com.trading212.crossedroads.daos.PostDao;
 import com.trading212.crossedroads.dtos.Post;
 import com.trading212.crossedroads.exceptions.NotFoundException;
+import com.trading212.crossedroads.outputs.PostOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +33,10 @@ public class PostService {
     public List<Post> getPostsByUserId(long userId) {
         return postDao.getPostsByUserId(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id %d not found", userId)));
+    }
+
+    public List<PostOutput> getPostsByFriends(long userId) {
+        return postDao.getPostsByFriends(userId);
     }
 
     public void deletePost(long postId) {

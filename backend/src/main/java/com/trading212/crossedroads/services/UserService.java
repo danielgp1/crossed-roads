@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -59,7 +58,6 @@ public class UserService {
     public List<User> getFriendsOfFriendsNotFriends(long userId) {
         Optional<List<User>> friends = userDao.getFriendsById(userId);
         List<User> friendsOfFriendsNotFriends = new ArrayList<>();
-        System.out.println();
         if (friends.isPresent()) {
             for (User friend : friends.get()) {
                 Optional<List<User>> friendsOfFriend = userDao.getFriendsById(friend.getId());

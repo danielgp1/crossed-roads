@@ -1,8 +1,6 @@
 package com.trading212.crossedroads.daos;
 
 import com.trading212.crossedroads.dtos.User;
-import com.trading212.crossedroads.dtos.Visit;
-import com.trading212.crossedroads.inputs.UserInput;
 import com.trading212.crossedroads.outputs.UserVisitorOutput;
 
 import java.util.List;
