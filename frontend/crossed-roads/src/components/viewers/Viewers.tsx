@@ -15,6 +15,7 @@ interface Visitor {
 
 export default function Viewers() {
     const [visitors, setVisitors] = useState<Visitor[] | null>(null);
+    const [friendships, setFriendships] = useState<{ [userId: number]: boolean }>({});
 
     useEffect(() => {
         const userID = localStorage.getItem('userID');
@@ -32,12 +33,30 @@ export default function Viewers() {
                         return dateB.getTime() - dateA.getTime();
                     });
                     setVisitors(sortedVisitors);
+                    const authToken = localStorage.getItem('userToken');
+                    const friendshipPromises = sortedVisitors.map((visitor:Visitor) =>
+                        axios.get(`http://localhost:8080/api/friendships/users/${userID}/friends/${visitor.id}`, {
+                            headers: {
+                                Authorization: `Bearer ${authToken}`,
+                            },
+                        })
+                    );
+
+                    Promise.all(friendshipPromises)
+                        .then((responses) => {
+                            const newFriendships: { [userId: number]: boolean } = {};
+                            responses.forEach((response, index) => {
+                                const visitorId = sortedVisitors[index].id;
+                                newFriendships[visitorId] = response.data;
+                            });
+                            setFriendships(newFriendships);
+                        })
+                        .catch((error) => console.error('Error checking friendship status:', error));
                 })
                 .catch((error) => console.error('Error fetching friends:', error));
         }
     }, []);
 
-    console.log(visitors?.length);
     return (
         <div className='viewers-grid'>
             <div className='viewers-header'>Travellers Who Stopped By</div>
@@ -55,6 +74,7 @@ export default function Viewers() {
                                 profile_name={visitor.profile_name}
                                 profile_pic_url={visitor.profile_pic_url}
                                 visited_at={visitor.visited_at}
+                                is_friend={friendships[visitor.id] ?? false}
                             />
                         ))}
                     </div>
@@ -64,39 +84,3 @@ export default function Viewers() {
     )
 
 }
-
-
-
-
-// return (
-//     <div className='viewers-grid'>
-//         <div className='viewers-header'>Travellers Who Stopped By</div>
-//         <div className='viewers-container'>
-//             <ViewerObject id={1} first_name='Vistor' last_name='Visitor' profile_pic_url='' visited_at='' />
-//         </div>
-//     </div>
-// )
-
-// return (
-//     <>
-//         {
-//             friends === null ? <div className='garage-no-friends'></div> : (friends as Friend[]).length === 0 ? (
-//                 <div className='garage-no-friends'>Go Find Some Friends :(</div>
-//             ) : (
-//                 <div className='garage-main-grid'>
-//                     {(friends as Friend[]).map((friend) => (
-//                         <GarageObject
-//                             key={friend.id}
-//                             id={friend.id}
-//                             first_name={friend.first_name}
-//                             last_name={friend.last_name}
-//                             profile_name={friend.profile_name}
-//                             current_color={friend.current_color}
-//                             profile_pic_url={friend.profile_pic_url}
-//                         />
-//                     ))}
-//                 </div>
-//             )}
-//     </>
-// )
-

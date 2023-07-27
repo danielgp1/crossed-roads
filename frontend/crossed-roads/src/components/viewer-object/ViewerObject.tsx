@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './ViewerObject.css'
 import default_pic from '../assets/default_pic.png'
-import { faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUserMinus, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 
 interface ViewerObjectProps {
@@ -12,15 +14,66 @@ interface ViewerObjectProps {
     profile_name: string;
     profile_pic_url: string;
     visited_at: string;
+    is_friend: boolean;
 }
 
-const ViewerObject: React.FC<ViewerObjectProps> = ({ id, first_name, last_name, profile_name, profile_pic_url, visited_at }: ViewerObjectProps) => {
+const ViewerObject: React.FC<ViewerObjectProps> = ({ id, first_name, last_name, profile_name, profile_pic_url, visited_at, is_friend }: ViewerObjectProps) => {
+    const [friendshipStatus, setFriendshipStatus] = useState<boolean>(is_friend);
     const navigate = useNavigate();
 
     const handleOpenProfilePage = () => {
         navigate(`/users/${profile_name}`);
     };
-    
+
+    useEffect(() => {
+        setFriendshipStatus(is_friend)
+    }, [is_friend])
+
+
+    const handleAddFriend = () => {
+        const authToken = localStorage.getItem('userToken');
+        const userID = localStorage.getItem("userID");
+
+        axios.post(
+            "http://localhost:8080/api/friendships",
+            {
+                user1_id: userID,
+                user2_id: id,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }
+        )
+            .then(() => {
+                setFriendshipStatus(true);
+            })
+            .catch((error) => {
+                console.error('Error adding friendship:', error);
+            });
+    };
+
+    const handleUnfriend = () => {
+        const authToken = localStorage.getItem('userToken');
+        const userID = localStorage.getItem("userID");
+
+        axios.delete(
+            `http://localhost:8080/api/friendships/users/${userID}/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }
+        )
+            .then(() => {
+                setFriendshipStatus(false);
+            })
+            .catch((error) => {
+                console.error('Error unfriending:', error);
+            });
+    };
+
     const formatDateTime = (dateTimeStr: string) => {
         const date = new Date(dateTimeStr);
         const year = date.getFullYear();
@@ -42,7 +95,15 @@ const ViewerObject: React.FC<ViewerObjectProps> = ({ id, first_name, last_name, 
             </div>
             <div className='viewer-object-buttons-container'>
                 <button className='viewer-object-button' onClick={handleOpenProfilePage}><FontAwesomeIcon icon={faUser} size='2x' color='#333333' /></button>
-                <button className='viewer-object-button'><FontAwesomeIcon icon={faUserPlus} size='2x' color='#333333' /></button>
+                {friendshipStatus ? (
+                    <button className='viewer-object-button' onClick={handleUnfriend}>
+                        <FontAwesomeIcon icon={faUserMinus} size='2x' color='#333333' />
+                    </button>
+                ) : (
+                    <button className='viewer-object-button' onClick={handleAddFriend}>
+                        <FontAwesomeIcon icon={faUserPlus} size='2x' color='#333333' />
+                    </button>
+                )}
             </div>
         </div>
     )
