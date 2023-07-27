@@ -30,3 +30,12 @@
     box-sizing: border-box;
     align-items: center;
 }
+
+.viewers-no-viewers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fabb5c;
+    font-family: 'Futurafrica', sans-serif;
+    font-size: 2rem;
+}

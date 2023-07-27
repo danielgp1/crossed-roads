@@ -33,6 +33,7 @@
 }
 
 .person {
+    cursor: pointer;
     margin-bottom: 1000%;
 }
 

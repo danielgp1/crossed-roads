@@ -10,6 +10,7 @@ import com.trading212.crossedroads.outputs.UserVisitorOutput;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -53,6 +54,26 @@ public class UserService {
     public List<User> getFriendsById(long userId) {
         return userDao.getFriendsById(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id %s not found", userId)));
+    }
+
+    public List<User> getFriendsOfFriendsNotFriends(long userId) {
+        Optional<List<User>> friends = userDao.getFriendsById(userId);
+        List<User> friendsOfFriendsNotFriends = new ArrayList<>();
+        System.out.println();
+        if (friends.isPresent()) {
+            for (User friend : friends.get()) {
+                Optional<List<User>> friendsOfFriend = userDao.getFriendsById(friend.getId());
+                if (friendsOfFriend.isPresent()) {
+                    for (User friendOfFriend : friendsOfFriend.get()) {
+                        if (friendOfFriend.getId() != userId && !friends.get().contains(friendOfFriend)
+                                && !friendsOfFriendsNotFriends.contains(friendOfFriend)) {
+                            friendsOfFriendsNotFriends.add(friendOfFriend);
+                        }
+                    }
+                }
+            }
+        }
+        return friendsOfFriendsNotFriends;
     }
 
     public List<UserVisitorOutput> getVisitorsById(long userId) {

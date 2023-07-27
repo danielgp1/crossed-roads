@@ -62,7 +62,7 @@ export default function Viewers() {
             <div className='viewers-header'>Travellers Who Stopped By</div>
             {
                 visitors === null ? <div className='viewers-no-viewers'></div> : (visitors as Visitor[]).length === 0 ? (
-                    <div className='viewers-no-viewers'>No one, kinda sad :(</div>
+                    <div className='viewers-no-viewers'>There Is No One :(</div>
                 ) : (
                     <div className='viewers-container'>
                         {(visitors as Visitor[]).map((visitor) => (

@@ -31,6 +31,11 @@ public class UserController {
         return userService.getFriendsById(id);
     }
 
+    @GetMapping("/{id}/friends-friends-not-friends")
+    public List<User> getFriendsOfFriendsNotFriends(@PathVariable("id") long id) {
+        return userService.getFriendsOfFriendsNotFriends(id);
+    }
+
     @GetMapping("/{id}/visitors")
     public List<UserVisitorOutput> getVisitorsById(@PathVariable("id") long id) {
         return userService.getVisitorsById(id);
