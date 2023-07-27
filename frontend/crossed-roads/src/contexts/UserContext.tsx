@@ -8,7 +8,7 @@ interface UserData {
   first_name: string;
   last_name: string;
   profile_name: string;
-  date_of_birth: Date;
+  date_of_birth: string;
   email: string;
   profile_pic_url: string;
   current_color: string
@@ -19,7 +19,7 @@ interface UserContextData {
   setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
   updateProfilePic: (newProfilePic: string) => Promise<void>;
   updateCurrentColor: (newColor: string) => Promise<void>;
-  handleUserLogin: (navigate:NavigateFunction, loginData: { email: string; password: string }) => Promise<void>; // Add handleUserLogin function
+  handleUserLogin: (navigate:NavigateFunction, loginData: { email: string; password: string }) => Promise<void>;
   handleUserRegistration: (navigate:NavigateFunction, registerData: { first_name: string; last_name: string; email: string; date_of_birth: string; password: string,}) => Promise<void>;
 }
 

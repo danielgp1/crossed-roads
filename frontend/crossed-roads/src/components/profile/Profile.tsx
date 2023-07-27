@@ -67,6 +67,14 @@ export default function Profile() {
         navigate("/posts")
     }
 
+    const formatDateTime = (dateTimeStr: string) => {
+        const date = new Date(dateTimeStr);
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const day = ('0' + date.getDate()).slice(-2);
+        return `${day}.${month}.${year}`;
+    };
+
     // const updateUserProfilePicUrl = async (imageUrl: string | null) => {
     //     if (imageUrl) {
     //         setImageURL(imageUrl);
@@ -124,7 +132,7 @@ export default function Profile() {
                             </div>
                             <div className="profile-field">
                                 <label className='field-label'>Birthday:</label>
-                                <span className='field-span'>{date_of_birth ? new Date(date_of_birth).toLocaleDateString() : ''}</span>
+                                <span className='field-span'>{formatDateTime(date_of_birth!)}</span>
                             </div>
                         </div>
                         <div className='car-container'>

@@ -2,6 +2,8 @@ package com.trading212.crossedroads.repositories;
 
 import com.trading212.crossedroads.daos.UserDao;
 import com.trading212.crossedroads.dtos.User;
+import com.trading212.crossedroads.outputs.RowMappers.UserVisitorRowMapper;
+import com.trading212.crossedroads.outputs.UserVisitorOutput;
 import com.trading212.crossedroads.row_mappers.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -61,11 +63,23 @@ public class UserRepository implements UserDao {
         var sql = """
                 SELECT u.*
                 FROM users u
-                JOIN friendships f ON u.id = f.user2_id
-                WHERE f.user1_id = ?
+                JOIN friendships f ON u.id = f.user2_id OR u.id = f.user1_id
+                WHERE (f.user1_id = ? OR f.user2_id = ?) AND u.id != ?
                 """;
-        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), userId);
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), userId, userId, userId);
         return Optional.of(users);
+    }
+
+    @Override
+    public Optional<List<UserVisitorOutput>> getVisitorsById(long userId) {
+        var sql = """
+                SELECT u.id, u.first_name, u.last_name, u.profile_name, u.profile_pic_url, v.visited_at
+                FROM users u
+                JOIN visits v ON u.id = v.visitor_id
+                WHERE v.visited_id = ?
+                """;
+        List<UserVisitorOutput> visitors = jdbcTemplate.query(sql, new UserVisitorRowMapper(), userId);
+        return Optional.of(visitors);
     }
 
     @Override

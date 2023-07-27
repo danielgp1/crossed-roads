@@ -5,7 +5,7 @@
     margin: 2% 0;
     margin-right: 2%;
     display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1.7fr 5fr 1fr;
 }
 
 .viewer-pic-container {
@@ -35,16 +35,25 @@
     background-color: #ffa825;
 }
 
-.viewer-header {
+.viewer-header-grid {
     background-color: #fabb5c;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: 1.5fr 1fr;
+    justify-items: center;
     align-items: center;
     font-family: 'Futurafrica', sans-serif;
     color: #333333;
 }
 
 .viewer-profile-pic {
-    height: 200px;
-    width: 200px;
+    height: 180px;
+    width: 180px;
+}
+
+.viewer-names {
+    font-size: 1.2rem;
+}
+
+.viewer-time {
+    font-size: 0.8rem;
 }

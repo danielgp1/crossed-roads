@@ -2,6 +2,7 @@ package com.trading212.crossedroads.controllers;
 
 import com.trading212.crossedroads.dtos.User;
 import com.trading212.crossedroads.inputs.UserInput;
+import com.trading212.crossedroads.outputs.UserVisitorOutput;
 import com.trading212.crossedroads.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,16 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") long id){return userService.getUser(id);}
+
+    @GetMapping("/{id}/friends")
+    public List<User> getFriendsById(@PathVariable("id") long id) {
+        return userService.getFriendsById(id);
+    }
+
+    @GetMapping("/{id}/visitors")
+    public List<UserVisitorOutput> getVisitorsById(@PathVariable("id") long id) {
+        return userService.getVisitorsById(id);
+    }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") long id, @RequestBody UserInput userInput){userService.updateUser(id, userInput);}

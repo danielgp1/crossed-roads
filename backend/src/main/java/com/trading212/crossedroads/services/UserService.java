@@ -6,6 +6,7 @@ import com.trading212.crossedroads.dtos.AvailableColor;
 import com.trading212.crossedroads.dtos.User;
 import com.trading212.crossedroads.exceptions.NotFoundException;
 import com.trading212.crossedroads.inputs.UserInput;
+import com.trading212.crossedroads.outputs.UserVisitorOutput;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,11 @@ public class UserService {
     }
     public List<User> getFriendsById(long userId) {
         return userDao.getFriendsById(userId)
+                .orElseThrow(() -> new NotFoundException(String.format("User with id %s not found", userId)));
+    }
+
+    public List<UserVisitorOutput> getVisitorsById(long userId) {
+        return userDao.getVisitorsById(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id %s not found", userId)));
     }
 
