@@ -1,5 +1,5 @@
 import React from 'react';
-import { handleRegistration, handleLoginVisibility, handleTogglePasswordVisibility } from './WelcomeFunctions';
+import { handleLoginVisibility, handleTogglePasswordVisibility } from './WelcomeFunctions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../contexts/UserContext';
