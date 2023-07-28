@@ -70,3 +70,17 @@
 .maps-google-map {
   border-radius: 20px;
 }
+
+.to-google-maps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fabb5c;
+  transition: .2s ease-in;
+  text-decoration: none;
+  font-family: 'Jost';
+}
+
+.to-google-maps:hover {
+  color: #ffa825;
+}

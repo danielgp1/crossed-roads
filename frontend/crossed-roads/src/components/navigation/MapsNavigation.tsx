@@ -122,24 +122,27 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
                     <span className='maps-to'>{first_name} {last_name}</span>
                 </div>
                 <div className='maps-google-map'>
-                        <GoogleMap
-                            id="example-map"
-                            mapContainerStyle={mapContainerStyle}
-                            center={center}
-                            zoom={12}
-                            options={options}
-                        >
-                            {userLocation && <Marker position={userLocation} icon={{
-                                url: pfp,
-                                scaledSize: new window.google.maps.Size(30, 30)
-                            }} />}
-                            <Marker position={{ lat: 42.6977, lng: 23.3219 }} icon={{
-                                url: profile_pic_url,
-                                scaledSize: new window.google.maps.Size(30, 30)
-                            }} />
-                            {directions && <DirectionsRenderer directions={directions} />}
-                        </GoogleMap>
+                    <GoogleMap
+                        id="example-map"
+                        mapContainerStyle={mapContainerStyle}
+                        center={center}
+                        zoom={12}
+                        options={options}
+                    >
+                        {userLocation && <Marker position={userLocation} icon={{
+                            url: pfp,
+                            scaledSize: new window.google.maps.Size(30, 30)
+                        }} />}
+                        <Marker position={{ lat: 42.6977, lng: 23.3219 }} icon={{
+                            url: profile_pic_url,
+                            scaledSize: new window.google.maps.Size(30, 30)
+                        }} />
+                        {directions && <DirectionsRenderer directions={directions} />}
+                    </GoogleMap>
                 </div>
+                <a className='to-google-maps' href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation!.lat},${userLocation!.lng}&destination=${latitude},${longitude}&travelmode=driving`} target="_blank" rel="noopener noreferrer">
+                    Open in Google Maps
+                </a>
             </div>
         </div>
     )
