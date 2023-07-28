@@ -16,6 +16,8 @@ public interface UserDao {
     Optional<List<User>> getUsersByUsername(String profile_name);
     Optional<User> getUserByEmail(String email);
     int updateUserProfilePicUrl(long id, String url);
+
+    int updateLatLng(long id, double lat, double lng);
     int updateUserPassword(long id, String password);
     int updateCurrentColor(long id, String color);
     int deleteUser(long id);

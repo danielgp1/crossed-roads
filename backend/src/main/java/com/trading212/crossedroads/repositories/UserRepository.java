@@ -116,6 +116,16 @@ public class UserRepository implements UserDao {
     }
 
     @Override
+    public int updateLatLng(long id, double lat, double lng) {
+        var sql = """
+            UPDATE users
+            SET latitude = ?, longitude = ?
+            WHERE id = ?
+            """;
+        return jdbcTemplate.update(sql, lat, lng, id);
+    }
+
+    @Override
     public int updateUserPassword(long id, String password) {
         var sql = """
             UPDATE users

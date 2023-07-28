@@ -20,8 +20,8 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0);
   position: relative;
   z-index: 1000;
-  width: 40%;
-  height: 50%;
+  width: 60%;
+  height: 70%;
   display: grid;
   grid-template-rows: 1fr 5fr;
 }
@@ -68,6 +68,5 @@
 }
 
 .maps-google-map {
-  background-color: #fabb5c;
   border-radius: 20px;
 }

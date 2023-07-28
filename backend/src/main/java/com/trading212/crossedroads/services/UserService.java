@@ -99,6 +99,10 @@ public class UserService {
         if (userInput.getCurrentColor() != null) {
             userDao.updateCurrentColor(id, userInput.getCurrentColor());
         }
+
+        if(userInput.getLatitude() != null && userInput.getLongitude() != null) {
+            userDao.updateLatLng(id, userInput.getLatitude(), userInput.getLongitude());
+        }
     }
 
     public void deleteUser(long id) {
