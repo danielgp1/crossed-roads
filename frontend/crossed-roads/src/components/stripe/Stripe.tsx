@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
 import CheckoutForm from "./CheckoutForm";
 import "./Stripe.css";
+import axios from "axios";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -12,16 +13,31 @@ const stripePromise = loadStripe("pk_test_51NYs8EGHqyz7OOkIA0Sdr1zl4kpYB7xcyGngx
 
 export default function Stripe() {
   const [clientSecret, setClientSecret] = useState("");
-
+    const userID = localStorage.getItem("userID");
+    const authToken = localStorage.getItem("userToken");
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+    axios
+      .post(
+        "http://localhost:8080/api/create-payment-intent",
+        {
+          user_id: 1,
+          color_hex: "#1231231"
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Successfully received client secret");
+        console.log(response.data);
+        setClientSecret(response.data.clientSecret);
+      })
+      .catch((error) => {
+        console.log("Couldn't submit order!");
+      });
   }, []);
 
   const appearance: Appearance = {
@@ -33,7 +49,7 @@ export default function Stripe() {
   };
 
   return (
-    <div className="stripe-root">
+    <div className="stripe-body">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />

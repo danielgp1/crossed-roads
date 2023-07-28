@@ -39,7 +39,7 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
         <label className="preview-lbl">Looking Good!</label>
         <Car color={selectedColor} direction={"#f9d71c"} name={user?.first_name || ''} pfp={user?.profile_pic_url || def} />
       </div>
-      <button className='purchase-button' onClick={handlePurchaseColor}>Pay 2.00 leva</button>
+      <button className='purchase-button' onClick={handlePurchaseColor}>Pay 5.00 BGN</button>
     </div>
   )
 }
