@@ -10,6 +10,8 @@ interface Friend {
     profile_name: string;
     current_color: string;
     profile_pic_url: string;
+    longitude: number;
+    latitude : number;
 }
 
 export default function GarageMain() {
@@ -49,6 +51,8 @@ export default function GarageMain() {
                                 profile_name={friend.profile_name}
                                 current_color={friend.current_color}
                                 profile_pic_url={friend.profile_pic_url}
+                                longitude={friend.longitude}
+                                latitude={friend.latitude}
                             />
                         ))}
                     </div>

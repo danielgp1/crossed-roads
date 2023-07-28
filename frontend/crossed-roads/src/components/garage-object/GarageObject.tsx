@@ -16,10 +16,12 @@ interface GarageObjectProps {
     profile_name: string;
     current_color: string;
     profile_pic_url: string;
+    longitude: number;
+    latitude: number;
 }
 
 
-const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, profile_name, current_color, profile_pic_url }: GarageObjectProps) => {
+const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, profile_name, current_color, profile_pic_url, longitude, latitude }: GarageObjectProps) => {
 
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
     const [areFriends, setAreFriends] = useState(true);
@@ -67,7 +69,7 @@ const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, 
                 <button className='garage-object-button' onClick={handleNavigation}><FontAwesomeIcon icon={faRoute} size='2x' color='#333333' /></button>
                 <button className='garage-object-button' onClick={handleUnfriend}><FontAwesomeIcon icon={faTrashCan} size='2x' color='#333333' /></button>
             </div>
-            {isNavigationOpen && <MapsNavigation setIsNavigationOpen={setIsNavigationOpen} />}
+            {isNavigationOpen && <MapsNavigation setIsNavigationOpen={setIsNavigationOpen} first_name={first_name} last_name={last_name} longitude={longitude} latitude={latitude}/>}
         </div>
     ) : null;
 }

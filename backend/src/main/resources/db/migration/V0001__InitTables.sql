@@ -8,8 +8,8 @@ CREATE TABLE users (
     date_of_birth DATE NOT NULL,
     profile_pic_url varchar(255),
     current_color varchar(255) DEFAULT "#FFFFFF",
-    longitude double,
-    latitude double,
+    longitude double DEFAULT 23.3219,
+    latitude double DEFAULT 42.6977,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
