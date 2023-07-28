@@ -14,6 +14,7 @@ interface MapsNavigationProps {
 }
 
 export default function MapsNavigation({ first_name, last_name, profile_pic_url, longitude, latitude, setIsNavigationOpen }: MapsNavigationProps) {
+    const [watchId, setWatchId] = useState<number | undefined>(undefined);
     const [userLocation, setUserLocation] = useState<{ lat: number, lng: number } | null>(null);
     const [directions, setDirections] = useState<any>(null);
     const toLocation = useMemo(() => ({ lat: latitude, lng: longitude }), [latitude, longitude]);
@@ -31,8 +32,8 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
     };
 
     const options = {
-        disableDefaultUI: true,
         zoomControl: true,
+        minZoom: 4
     };
 
     const mapApiKey = 'AIzaSyCJVeqgVHhDHkvuaOOCiwj9YzMM1_Zk7sc';
@@ -40,9 +41,6 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
     });
-
-    useEffect(() => {
-    }, [userLocation])
 
     useEffect(() => {
         if (!isLoaded) return;
@@ -67,7 +65,7 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
                 }
             }
 
-            watchId = navigator.geolocation.watchPosition(position => {
+            const localWatchId = navigator.geolocation.watchPosition(position => {
                 const newUserLocation = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
@@ -93,6 +91,7 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
             }, error => {
                 console.log(error);
             });
+            setWatchId(localWatchId);
         } else {
             console.log("Geolocation is not supported by this browser.");
         }
@@ -110,6 +109,7 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
     }
 
     const handleCloseNavaigation = () => {
+        if (watchId) navigator.geolocation.clearWatch(watchId);
         setIsNavigationOpen(false);
     };
 
@@ -133,14 +133,19 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
                             url: pfp,
                             scaledSize: new window.google.maps.Size(30, 30)
                         }} />}
-                        <Marker position={{ lat: 42.6977, lng: 23.3219 }} icon={{
+                        {toLocation && <Marker position={toLocation} icon={{
                             url: profile_pic_url,
                             scaledSize: new window.google.maps.Size(30, 30)
-                        }} />
+                        }} />}
                         {directions && <DirectionsRenderer directions={directions} />}
                     </GoogleMap>
                 </div>
-                <a className='to-google-maps' href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation!.lat},${userLocation!.lng}&destination=${latitude},${longitude}&travelmode=driving`} target="_blank" rel="noopener noreferrer">
+                <a className='to-google-maps'
+                    href={userLocation
+                        ? `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${latitude},${longitude}&travelmode=driving`
+                        : ''}
+                    target="_blank"
+                    rel="noopener noreferrer">
                     Open in Google Maps
                 </a>
             </div>

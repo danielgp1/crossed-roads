@@ -10,6 +10,7 @@ import UserProvider from './contexts/UserContext';
 import AvailableColorsProvider from './contexts/AvailableColorsContext';
 import UserProfile from './components/user-profile/UserProfile';
 import Posts from './components/posts/Posts';
+import Stripe from './components/stripe/Stripe';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path="/service" element={<Service />} />
                 <Route path="/garage" element={<Garage />} />
                 <Route path="/posts" element={<Posts />} />
+                <Route path="/payment" element={<Stripe />} />
                 <Route path="/users/:username" element={<UserProfile />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>

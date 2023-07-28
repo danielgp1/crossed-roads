@@ -3,6 +3,7 @@ import Car from "../car/Car"
 import "./PurchaseColor.css"
 import def from '../assets/default_pic.png'
 import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext";
+import { useNavigate } from "react-router-dom";
 
 interface PurchaseColorProps {
   selectedColor: string;
@@ -11,6 +12,7 @@ interface PurchaseColorProps {
 export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
   const { user } = useUserContext();
   const { addColor, availableColors } = useAvailableColorsContext();
+  const navigate = useNavigate();
 
   const handlePurchaseColor = async () => {
     try {
@@ -22,6 +24,7 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
         if (isColorAvailable) {
           alert("You already have this color!");
         } else {
+          navigate("/payment")
           await addColor(selectedColor);
         }
       }
