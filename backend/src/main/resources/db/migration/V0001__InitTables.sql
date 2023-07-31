@@ -46,3 +46,25 @@ CREATE TABLE visits (
     FOREIGN KEY (visited_id) REFERENCES users(id),
     FOREIGN KEY (visitor_id) REFERENCES users(id)
 );
+
+CREATE TABLE chats (
+    chat_id INT PRIMARY KEY AUTO_INCREMENT,
+    participant1_id INT,
+    participant2_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (participant1_id) REFERENCES users(id),
+    FOREIGN KEY (participant2_id) REFERENCES users(id)
+);
+
+CREATE TABLE messages (
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
+    chat_id INT,
+    sender_id INT,
+    receiver_id INT,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(chat_id) REFERENCES chats(chat_id),
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id)
+);

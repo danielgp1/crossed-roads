@@ -3,6 +3,7 @@ import { GoogleMap, useLoadScript, Marker, DirectionsRenderer } from '@react-goo
 import './MapsNavigation.css';
 import { useUserContext } from '../../contexts/UserContext';
 import axios from 'axios';
+import def from '../assets/default_pic.png'
 
 interface MapsNavigationProps {
     first_name: string;
@@ -130,11 +131,11 @@ export default function MapsNavigation({ first_name, last_name, profile_pic_url,
                         options={options}
                     >
                         {userLocation && <Marker position={userLocation} icon={{
-                            url: pfp,
+                            url: pfp || def,
                             scaledSize: new window.google.maps.Size(30, 30)
                         }} />}
                         {toLocation && <Marker position={toLocation} icon={{
-                            url: profile_pic_url,
+                            url: profile_pic_url || def,
                             scaledSize: new window.google.maps.Size(30, 30)
                         }} />}
                         {directions && <DirectionsRenderer directions={directions} />}
