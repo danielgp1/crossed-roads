@@ -64,6 +64,17 @@ public class MessageRepository implements MessageDao {
     }
 
     @Override
+    public Optional<List<Message>> getChatMessages(long user1_id, long user2_id) {
+        var sql = """
+            SELECT *
+            FROM messages
+            WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)
+            """;
+        List<Message> messages = jdbcTemplate.query(sql, new MessageRowMapper(), user1_id, user2_id, user2_id, user1_id);
+        return Optional.of(messages);
+    }
+
+    @Override
     public Optional<List<Message>> getMessagesBySenderId(long senderId) {
         var sql = """
                 SELECT *

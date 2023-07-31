@@ -44,7 +44,8 @@
     font-family: 'Jost';
     font-size: 1.2rem;
     border-radius: 10px;
-    padding: 0 2%;
+    padding: 1% 2%;
+    box-sizing: border-box;
 }
 
 .user-chat-message:last-child {
@@ -53,13 +54,16 @@
 
 .user-chat-message.left {
     background-color: #fabb5c;
-
+    border: 2px solid #ffa825;
     align-self: flex-start;
+    margin-right: 10%;
 }
 
 .user-chat-message.right {
     background-color: #ffa825;
+    border: 2px solid #fabb5c;
     align-self: flex-end;
+    margin-left: 10%;
 }
 
 .user-chat-footer {
