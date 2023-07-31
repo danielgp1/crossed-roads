@@ -1,0 +1,95 @@
+.user-chat-main {
+    position: absolute;
+    top:6%;
+    height: 94%;
+    width: 100%;
+    background-color: #333333;
+    display: grid;
+    box-sizing: border-box;
+    padding: 2% 0;
+}
+
+.user-chat-container {
+    width: 50%;
+    display:grid;
+    grid-template-rows: 1fr 15fr 0.7fr;
+    justify-self: center;
+    box-sizing: border-box;
+    border: 2px solid #ffa825;
+    overflow-y: hidden;
+}
+
+.user-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fabb5c;
+    width: 100%;
+    font-family: 'Futurafrica', sans-serif;
+    font-size: 1.5rem;
+    color: #333333;
+    box-sizing: border-box;
+    border-bottom: 2px solid #ffa825;
+}
+
+.user-chat-messages {
+    display:flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 2%;
+}
+
+.user-chat-message {
+    margin-bottom: 20px;
+    font-family: 'Jost';
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 0 2%;
+}
+
+.user-chat-message:last-child {
+    margin-bottom: 0;
+}
+
+.user-chat-message.left {
+    background-color: #fabb5c;
+
+    align-self: flex-start;
+}
+
+.user-chat-message.right {
+    background-color: #ffa825;
+    align-self: flex-end;
+}
+
+.user-chat-footer {
+    background-color: #ffa825;
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    border-top: 2px solid #ffa825;
+    box-sizing: border-box;
+
+}
+
+.user-chat-btn {
+    background-color: #fabb5c;
+    border: none;
+    transition: .2s ease-in;
+    cursor: pointer;
+    font-family: 'Jost';
+    font-size: 1rem;
+}
+
+.user-chat-input {
+    font-family: 'Jost';
+    font-size: 1rem;
+    border: none;
+}
+
+.user-chat-btn:focus {
+    border: none;
+}
+
+.user-chat-btn:hover {
+    background-color: #ffa825;
+}

@@ -55,6 +55,10 @@ const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, 
             });
     };
 
+    const handleOpenChat = () => {
+        navigate(`/chats/${id}`);
+    }
+
     return areFriends ? (
         <div className='garage-object'>
             <div className='garage-header'>
@@ -65,7 +69,7 @@ const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, 
             </div>
             <div className='garage-object-buttons-container'>
                 <button className='garage-object-button' onClick={handleOpenProfilePage}><FontAwesomeIcon icon={faUser} size='2x' color='#333333' /></button>
-                <button className='garage-object-button'><FontAwesomeIcon icon={faMessage} size='2x' color='#333333' /></button>
+                <button className='garage-object-button' onClick={handleOpenChat}><FontAwesomeIcon icon={faMessage} size='2x' color='#333333' /></button>
                 <button className='garage-object-button' onClick={handleNavigation}><FontAwesomeIcon icon={faRoute} size='2x' color='#333333' /></button>
                 <button className='garage-object-button' onClick={handleUnfriend}><FontAwesomeIcon icon={faTrashCan} size='2x' color='#333333' /></button>
             </div>

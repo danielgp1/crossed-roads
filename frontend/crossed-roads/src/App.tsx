@@ -11,6 +11,7 @@ import AvailableColorsProvider from './contexts/AvailableColorsContext';
 import UserProfile from './components/user-profile/UserProfile';
 import Posts from './components/posts/Posts';
 import Stripe from './components/stripe/Stripe';
+import UserChat from './components/user-chat/UserChat';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/payment" element={<Stripe />} />
                 <Route path="/users/:username" element={<UserProfile />} />
+                <Route path="/chats/:friendid" element={<UserChat />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>
           </Routes>
