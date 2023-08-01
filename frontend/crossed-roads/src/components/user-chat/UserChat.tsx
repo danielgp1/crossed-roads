@@ -8,7 +8,7 @@ export default function UserChat() {
     return (
         <div className="user-chat-body">
         <Navbar />
-        <UserChatMain friendid={parseInt(friendid!)} />
+        <UserChatMain friendid={parseInt(friendid as string)} />
     </div>
     )
 }

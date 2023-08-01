@@ -3,6 +3,8 @@ import './UserChatMain.css'
 import axios from 'axios';
 import { useUserContext } from '../../../contexts/UserContext';
 import def from '../../assets/default_pic.png'
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
 
 interface UserChatMainProps {
     friendid: number,
@@ -16,8 +18,8 @@ interface Friend {
 }
 
 interface Message {
-    id: number;
-    sender_id: number;
+    sender_id:number,
+    receiver_id: number,
     content: string;
     created_at: string;
 }
@@ -31,6 +33,8 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
     const authToken = localStorage.getItem('userToken')
     const userID = localStorage.getItem("userID");
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
+    const [socket, setSocket] = useState<WebSocket | null>(null);
+    const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
 
 
     const fetchMessages = async () => {
@@ -58,6 +62,8 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
     }, [messages]); 
 
     useEffect(() => {
+        let subscription: Stomp.Subscription | null = null;
+    
         const fetchFriend = async () => {
             await axios
                 .get(`http://10.16.6.25:8080/api/users/${friendid}`, {
@@ -70,31 +76,77 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                 })
                 .catch((error) => console.error('Error fetching friend:', error));
         }
-
+    
+        if (socket) {
+            socket.close();
+          }
+        
+          if (stompClient) {
+            stompClient.disconnect(() => {
+              console.log('Disconnected');
+            });
+          }
+        
+          const socketInstance: WebSocket = new SockJS('http://localhost:8080/ws')
+          const stompInstance: Stomp.Client = Stomp.over(socketInstance)
+        
+          stompInstance.connect(
+            {},
+            (frame) => {
+              subscription = stompInstance.subscribe(`/user/${userID}/private`, (message) => {
+                const newMessage: Message = JSON.parse(message.body)
+                setMessages((prevMessages) => [newMessage,...prevMessages ]);
+              })
+              setStompClient(stompInstance);
+            },
+            (error) => console.error('Stomp error:', error)
+          )
+        
+          setSocket(socketInstance);
+    
+    
         fetchFriend();
         fetchMessages();
+        return () => {
+            if (stompClient) {
+              stompClient.disconnect(() => {
+                console.log('Disconnected');
+              });
+            }
+        
+            if (subscription) {
+              subscription.unsubscribe();
+              console.log('Unsubscribed');
+            }
+        
+            if (socket) {
+              socket.close();
+            }
+          };
+    
     }, []);
+    
+
 
     const handleSendMessage = () => {
-        if (chatMessage?.trim() && chatMessage?.trim() !== '') {
+        if (chatMessage?.trim() && chatMessage?.trim() !== '' && stompClient) {
             const messageData = {
+                sender_id: parseInt(userID!),
                 receiver_id: friend?.id,
-                sender_id: userID,
                 content: chatMessage
-            };
-            axios
-                .post(`http://10.16.6.25:8080/api/messages`, messageData, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}`,
-                    },
-                })
-                .then(() => {
-                    setChatMessage('');
-                    fetchMessages();
-                })
-                .catch((error) => console.error('Error sending message:', error));
+            }
+    
+            stompClient.send(
+                '/app/private-message',
+                {},
+                JSON.stringify(messageData)
+            )
+            
+            setChatMessage('')
         }
     }
+    
+    
 
     return (
         <div className='user-chat-main'>

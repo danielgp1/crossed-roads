@@ -7,7 +7,6 @@ import java.time.ZonedDateTime;
 @Data
 public class Message {
     private long message_id;
-    private long chat_id;
     private long sender_id;
     private long receiver_id;
     private String content;
