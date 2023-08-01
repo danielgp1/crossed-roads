@@ -87,7 +87,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
             });
           }
         
-          const socketInstance: WebSocket = new SockJS('http://localhost:8080/ws')
+          const socketInstance: WebSocket = new SockJS('http://10.16.6.25:8080/ws')
           const stompInstance: Stomp.Client = Stomp.over(socketInstance)
         
           stompInstance.connect(
@@ -95,7 +95,9 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
             (frame) => {
               subscription = stompInstance.subscribe(`/user/${userID}/private`, (message) => {
                 const newMessage: Message = JSON.parse(message.body)
-                setMessages((prevMessages) => [newMessage,...prevMessages ]);
+                if (newMessage.sender_id === friendid || newMessage.receiver_id === friendid) {
+                    setMessages((prevMessages) => [newMessage,...prevMessages ]);
+                }
               })
               setStompClient(stompInstance);
             },

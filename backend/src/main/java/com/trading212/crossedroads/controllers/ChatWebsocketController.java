@@ -32,9 +32,7 @@ public class ChatWebsocketController {
         }
 
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(receiverId), "/private", message);
-        // Send to sender
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(senderId), "/private", message);
         messageService.insertMessage(message);
-        
     }
 }
