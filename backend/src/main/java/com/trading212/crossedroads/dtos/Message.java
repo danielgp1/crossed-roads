@@ -17,9 +17,8 @@ public class Message {
 
     }
 
-    public Message(long message_id, long chat_id, long sender_id, long receiver_id, String content, ZonedDateTime created_at) {
+    public Message(long message_id, long sender_id, long receiver_id, String content, ZonedDateTime created_at) {
         this.message_id = message_id;
-        this.chat_id = chat_id;
         this.sender_id = sender_id;
         this.receiver_id = receiver_id;
         this.content = content;

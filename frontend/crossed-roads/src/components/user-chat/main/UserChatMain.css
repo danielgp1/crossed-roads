@@ -12,7 +12,7 @@
 .user-chat-container {
     width: 50%;
     display:grid;
-    grid-template-rows: 1fr 15fr 0.7fr;
+    grid-template-rows: 1fr 15fr 1fr;
     justify-self: center;
     box-sizing: border-box;
     border: 2px solid #ffa825;
@@ -34,34 +34,66 @@
 
 .user-chat-messages {
     display:flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     overflow-y: scroll;
     padding: 2%;
 }
 
 .user-chat-message {
+    display:flex;
     margin-bottom: 20px;
     font-family: 'Jost';
     font-size: 1.2rem;
-    border-radius: 10px;
-    padding: 1% 2%;
     box-sizing: border-box;
 }
 
-.user-chat-message:last-child {
+.user-chat-img {
+    width: 40px;
+    height: 40px;
+    align-self: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.user-chat-img.left  {
+    margin-right: 15px;
+    border: 2px solid #ffa825;
+}
+
+.user-chat-img.right  {
+    margin-left: 15px;
+    border: 2px solid #fabb5c;
+}
+
+.user-chat-message-content {
+    border-radius: 20px;
+    padding: 5px;
+    word-break: break-word;
+}
+
+.user-chat-message-content.left {
+    background-color: #fabb5c;
+    box-sizing: border-box;
+    border: 2px solid #ffa825;
+}
+
+.user-chat-message-content.right {
+    background-color: #ffa825;
+    box-sizing: border-box;
+    border: 2px solid #fabb5c;
+}
+
+.user-chat-message:nth-child(2) {
     margin-bottom: 0;
 }
 
 .user-chat-message.left {
-    background-color: #fabb5c;
-    border: 2px solid #ffa825;
     align-self: flex-start;
     margin-right: 10%;
 }
 
 .user-chat-message.right {
-    background-color: #ffa825;
-    border: 2px solid #fabb5c;
+
     align-self: flex-end;
     margin-left: 10%;
 }

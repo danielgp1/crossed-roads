@@ -10,7 +10,6 @@ public interface MessageDao {
 
     List<Message> getAllMessages();
     Optional<Message> getMessageById(long messageId);
-    Optional<List<Message>> getMessagesByChatId(long chatId);
     Optional<List<Message>> getChatMessages(long user1_id, long user2_id);
     Optional<List<Message>> getMessagesBySenderId(long senderId);
     int deleteMessage(long messageId);

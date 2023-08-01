@@ -31,11 +31,6 @@ public class MessageController {
         return messageService.getMessageById(messageId);
     }
 
-    @GetMapping("/chats/{chatId}")
-    public List<Message> getMessagesByChatId(@PathVariable("chatId") long chatId) {
-        return messageService.getMessagesByChatId(chatId);
-    }
-
     @GetMapping("users/{user1_id}/{user2_id}")
     public List<Message> getChatMessages(@PathVariable("user1_id") long user1_id, @PathVariable("user2_id") long user2_id) {
         return messageService.getChatMessages(user1_id, user2_id);

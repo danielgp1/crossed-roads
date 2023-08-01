@@ -70,6 +70,7 @@
     overflow-y: scroll;
     font-family: 'Jost';
     background-color: #fabb5c;
+    word-break: break-word;
 }
 
 .billboard-input-container {

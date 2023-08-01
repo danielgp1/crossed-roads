@@ -27,11 +27,6 @@ public class MessageService {
         return messageDao.getMessageById(messageId)
                 .orElseThrow(() -> new NotFoundException(String.format("Message with id %d not found", messageId)));
     }
-
-    public List<Message> getMessagesByChatId(long chatId) {
-        return messageDao.getMessagesByChatId(chatId)
-                .orElseThrow(() -> new NotFoundException(String.format("Chat with id %d not found", chatId)));
-    }
     public List<Message> getChatMessages(long user1_id, long user2_id) {
         return messageDao.getChatMessages(user1_id, user2_id)
                 .orElseThrow(() -> new NotFoundException(String.format("No messages found between users %d and %d", user1_id, user2_id)));

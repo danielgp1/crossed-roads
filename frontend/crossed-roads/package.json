@@ -7,7 +7,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-google-maps/api": "^2.19.2",
-    "@stomp/stompjs": "^7.0.0",
     "@stripe/react-stripe-js": "^2.1.1",
     "@stripe/stripe-js": "^1.54.1",
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,6 +23,7 @@
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
     "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "typescript": "^4.9.5",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@types/sockjs-client": "^1.5.1"
+    "@types/sockjs-client": "^1.5.1",
+    "@types/stompjs": "^2.3.5"
   }
 }
