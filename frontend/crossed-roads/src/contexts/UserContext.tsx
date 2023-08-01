@@ -41,7 +41,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const authToken = localStorage.getItem('userToken');
     if (userID && authToken) {
       axios
-        .get(`http://localhost:8080/api/users/${userID}`, {
+        .get(`http://10.16.6.25:8080/api/users/${userID}`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -60,7 +60,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       const userID = localStorage.getItem('userID');
       const authToken = localStorage.getItem('userToken');
       const response = await axios
-        .get(`http://localhost:8080/api/users/${userID}`, {
+        .get(`http://10.16.6.25:8080/api/users/${userID}`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -77,7 +77,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       const userID = localStorage.getItem('userID');
       const authToken = localStorage.getItem('userToken');
       const response = await axios
-        .get(`http://localhost:8080/api/users/${userID}`, {
+        .get(`http://10.16.6.25:8080/api/users/${userID}`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -95,7 +95,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (user && authToken) {
         const updatedUserData = { ...user, profile_pic_url: newProfilePic };
 
-        await axios.put(`http://localhost:8080/api/users/${user.id}`, updatedUserData, {
+        await axios.put(`http://10.16.6.25:8080/api/users/${user.id}`, updatedUserData, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -115,7 +115,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (user && authToken) {
         const updatedUserData = { ...user, current_color: newColor };
 
-        await axios.put(`http://localhost:8080/api/users/${user.id}`, updatedUserData, {
+        await axios.put(`http://10.16.6.25:8080/api/users/${user.id}`, updatedUserData, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },

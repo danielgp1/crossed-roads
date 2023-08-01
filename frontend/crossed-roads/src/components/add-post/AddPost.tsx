@@ -27,7 +27,7 @@ export default function AddPost({ setIsAddPostOpen }: AddPostProps) {
                 user_id: userID,
                 content: postContent,
             };
-            await axios.post('http://localhost:8080/api/posts', postData, {
+            await axios.post('http://10.16.6.25:8080/api/posts', postData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

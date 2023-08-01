@@ -36,7 +36,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
     const fetchMessages = async () => {
         if (userID) {
             await axios
-                .get(`http://localhost:8080/api/messages/users/${userID}/${friendid}`, {
+                .get(`http://10.16.6.25:8080/api/messages/users/${userID}/${friendid}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },
@@ -55,12 +55,12 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-    }, [messages]); // <-- add the useEffect to scroll to bottom
+    }, [messages]); 
 
     useEffect(() => {
         const fetchFriend = async () => {
             await axios
-                .get(`http://localhost:8080/api/users/${friendid}`, {
+                .get(`http://10.16.6.25:8080/api/users/${friendid}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },
@@ -83,7 +83,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                 content: chatMessage
             };
             axios
-                .post(`http://localhost:8080/api/messages`, messageData, {
+                .post(`http://10.16.6.25:8080/api/messages`, messageData, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },

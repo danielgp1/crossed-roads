@@ -25,7 +25,7 @@ export default function Main() {
             const userID = localStorage.getItem("userID")
 
             await axios
-                .get(`http://localhost:8080/api/posts/users/${userID}/friends-posts`, {
+                .get(`http://10.16.6.25:8080/api/posts/users/${userID}/friends-posts`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },

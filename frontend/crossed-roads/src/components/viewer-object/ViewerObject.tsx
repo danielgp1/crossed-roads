@@ -35,7 +35,7 @@ const ViewerObject: React.FC<ViewerObjectProps> = ({ id, first_name, last_name, 
         const userID = localStorage.getItem("userID");
 
         axios.post(
-            "http://localhost:8080/api/friendships",
+            "http://10.16.6.25:8080/api/friendships",
             {
                 user1_id: userID,
                 user2_id: id,
@@ -59,7 +59,7 @@ const ViewerObject: React.FC<ViewerObjectProps> = ({ id, first_name, last_name, 
         const userID = localStorage.getItem("userID");
 
         axios.delete(
-            `http://localhost:8080/api/friendships/users/${userID}/${id}`,
+            `http://10.16.6.25:8080/api/friendships/users/${userID}/${id}`,
             {
                 headers: {
                     Authorization: `Bearer ${authToken}`,

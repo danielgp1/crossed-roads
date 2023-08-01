@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+@CrossOrigin(origins = "http://10.16.6.25:3000", allowedHeaders = "*")
 @RequestMapping(path = "/api/friendships")
 public class FriendshipController {
     private final FriendshipService friendshipService;

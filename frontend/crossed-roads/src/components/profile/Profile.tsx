@@ -83,7 +83,7 @@ export default function Profile() {
     //         if (authToken && userID) {
     //             try {
     //                 await axios.put(
-    //                     `http://localhost:8080/api/users/${userID}`,
+    //                     `http://10.16.6.25:8080/api/users/${userID}`,
     //                     { profile_pic_url: imageUrl },
     //                     {
     //                         headers: {

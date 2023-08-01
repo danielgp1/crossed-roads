@@ -15,7 +15,7 @@ export default function Stripe() {
   useEffect(() => {
     axios
       .post(
-        "http://localhost:8080/api/create-payment-intent",
+        "http://10.16.6.25:8080/api/create-payment-intent",
         {
           user_id: 1,
           color_hex: "#1231231"
