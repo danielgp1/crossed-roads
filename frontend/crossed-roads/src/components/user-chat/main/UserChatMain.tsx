@@ -18,7 +18,7 @@ interface Friend {
 }
 
 interface Message {
-    sender_id:number,
+    sender_id: number,
     receiver_id: number,
     content: string;
     created_at: string;
@@ -47,7 +47,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                 })
                 .then((response) => {
                     const sortedMessages = response.data.sort((a: Message, b: Message) => {
-                        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+                        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
                     });
                     setMessages(sortedMessages);
                 })
@@ -59,11 +59,11 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-    }, [messages]); 
+    }, [messages]);
 
     useEffect(() => {
         let subscription: Stomp.Subscription | null = null;
-    
+
         const fetchFriend = async () => {
             await axios
                 .get(`http://10.16.6.25:8080/api/users/${friendid}`, {
@@ -76,58 +76,58 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                 })
                 .catch((error) => console.error('Error fetching friend:', error));
         }
-    
+
         if (socket) {
             socket.close();
-          }
-        
-          if (stompClient) {
+        }
+
+        if (stompClient) {
             stompClient.disconnect(() => {
-              console.log('Disconnected');
+                console.log('Disconnected');
             });
-          }
-        
-          const socketInstance: WebSocket = new SockJS('http://10.16.6.25:8080/ws')
-          const stompInstance: Stomp.Client = Stomp.over(socketInstance)
-        
-          stompInstance.connect(
+        }
+
+        const socketInstance: WebSocket = new SockJS('http://10.16.6.25:8080/ws')
+        const stompInstance: Stomp.Client = Stomp.over(socketInstance)
+
+        stompInstance.connect(
             {},
             (frame) => {
-              subscription = stompInstance.subscribe(`/user/${userID}/private`, (message) => {
-                const newMessage: Message = JSON.parse(message.body)
-                if (newMessage.sender_id === friendid || newMessage.receiver_id === friendid) {
-                    setMessages((prevMessages) => [newMessage,...prevMessages ]);
-                }
-              })
-              setStompClient(stompInstance);
+                subscription = stompInstance.subscribe(`/user/${userID}/private`, (message) => {
+                    const newMessage: Message = JSON.parse(message.body)
+                    if (newMessage.sender_id === friendid || newMessage.receiver_id === friendid) {
+                        setMessages((prevMessages) => [...prevMessages, newMessage]);
+                    }
+                })
+                setStompClient(stompInstance);
             },
             (error) => console.error('Stomp error:', error)
-          )
-        
-          setSocket(socketInstance);
-    
-    
+        )
+
+        setSocket(socketInstance);
+
+
         fetchFriend();
         fetchMessages();
         return () => {
             if (stompClient) {
-              stompClient.disconnect(() => {
-                console.log('Disconnected');
-              });
+                stompClient.disconnect(() => {
+                    console.log('Disconnected');
+                });
             }
-        
+
             if (subscription) {
-              subscription.unsubscribe();
-              console.log('Unsubscribed');
+                subscription.unsubscribe();
+                console.log('Unsubscribed');
             }
-        
+
             if (socket) {
-              socket.close();
+                socket.close();
             }
-          };
-    
+        };
+
     }, []);
-    
+
 
 
     const handleSendMessage = () => {
@@ -137,34 +137,40 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                 receiver_id: friend?.id,
                 content: chatMessage
             }
-    
+
             stompClient.send(
                 '/app/private-message',
                 {},
                 JSON.stringify(messageData)
             )
-            
+
             setChatMessage('')
         }
     }
-    
-    
+
+
 
     return (
         <div className='user-chat-main'>
             <div className='user-chat-container'>
                 <div className='user-chat-header '>{friend?.first_name} {friend?.last_name}</div>
-                <div className='user-chat-messages'>
-                    <div ref={messagesEndRef}></div>
-                    {messages.map((message, index) =>
-                        <div key={index} className={`user-chat-message ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
-                            {message.sender_id === Number(userID) && <img className='user-chat-img left' src={user?.profile_pic_url ?? def} alt='you'></img>}
-                            <div className={`user-chat-message-content ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
-                                {message.content}
+                <div className='user-chat-messages-body'>
+                    <div className='user-chat-beginning'>
+                        <img className='user-chat-beginning-pic' src={friend?.profile_pic_url ?? def} />
+                        <span className='user-chat-beginning-txt'>This Is The Beginning Of Your Journey Together</span>
+                    </div>
+                    <div className='user-chat-messages'>
+                        {messages.map((message, index) =>
+                            <div key={index} className={`user-chat-message ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
+                                {message.sender_id === Number(userID) && <img className='user-chat-img left' src={user?.profile_pic_url ?? def} alt='you'></img>}
+                                <div className={`user-chat-message-content ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
+                                    {message.content}
+                                </div>
+                                {message.sender_id !== Number(userID) && <img className='user-chat-img right' src={friend?.profile_pic_url ?? def} alt='friend'></img>}
                             </div>
-                            {message.sender_id !== Number(userID) && <img className='user-chat-img right' src={friend?.profile_pic_url ?? def} alt='friend'></img>}
-                        </div>
-                    )}
+                        )}
+                        <div ref={messagesEndRef}></div>
+                    </div>
                 </div>
                 <div className='user-chat-footer'>
                     <input
