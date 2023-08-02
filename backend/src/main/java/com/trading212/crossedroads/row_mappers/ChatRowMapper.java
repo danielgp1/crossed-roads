@@ -14,8 +14,7 @@ public class ChatRowMapper implements RowMapper<Chat> {
                 resultSet.getLong("chat_id"),
                 resultSet.getLong("participant1_id"),
                 resultSet.getLong("participant2_id"),
-                resultSet.getTimestamp("created_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia")),
-                resultSet.getTimestamp("updated_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia"))
+                resultSet.getTimestamp("created_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia"))
         );
     }
 }

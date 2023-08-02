@@ -3,6 +3,7 @@ package com.trading212.crossedroads.services;
 import com.trading212.crossedroads.daos.ChatDao;
 import com.trading212.crossedroads.dtos.Chat;
 import com.trading212.crossedroads.exceptions.NotFoundException;
+import com.trading212.crossedroads.outputs.ChatOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,9 +29,13 @@ public class ChatService {
                 .orElseThrow(() -> new NotFoundException(String.format("Chat with id %d not found", chatId)));
     }
 
-    public List<Chat> getChatsByUserId(long userId) {
-        return chatDao.getChatsByUserId(userId)
+    public List<ChatOutput> getChatSummariesByUserId(long userId) {
+        return chatDao.getChatSummariesByUserId(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id %d not found", userId)));
+    }
+
+    public int getChatIdIfExists(long participant1Id, long participant2Id) {
+        return chatDao.getChatIdIfExists(participant1Id,participant2Id);
     }
 
     public void deleteChat(long chatId) {

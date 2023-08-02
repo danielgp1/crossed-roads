@@ -6,6 +6,7 @@ import axios from 'axios';
 import def from '../assets/default_pic.png'
 
 interface MapsNavigationProps {
+    id:number;
     first_name: string;
     last_name: string;
     profile_pic_url: string;
@@ -14,7 +15,7 @@ interface MapsNavigationProps {
     setIsNavigationOpen: (isNavigationOpen: boolean) => void;
 }
 
-export default function MapsNavigation({ first_name, last_name, profile_pic_url, longitude, latitude, setIsNavigationOpen }: MapsNavigationProps) {
+export default function MapsNavigation({ id, first_name, last_name, profile_pic_url, longitude, latitude, setIsNavigationOpen }: MapsNavigationProps) {
     const [watchId, setWatchId] = useState<number | undefined>(undefined);
     const [userLocation, setUserLocation] = useState<{ lat: number, lng: number } | null>(null);
     const [directions, setDirections] = useState<any>(null);

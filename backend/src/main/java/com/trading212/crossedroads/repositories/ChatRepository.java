@@ -2,6 +2,8 @@ package com.trading212.crossedroads.repositories;
 
 import com.trading212.crossedroads.daos.ChatDao;
 import com.trading212.crossedroads.dtos.Chat;
+import com.trading212.crossedroads.outputs.ChatOutput;
+import com.trading212.crossedroads.outputs.RowMappers.ChatOutputRowMapper;
 import com.trading212.crossedroads.row_mappers.ChatRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -53,14 +55,33 @@ public class ChatRepository implements ChatDao {
     }
 
     @Override
-    public Optional<List<Chat>> getChatsByUserId(long userId) {
+    public Optional<List<ChatOutput>> getChatSummariesByUserId(long userId) {
         var sql = """
-                SELECT *
-                FROM chats
-                WHERE participant1_id = ? OR participant2_id = ?
-                """;
-        List<Chat> chats =  jdbcTemplate.query(sql, new ChatRowMapper(), userId, userId);
+            SELECT c.chat_id, c.participant1_id, c.participant2_id,
+                   m.content AS latest_message_content, m.created_at AS latest_message_time, m.sender_id AS latest_message_sender_id
+            FROM chats c
+            JOIN messages m ON c.chat_id = m.chat_id
+            WHERE (c.participant1_id = ? OR c.participant2_id = ?)
+            AND m.message_id = (
+                SELECT MAX(message_id)
+                FROM messages
+                WHERE chat_id = c.chat_id
+            )
+            ORDER BY m.created_at DESC
+            """;
+        List<ChatOutput> chats =  jdbcTemplate.query(sql, new ChatOutputRowMapper(), userId, userId);
         return Optional.of(chats);
+    }
+
+    @Override
+    public int getChatIdIfExists(long participant1Id, long participant2Id) {
+        var sql = """
+            SELECT chat_id
+            FROM chats
+            WHERE (participant1_id = ? AND participant2_id = ?) OR (participant1_id = ? AND participant2_id = ?)
+            """;
+        List<Integer> chatIds = jdbcTemplate.query(sql, (rs, rowNum) -> rs.getInt("chat_id"), participant1Id, participant2Id, participant2Id, participant1Id);
+        return chatIds.isEmpty() ? -1 : chatIds.get(0);
     }
 
     @Override

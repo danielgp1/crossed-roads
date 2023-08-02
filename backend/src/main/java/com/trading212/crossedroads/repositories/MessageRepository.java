@@ -20,10 +20,10 @@ public class MessageRepository implements MessageDao {
     @Override
     public Message insertMessage(Message message) {
         var sql = """
-                INSERT INTO messages(sender_id, receiver_id, content)
-                VALUES (?, ?, ?)
+                INSERT INTO messages(chat_id, sender_id, receiver_id, content)
+                VALUES (?, ?, ?, ?)
                 """;
-        int rowsAffected = jdbcTemplate.update(sql, message.getSender_id(), message.getReceiver_id(), message.getContent());
+        int rowsAffected = jdbcTemplate.update(sql, message.getChat_id(), message.getSender_id(), message.getReceiver_id(), message.getContent());
         if (rowsAffected > 0) {
             return message;
         } else {

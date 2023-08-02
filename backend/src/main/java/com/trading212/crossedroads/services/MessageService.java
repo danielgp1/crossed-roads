@@ -1,6 +1,7 @@
 package com.trading212.crossedroads.services;
 
 import com.trading212.crossedroads.daos.MessageDao;
+import com.trading212.crossedroads.dtos.Chat;
 import com.trading212.crossedroads.dtos.Message;
 import com.trading212.crossedroads.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,28 @@ import java.util.List;
 @Service
 public class MessageService {
     private final MessageDao messageDao;
+    private final ChatService chatService;
 
-    public MessageService(MessageDao messageDao) {
+    public MessageService(MessageDao messageDao, ChatService chatService) {
         this.messageDao = messageDao;
+        this.chatService = chatService;
     }
 
     public Message insertMessage(Message message) {
+        long chatId = chatService.getChatIdIfExists(message.getSender_id(), message.getReceiver_id());
+
+        if(chatId == -1) {
+            Chat newChat = new Chat();
+            newChat.setParticipant1_id(message.getSender_id());
+            newChat.setParticipant2_id(message.getReceiver_id());
+
+            chatService.insertChat(newChat);
+            int newChatID = chatService.getChatIdIfExists(message.getSender_id(), message.getReceiver_id());
+            message.setChat_id(newChatID);
+        } else {
+            message.setChat_id(chatId);
+        }
+
         return messageDao.insertMessage(message);
     }
 

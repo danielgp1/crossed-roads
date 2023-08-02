@@ -12,6 +12,7 @@ public class MessageRowMapper implements RowMapper<Message> {
     public Message mapRow(ResultSet resultSet, int i) throws SQLException {
         return new Message(
                 resultSet.getLong("message_id"),
+                resultSet.getLong("chat_id"),
                 resultSet.getLong("sender_id"),
                 resultSet.getLong("receiver_id"),
                 resultSet.getString("content"),

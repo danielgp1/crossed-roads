@@ -175,7 +175,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                         onChange={(e) => setChatMessage(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                e.preventDefault(); // Prevents the addition of a new line in the input when Enter is pressed
+                                e.preventDefault();
                                 handleSendMessage();
                             }
                         }}
