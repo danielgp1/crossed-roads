@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ChatBox from '../chatbox/ChatBox'
 import './Chat.css'
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
 
 interface ChatSummary {
     chat_id: number;
@@ -15,10 +17,32 @@ interface ChatSummary {
 export default function Chat() {
     const [chatSummaries, setChatSummaries] = useState<ChatSummary[]>([]);
     const userID = localStorage.getItem("userID");
+    let stompClient:Stomp.Client;
 
     useEffect(() => {
         fetchChatSummaries();
+        setupWebSocketConnection();
+        return () => {
+            if (stompClient !== null) {
+                stompClient.disconnect(() => {
+                    console.log('Disconnected');
+                });
+            }
+        }
     }, []);
+
+    const setupWebSocketConnection = () => {
+        const socket = new SockJS('http://10.16.6.25:8080/ws'); // Use your server address
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, () => {
+            stompClient.subscribe(`/user/${userID}/chat-summary`, (messageOutput) => {
+                if(messageOutput.body){
+                    const updatedChatSummaries: ChatSummary[] = JSON.parse(messageOutput.body);
+                    setChatSummaries(updatedChatSummaries);
+                }
+            });
+        });
+    };
 
     const fetchChatSummaries = () => {
         axios.get(`http://10.16.6.25:8080/api/chats/users/${userID}`, {

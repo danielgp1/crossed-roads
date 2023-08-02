@@ -36,7 +36,7 @@ export default function ChatBox({ friend_id, sender_id, content }: ChatBoxProps)
                 })
                 .catch((error) => console.error('Error fetching user data:', error));
         }
-    }, []);
+    }, [content]);
 
     const handleOpenChat = () => {
         navigate(`/chats/${friend_id}`);
