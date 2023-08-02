@@ -7,6 +7,8 @@ import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { useNavigate } from 'react-router-dom';
 import Chat from '../../chat/Chat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCarSide } from '@fortawesome/free-solid-svg-icons';
 
 interface UserChatMainProps {
     friendid: number,
@@ -195,7 +197,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                             }
                         }}
                     />
-                    <button onClick={handleSendMessage} className='user-chat-btn' type='button'>send</button>
+                    <button onClick={handleSendMessage} className='user-chat-btn' type='button'><FontAwesomeIcon icon={faCarSide} color='#333333' size='2x'/></button>
                 </div>
             </div>
 
