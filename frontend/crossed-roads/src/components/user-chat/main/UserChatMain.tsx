@@ -6,6 +6,7 @@ import def from '../../assets/default_pic.png'
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { useNavigate } from 'react-router-dom';
+import Chat from '../../chat/Chat';
 
 interface UserChatMainProps {
     friendid: number,
@@ -129,7 +130,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
             }
         };
 
-    }, []);
+    }, [friendid]);
 
 
 
@@ -157,10 +158,12 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
 
 
     return (
-        <div className='user-chat-main'>
+        <div className='user-chat-grid'>
+            <div className='wrapper'>
+                <Chat />
             <div className='user-chat-container'>
                 <div className='user-chat-header '>{friend?.first_name} {friend?.last_name}</div>
-                <div className='user-chat-messages-body'>
+                <div className='user-chat-messages-body-grid'>
                     <div className='user-chat-beginning'>
                         <img onClick={handleOpenProfile} className='user-chat-beginning-pic' src={friend?.profile_pic_url ?? def} />
                         <span className='user-chat-beginning-txt'>This Is The Beginning Of Your Journey Together</span>
@@ -195,6 +198,9 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                     <button onClick={handleSendMessage} className='user-chat-btn' type='button'>send</button>
                 </div>
             </div>
+
+            </div>
+
         </div>
     )
 }
