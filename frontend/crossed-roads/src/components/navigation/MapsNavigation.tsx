@@ -18,6 +18,7 @@ interface MapsNavigationProps {
 export default function MapsNavigation({ id, first_name, last_name, profile_pic_url, longitude, latitude, setIsNavigationOpen }: MapsNavigationProps) {
     const [watchId, setWatchId] = useState<number | undefined>(undefined);
     const [userLocation, setUserLocation] = useState<{ lat: number, lng: number } | null>(null);
+    const [toFriendLocation, setToFriendLocation] = useState<{ lat: number, lng: number } | null>(null);
     const [directions, setDirections] = useState<any>(null);
     const toLocation = useMemo(() => ({ lat: latitude, lng: longitude }), [latitude, longitude]);
     const { user } = useUserContext();
@@ -43,6 +44,12 @@ export default function MapsNavigation({ id, first_name, last_name, profile_pic_
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,
     });
+
+    useEffect(() => {
+        if(latitude && longitude) {
+            setToFriendLocation({lat: latitude, lng: longitude});
+        }
+    }, [latitude, longitude]); 
 
     useEffect(() => {
         if (!isLoaded) return;
@@ -75,20 +82,24 @@ export default function MapsNavigation({ id, first_name, last_name, profile_pic_
 
                 setUserLocation(newUserLocation);
                 updateUserLocation(newUserLocation.lat, newUserLocation.lng);
-                directionsService.route(
-                    {
+                if (newUserLocation && toFriendLocation) {
+                    directionsService.route(
+                      {
                         origin: newUserLocation,
-                        destination: toLocation,
+                        destination: toFriendLocation,
                         travelMode: window.google.maps.TravelMode.DRIVING,
-                    },
-                    (result: any, status: any) => {
+                      },
+                      (result: any, status: any) => {
                         if (status === window.google.maps.DirectionsStatus.OK) {
-                            setDirections(result);
+                          setDirections(result);
                         } else {
-                            console.error(`error fetching directions ${result}`);
+                          console.error(`error fetching directions ${result}`);
                         }
-                    }
-                );
+                      }
+                    );
+                  } else {
+                    console.error('newUserLocation or toFriendLocation is null');
+                  }
 
             }, error => {
                 console.log(error);
