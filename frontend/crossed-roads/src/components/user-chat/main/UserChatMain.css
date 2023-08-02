@@ -47,6 +47,7 @@
     height: 80px;
     box-sizing: border-box;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .user-chat-beginning-txt {
@@ -93,6 +94,7 @@
 .user-chat-img.right  {
     margin-left: 15px;
     border: 2px solid #fabb5c;
+    cursor: pointer;
 }
 
 .user-chat-message-content {
@@ -123,7 +125,6 @@
 }
 
 .user-chat-message.right {
-
     align-self: flex-end;
     margin-left: 10%;
 }
