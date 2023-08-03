@@ -130,7 +130,6 @@ public class ChatWebsocketController {
         friendStatus.put("friend_id", userId);
         friendStatus.put("status", false);
         for (User user : friends) {
-            System.out.println(user.getProfile_name());
             simpMessagingTemplate.convertAndSendToUser(String.valueOf(user.getId()), "/friend-online-status", friendStatus);
         }
     }
