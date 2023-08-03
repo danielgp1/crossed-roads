@@ -20,5 +20,9 @@ public interface UserDao {
     int updateLatLng(long id, double lat, double lng);
     int updateUserPassword(long id, String password);
     int updateCurrentColor(long id, String color);
+
+    int updateOnlineStatus(long id, boolean isOnline);
+    boolean getUserOnlineStatus(long id);
+
     int deleteUser(long id);
 }

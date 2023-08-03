@@ -22,6 +22,7 @@ public class UserRowMapper implements RowMapper<User> {
                 resultSet.getString("current_color"),
                 resultSet.getDouble("longitude"),
                 resultSet.getDouble("latitude"),
+                resultSet.getBoolean("is_online"),
                 resultSet.getTimestamp("created_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia")),
                 resultSet.getTimestamp("updated_at").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia"))
         );

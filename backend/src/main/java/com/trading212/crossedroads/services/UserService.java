@@ -84,6 +84,10 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException(String.format("User with email %s not found", email)));
     }
 
+    public boolean getUserOnlineStatus(long id) {
+        return userDao.getUserOnlineStatus(id);
+    }
+
     public void updateUser(long id, UserInput userInput) {
         Optional<User> user = userDao.getUserByID(id);
         if (user.isEmpty()) {
@@ -98,6 +102,10 @@ public class UserService {
         }
         if (userInput.getCurrentColor() != null) {
             userDao.updateCurrentColor(id, userInput.getCurrentColor());
+        }
+
+        if (userInput.getOnlineStatus() != null) {
+            userDao.updateOnlineStatus(id, userInput.getOnlineStatus());
         }
 
         if(userInput.getLatitude() != null && userInput.getLongitude() != null) {

@@ -10,6 +10,7 @@ CREATE TABLE users (
     current_color varchar(255) DEFAULT "#FFFFFF",
     longitude double DEFAULT 23.3219,
     latitude double DEFAULT 42.6977,
+    is_online TINYINT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

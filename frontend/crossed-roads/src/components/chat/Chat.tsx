@@ -32,7 +32,7 @@ export default function Chat() {
     }, []);
 
     const setupWebSocketConnection = () => {
-        const socket = new SockJS('http://10.16.6.25:8080/ws'); // Use your server address
+        const socket = new SockJS('http://10.16.6.25:8080/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe(`/user/${userID}/chat-summary`, (messageOutput) => {

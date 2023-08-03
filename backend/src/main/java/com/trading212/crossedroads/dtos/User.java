@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private String profile_pic_url;
     private Double longitude;
     private Double latitude;
+    private boolean isOnline;
     private Role role;
 
 
@@ -52,6 +53,7 @@ public class User implements UserDetails {
                 String current_color,
                 Double longitude,
                 Double latitude,
+                boolean isOnline,
                 ZonedDateTime created_at,
                 ZonedDateTime updated_at) {
         this.id = id;
@@ -66,6 +68,7 @@ public class User implements UserDetails {
         this.profile_pic_url = profile_pic_url;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.isOnline = isOnline;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }

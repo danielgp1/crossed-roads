@@ -146,6 +146,27 @@ public class UserRepository implements UserDao {
     }
 
     @Override
+    public int updateOnlineStatus(long id, boolean isOnline) {
+        var sql = """
+            UPDATE users
+            SET is_online = ?
+            WHERE id = ?
+            """;
+        return jdbcTemplate.update(sql, isOnline, id);
+    }
+
+    @Override
+    public boolean getUserOnlineStatus(long id) {
+        var sql = """
+                SELECT is_online
+                FROM users
+                WHERE id = ?
+                """;
+        Boolean status = jdbcTemplate.queryForObject(sql, Boolean.class, id);
+        return Optional.ofNullable(status).orElse(false);
+    }
+
+    @Override
     public int deleteUser(long id) {
         var sql = """
                 DELETE FROM users

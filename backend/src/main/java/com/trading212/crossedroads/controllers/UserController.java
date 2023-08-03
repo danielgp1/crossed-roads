@@ -41,6 +41,11 @@ public class UserController {
         return userService.getVisitorsById(id);
     }
 
+    @GetMapping("/{id}/status")
+    public boolean getUserOnlineStatus(@PathVariable("id") long id){
+        return userService.getUserOnlineStatus(id);
+    }
+
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") long id, @RequestBody UserInput userInput){userService.updateUser(id, userInput);}
 
