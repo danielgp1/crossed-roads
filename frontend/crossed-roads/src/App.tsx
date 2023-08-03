@@ -30,7 +30,7 @@ const App = () => {
         });
       }
     }
-  }, []);
+  }, [localStorage.getItem("userID")]);
 
   const setupWebSocketConnection = () => {
     const socket = new SockJS('http://10.16.6.25:8080/ws');
