@@ -64,7 +64,8 @@ public class ChatWebsocketController {
         System.out.println("BEAT: userID " + userId.toString());
         System.out.println(new Date(System.currentTimeMillis()));
         if(!lastHeartbeatTimes.containsKey(userId)){
-            login(userId);
+            System.out.println("REVIVED: userID " + userId.toString());
+            userLoggedIn(userId);
         }
         lastHeartbeatTimes.put(userId, System.currentTimeMillis());
     }
