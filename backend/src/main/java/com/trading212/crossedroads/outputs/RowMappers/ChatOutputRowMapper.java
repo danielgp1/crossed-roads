@@ -15,7 +15,8 @@ public class ChatOutputRowMapper implements RowMapper<ChatOutput> {
                 resultSet.getLong("participant2_id"),
                 resultSet.getString("latest_message_content"),
                 resultSet.getLong("latest_message_sender_id"),
-                resultSet.getTimestamp("latest_message_time").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia"))
+                resultSet.getTimestamp("latest_message_time").toLocalDateTime().atZone(ZoneId.of("Europe/Sofia")),
+                resultSet.getBoolean("friend_online")
         );
     }
 }

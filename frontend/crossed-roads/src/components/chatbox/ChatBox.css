@@ -19,11 +19,18 @@
 
 .chatbox-status {
     align-content: center;
-    background-color: red;
     height: 11%;
     width: 23%;
     border-radius: 50%;
     aspect-ratio: 1/1;
+}
+
+.chatbox-status.green {
+    background-color: greenyellow;
+}
+
+.chatbox-status.red {
+    background-color: red;
 }
 
 .chatbox-pic-container {

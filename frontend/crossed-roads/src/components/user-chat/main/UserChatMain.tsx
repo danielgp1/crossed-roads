@@ -105,6 +105,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
                         setMessages((prevMessages) => [...prevMessages, newMessage]);
                     }
                 })
+
                 setStompClient(stompInstance);
             },
             (error) => console.error('Stomp error:', error)

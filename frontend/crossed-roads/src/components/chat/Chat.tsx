@@ -12,18 +12,19 @@ interface ChatSummary {
     latest_message_content: string;
     latest_message_sender_id: number;
     latest_message_time: string;
-  }
+    friend_online: boolean;
+}
 
 export default function Chat() {
     const [chatSummaries, setChatSummaries] = useState<ChatSummary[]>([]);
     const userID = localStorage.getItem("userID");
-    let stompClient:Stomp.Client;
+    let stompClient: Stomp.Client;
 
     useEffect(() => {
         fetchChatSummaries();
         setupWebSocketConnection();
         return () => {
-            if (stompClient !== null) {
+            if (stompClient) {
                 stompClient.disconnect(() => {
                     console.log('Disconnected');
                 });
@@ -36,9 +37,25 @@ export default function Chat() {
         stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe(`/user/${userID}/chat-summary`, (messageOutput) => {
-                if(messageOutput.body){
+                if (messageOutput.body) {
                     const updatedChatSummaries: ChatSummary[] = JSON.parse(messageOutput.body);
                     setChatSummaries(updatedChatSummaries);
+                }
+            });
+            stompClient.subscribe(`/user/${userID}/friend-online-status`, (messageOutput) => {
+                if (messageOutput.body) {
+                    const statusMessage = JSON.parse(messageOutput.body);
+                    console.log(`Friend online status: ${statusMessage.status}`);
+                    setChatSummaries((currentChatSummaries) => {
+                        return currentChatSummaries.map((chat) => {
+                            const friendID = chat.participant1_id === Number(userID) ? chat.participant2_id : chat.participant1_id;
+                            if (friendID === statusMessage.friend_id) {
+                                return { ...chat, friend_online: Number(statusMessage.status) === 1 };
+                            } else {
+                                return chat;
+                            }
+                        });
+                    });
                 }
             });
         });
@@ -66,9 +83,18 @@ export default function Chat() {
     return (
         <div className="chat-body">
             <div className='chat-grid'>
-                {chatSummaries.map((chatSummary, index) => 
-                    <ChatBox key={index} friend_id={chatSummary.participant1_id === Number(userID) ? chatSummary.participant2_id : chatSummary.participant1_id} sender_id={chatSummary.latest_message_sender_id} content={chatSummary.latest_message_content}/>
-                )}
+                {chatSummaries.map((chatSummary, index) => {
+                    const friendID = chatSummary.participant1_id === Number(userID) ? chatSummary.participant2_id : chatSummary.participant1_id;
+                    return (
+                        <ChatBox
+                            key={index}
+                            is_online={chatSummary.friend_online}
+                            friend_id={friendID}
+                            sender_id={chatSummary.latest_message_sender_id}
+                            content={chatSummary.latest_message_content}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

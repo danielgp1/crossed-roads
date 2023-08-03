@@ -9,6 +9,7 @@ interface ChatBoxProps {
     friend_id: number;
     sender_id:number,
     content: string;
+    is_online: boolean;
 }
 
 interface UserData {
@@ -17,7 +18,7 @@ interface UserData {
     profile_pic_url: string;
 }
 
-export default function ChatBox({ friend_id, sender_id, content }: ChatBoxProps) {
+export default function ChatBox({ friend_id, sender_id, content, is_online }: ChatBoxProps) {
     const [friend, setFriend] = useState<UserData | null>(null);
     const userID = localStorage.getItem("userID");
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function ChatBox({ friend_id, sender_id, content }: ChatBoxProps)
     return (
         <div className='chatbox-grid' onClick={handleOpenChat}>
             <div className='chatbox-status-container'>
-                <div className='chatbox-status'></div>
+                <div className={`chatbox-status ${is_online ? "green" : "red"}`}></div>
             </div>
             <div className='chatbox-pic-container'>
                 <img className='chatbox-pic' src={friend?.profile_pic_url ?? default_pic} alt='pic'></img>
