@@ -15,6 +15,8 @@ import UserChat from './components/user-chat/UserChat';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 import { useEffect } from 'react';
+import PaymentSuccess from './components/payment-success/PaymentSuccess';
+import PaymentFail from './components/payment-fail/PaymentFail';
 
 const App = () => {
 
@@ -63,6 +65,8 @@ const App = () => {
             <Route element={<ProtectedRoutes />} >
               <Route path="/" element={<Homepage />} />
               <Route path="/service" element={<Service />} />
+              <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/payment-fail" element={<PaymentFail />} />
               <Route path="/garage" element={<Garage />} />
               <Route path="/posts" element={<Posts />} />
               <Route path="/users/:username" element={<UserProfile />} />

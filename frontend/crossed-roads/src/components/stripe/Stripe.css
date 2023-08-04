@@ -135,3 +135,21 @@
         min-width: initial;
     }
 }
+
+.cancel-payment {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #fabb5c;
+    color: black;
+    border: 2px solid #ffa825;
+    transition: .2s ease-in;
+}
+
+.cancel-payment:hover {
+    background-color: #ffa825;
+  }

@@ -7,6 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { StripeLinkAuthenticationElementChangeEvent, StripePaymentElementOptions } from "@stripe/stripe-js";
 import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext";
+import { useNavigate } from "react-router-dom";
 
 interface CheckoutFormProps {
     selectedColor: string;
@@ -15,7 +16,7 @@ interface CheckoutFormProps {
 export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
     const stripe = useStripe();
     const elements = useElements();
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +68,7 @@ export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: "http://10.16.6.25:3000/service",
+                return_url: "http://10.16.6.25:3000/payment-success",
             },
         });
 
@@ -99,8 +100,14 @@ export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
         }
     };
 
+    const handleCancelPayment = (e: React.MouseEvent) => {
+        e.preventDefault();
+        navigate("/payment-fail");
+    }
+
     return (
         <form className="stripe-form" id="payment-form" onSubmit={handleSubmit}>
+            <button type="button" onClick={handleCancelPayment} className="cancel-payment">Cancel Payment</button>
             <LinkAuthenticationElement
                 id="link-authentication-element"
                 onChange={handleLinkAuthenticationChange}
@@ -112,7 +119,7 @@ export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
                 </span>
             </button>
             {/* Show any error or success messages */}
-            {message && <div id="payment-message">{message}</div>}
+            {/* {message && <div id="payment-message">{message}</div>} */}
         </form>
     );
 }

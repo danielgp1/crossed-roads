@@ -1,0 +1,54 @@
+.payment-success-body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-success-container {
+    width: 50%;
+    height: 50%;
+    background-color: #fabb5c;
+    box-sizing: border-box;
+    border: 2px solid #ffa825;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-text {
+    font-family: "Jost";
+    font-size: 5rem;
+    color: green;
+}
+
+.success-info {
+    font-family: "Jost";
+    font-size: 2rem;
+    color: #333333;
+}
+
+.success-btn {
+    width: 30%;
+    margin-top: 2%;
+    background-color: #ffa825;
+    font-family: "Jost";
+    font-size: 1.5rem;
+    color: #333333;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.fail-text {
+    font-family: "Jost";
+    font-size: 5rem;
+    color: maroon;
+}
