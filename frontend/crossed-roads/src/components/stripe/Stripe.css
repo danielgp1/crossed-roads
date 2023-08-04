@@ -1,4 +1,8 @@
 .stripe-body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;

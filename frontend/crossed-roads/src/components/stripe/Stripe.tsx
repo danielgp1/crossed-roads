@@ -8,7 +8,12 @@ import axios from "axios";
 
 const stripePromise = loadStripe("pk_test_51NYs8EGHqyz7OOkIA0Sdr1zl4kpYB7xcyGngx20xDvf9oQtmGoOiefS6pb14dvMTLi7206Ygdc0gFSwEGRhKscDV00Mnv7qJC5");
 
-export default function Stripe() {
+interface StripeProps {
+  selectedColor:string;
+}
+
+
+export default function Stripe({ selectedColor }: StripeProps) {
   const [clientSecret, setClientSecret] = useState("");
   const userID = localStorage.getItem("userID");
   const authToken = localStorage.getItem("userToken");
@@ -17,8 +22,8 @@ export default function Stripe() {
       .post(
         "http://10.16.6.25:8080/api/create-payment-intent",
         {
-          user_id: 1,
-          color_hex: "#1231231"
+          user_id: Number(userID),
+          color_hash: selectedColor
         },
         {
           headers: {
@@ -49,7 +54,7 @@ export default function Stripe() {
     <div className="stripe-body">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm selectedColor={selectedColor} />
         </Elements>
       )}
     </div>

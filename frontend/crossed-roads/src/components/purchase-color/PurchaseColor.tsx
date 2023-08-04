@@ -4,6 +4,8 @@ import "./PurchaseColor.css"
 import def from '../assets/default_pic.png'
 import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext";
 import { useNavigate } from "react-router-dom";
+import Stripe from "../stripe/Stripe";
+import { useState } from "react";
 
 interface PurchaseColorProps {
   selectedColor: string;
@@ -12,6 +14,7 @@ interface PurchaseColorProps {
 export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
   const { user } = useUserContext();
   const { addColor, availableColors } = useAvailableColorsContext();
+  const [showStripe, setShowStripe] = useState(false);
   const navigate = useNavigate();
 
   const handlePurchaseColor = async () => {
@@ -24,8 +27,7 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
         if (isColorAvailable) {
           alert("You already have this color!");
         } else {
-          navigate("/payment")
-          await addColor(selectedColor);
+          setShowStripe(true);
         }
       }
     } catch (error) {
@@ -40,6 +42,7 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
         <Car color={selectedColor} direction={"#f9d71c"} name={user?.first_name || ''} pfp={user?.profile_pic_url || def} />
       </div>
       <button className='purchase-button' onClick={handlePurchaseColor}>Pay 5.00 BGN</button>
+      {showStripe &&  <Stripe selectedColor={selectedColor}/>}
     </div>
   )
 }

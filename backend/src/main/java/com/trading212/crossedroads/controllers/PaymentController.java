@@ -21,7 +21,7 @@ public class PaymentController {
 
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
-                        .setAmount(500L)  // 5 BGN is represented as 500 in Stripe's API (it uses the smallest currency unit)
+                        .setAmount(500L)
                         .setCurrency("bgn")
                         .setAutomaticPaymentMethods(
                                 PaymentIntentCreateParams.AutomaticPaymentMethods
@@ -31,9 +31,7 @@ public class PaymentController {
                         )
                         .build();
 
-        // Create a PaymentIntent with the order amount and currency
         PaymentIntent paymentIntent = PaymentIntent.create(params);
-
         return ResponseEntity.ok(new CreatePaymentResponse(paymentIntent.getClientSecret()));
     }
 }

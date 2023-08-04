@@ -65,7 +65,6 @@ const App = () => {
               <Route path="/service" element={<Service />} />
               <Route path="/garage" element={<Garage />} />
               <Route path="/posts" element={<Posts />} />
-              <Route path="/payment" element={<Stripe />} />
               <Route path="/users/:username" element={<UserProfile />} />
               <Route path="/chats/:friendid" element={<UserChat />} />
               <Route path="*" element={<PageNotFound />} />

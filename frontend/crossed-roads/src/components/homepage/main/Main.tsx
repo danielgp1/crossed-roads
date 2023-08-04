@@ -4,6 +4,9 @@ import Road from "../road/Road";
 import './Main.css'
 import axios from "axios";
 import Billboard from "../../billboard/Billboard";
+import police from './assets/police.png';
+import policeSiren from './assets/siren.mp3'
+import elevatorMusic from './assets/elevator.mp3'
 
 interface FriendPost {
     post_id: number,
@@ -18,6 +21,80 @@ interface FriendPost {
 
 export default function Main() {
     const [friendsPosts, setFriendsPosts] = useState<FriendPost[]>([]);
+    const [showBreakMessage, setShowBreakMessage] = useState<boolean>(false);
+    const [showContinueButton, setShowContinueButton] = useState<boolean>(false);
+    const appUseInterval = 10 * 1000; // 10seconds
+    const breakInterval = 2 * 60 * 1000 + 2; // 2 mins
+    const [audio] = useState(new Audio(policeSiren));
+    const [elevatorAudio] = useState(new Audio(elevatorMusic));
+    const [remainingTime, setRemainingTime] = useState<number>(2 * 60 + 2); // 2 minutes in seconds
+    const [isAnimationReverse, setAnimationReverse] = useState<boolean>(false);
+
+    elevatorAudio.loop = true;
+
+    useEffect(() => {
+        if (showBreakMessage && !showContinueButton) {
+            const timer = setInterval(() => {
+                setRemainingTime((time) => time - 1);
+            }, 1000);
+
+            return () => clearInterval(timer);
+        }
+    }, [showBreakMessage, showContinueButton]);
+
+
+    useEffect(() => {
+        const appUseTimer = setTimeout(() => {
+            audio.currentTime = 1;
+            audio.play();
+            const audioStopTimer = setTimeout(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                elevatorAudio.play();
+            }, 2000);
+            setShowBreakMessage(true);
+            setRemainingTime(2 * 60 + 2); // Reset the remaining time when showing the break message
+            setAnimationReverse(false)
+            const breakTimer = setTimeout(() => {
+                setShowContinueButton(true);
+            }, breakInterval);
+            return () => {
+                clearTimeout(audioStopTimer);
+                elevatorAudio.pause();
+            };
+        }, appUseInterval);
+
+        return () => clearTimeout(appUseTimer);
+    }, []);
+
+    const continueScrolling = () => {
+        elevatorAudio.pause(); // Stop the elevator music
+        elevatorAudio.currentTime = 0; // Reset the elevator music
+        setShowBreakMessage(false);
+        setShowContinueButton(false);
+        setRemainingTime(2 * 60 + 2);
+        setAnimationReverse(true);
+        const appUseTimer = setTimeout(() => {
+            audio.currentTime = 1;
+            audio.play();
+            const audioStopTimer = setTimeout(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                elevatorAudio.play();
+            }, 2000);
+            setShowBreakMessage(true);
+
+            const breakTimer = setTimeout(() => {
+                setShowContinueButton(true);
+            }, breakInterval);
+
+            return () => {
+                clearTimeout(audioStopTimer);
+                elevatorAudio.pause();
+                elevatorAudio.currentTime = 0;
+            };
+        }, appUseInterval);
+    };
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -68,6 +145,24 @@ export default function Main() {
 
     return (
         <div className="main-grid">
+            {showBreakMessage &&
+                <div className="break-background">
+                    <div className="police-break"  style={{ animationName: isAnimationReverse ? 'slide-down' : 'slide-up' }}>
+                        <img className="policeman" src={police}></img>
+                        <div className="break-message">
+                            <span>You have been scrolling for too long, take a break of 30 mins.</span>
+                            {showBreakMessage && !showContinueButton && (
+                                <div className="countdown">
+                                    {Math.floor(remainingTime / 60)}:{remainingTime % 60 < 10 ? '0' : ''}{remainingTime % 60}
+                                </div>
+                            )}
+                            {showContinueButton &&
+                                <button className="break-button" onClick={continueScrolling}>Continue Scrolling</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
             <div className="main-content">
                 <div className="billboards-container-left">
                     {leftPosts.map((post) => (

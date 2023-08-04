@@ -6,14 +6,20 @@ import {
     useElements
 } from "@stripe/react-stripe-js";
 import { StripeLinkAuthenticationElementChangeEvent, StripePaymentElementOptions } from "@stripe/stripe-js";
+import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext";
 
-export default function CheckoutForm() {
+interface CheckoutFormProps {
+    selectedColor: string;
+}
+
+export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
     const stripe = useStripe();
     const elements = useElements();
 
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const { addColor } = useAvailableColorsContext();
 
     useEffect(() => {
         if (!stripe) {
@@ -56,7 +62,7 @@ export default function CheckoutForm() {
         }
 
         setIsLoading(true);
-
+        await addColor(selectedColor);
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
@@ -75,7 +81,6 @@ export default function CheckoutForm() {
         } else {
             setMessage("An unexpected error occurred.");
         }
-
         setIsLoading(false);
     };
 
