@@ -36,10 +36,12 @@ public class ChatController {
     public List<ChatOutput> getChatSummariesByUserId(@PathVariable("userId") long userId) {
         return chatService.getChatSummariesByUserId(userId);
     }
+
     @GetMapping("/exists/{participant1Id}/{participant2Id}")
     public int getChatIdIfExists(@PathVariable("participant1Id") long participant1Id, @PathVariable("participant2Id") long participant2Id) {
         return chatService.getChatIdIfExists(participant1Id, participant2Id);
     }
+
     @DeleteMapping("/{chatId}")
     public void deleteChat(@PathVariable("chatId") long chatId) {
         chatService.deleteChat(chatId);

@@ -13,10 +13,15 @@ import java.util.List;
 @RequestMapping(path = "/api/users")
 public class UserController {
     private final UserService userService;
-    public UserController(UserService userService){this.userService = userService;}
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
-    public List<User> getUsers(){return userService.getUsers();}
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
 
     @GetMapping("/search")
     public List<User> getUsersByUsername(@RequestParam("username") String username) {
@@ -24,7 +29,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable("id") long id){return userService.getUser(id);}
+    public User getUserById(@PathVariable("id") long id) {
+        return userService.getUser(id);
+    }
 
     @GetMapping("/{id}/friends")
     public List<User> getFriendsById(@PathVariable("id") long id) {
@@ -42,13 +49,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}/status")
-    public boolean getUserOnlineStatus(@PathVariable("id") long id){
+    public boolean getUserOnlineStatus(@PathVariable("id") long id) {
         return userService.getUserOnlineStatus(id);
     }
 
     @PutMapping("/{id}")
-    public void updateUser(@PathVariable("id") long id, @RequestBody UserInput userInput){userService.updateUser(id, userInput);}
+    public void updateUser(@PathVariable("id") long id, @RequestBody UserInput userInput) {
+        userService.updateUser(id, userInput);
+    }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") long id){userService.deleteUser(id);}
+    public void deleteUser(@PathVariable("id") long id) {
+        userService.deleteUser(id);
+    }
 }

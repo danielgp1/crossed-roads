@@ -5,19 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 
 export function LoginForm(
-    {formState}: {formState: any}
+    { formState }: { formState: any }
 ) {
     const { handleUserLogin } = useUserContext();
     const navigate = useNavigate();
 
     const login = async (event: React.FormEvent) => {
-      event.preventDefault();
-      const loginData = {
-        email: formState.loginEmail,
-        password: formState.loginPassword,
-      };
-  
-      await handleUserLogin(navigate, loginData);
+        event.preventDefault();
+        const loginData = {
+            email: formState.loginEmail,
+            password: formState.loginPassword,
+        };
+
+        await handleUserLogin(navigate, loginData);
     };
 
     return (

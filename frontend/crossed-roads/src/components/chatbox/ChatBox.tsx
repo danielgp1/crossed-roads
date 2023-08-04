@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface ChatBoxProps {
     friend_id: number;
-    sender_id:number,
+    sender_id: number,
     content: string;
     is_online: boolean;
 }

@@ -34,7 +34,7 @@ export default function Viewers() {
                     });
                     setVisitors(sortedVisitors);
                     const authToken = localStorage.getItem('userToken');
-                    const friendshipPromises = sortedVisitors.map((visitor:Visitor) =>
+                    const friendshipPromises = sortedVisitors.map((visitor: Visitor) =>
                         axios.get(`http://10.16.6.25:8080/api/friendships/users/${userID}/friends/${visitor.id}`, {
                             headers: {
                                 Authorization: `Bearer ${authToken}`,

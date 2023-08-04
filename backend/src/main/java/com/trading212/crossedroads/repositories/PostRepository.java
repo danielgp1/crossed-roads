@@ -2,11 +2,9 @@ package com.trading212.crossedroads.repositories;
 
 import com.trading212.crossedroads.daos.PostDao;
 import com.trading212.crossedroads.dtos.Post;
-import com.trading212.crossedroads.dtos.User;
 import com.trading212.crossedroads.outputs.PostOutput;
 import com.trading212.crossedroads.outputs.RowMappers.PostOutputRowMapper;
 import com.trading212.crossedroads.row_mappers.PostRowMapper;
-import com.trading212.crossedroads.row_mappers.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -57,7 +55,7 @@ public class PostRepository implements PostDao {
     }
 
     @Override
-    public  List<PostOutput> getPostsByFriends(long userId) {
+    public List<PostOutput> getPostsByFriends(long userId) {
         var sql = """
                 SELECT p.*, u.first_name, u.last_name, u.profile_pic_url
                 FROM posts p
@@ -76,7 +74,7 @@ public class PostRepository implements PostDao {
                 FROM posts
                 WHERE user_id = ?
                 """;
-        List<Post> posts =  jdbcTemplate.query(sql, new PostRowMapper(), userId);
+        List<Post> posts = jdbcTemplate.query(sql, new PostRowMapper(), userId);
         return Optional.of(posts);
     }
 

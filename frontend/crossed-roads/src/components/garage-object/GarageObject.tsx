@@ -73,7 +73,7 @@ const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, 
                 <button className='garage-object-button' onClick={handleNavigation}><FontAwesomeIcon icon={faRoute} size='2x' color='#333333' /></button>
                 <button className='garage-object-button' onClick={handleUnfriend}><FontAwesomeIcon icon={faTrashCan} size='2x' color='#333333' /></button>
             </div>
-            {isNavigationOpen && <MapsNavigation setIsNavigationOpen={setIsNavigationOpen} id={id} first_name={first_name} last_name={last_name} profile_pic_url={profile_pic_url} longitude={longitude} latitude={latitude}/>}
+            {isNavigationOpen && <MapsNavigation setIsNavigationOpen={setIsNavigationOpen} id={id} first_name={first_name} last_name={last_name} profile_pic_url={profile_pic_url} longitude={longitude} latitude={latitude} />}
         </div>
     ) : null;
 }

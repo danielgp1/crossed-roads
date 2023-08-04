@@ -13,9 +13,11 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
@@ -27,6 +29,7 @@ public class ChatWebsocketController {
     private final MessageService messageService;
     private final ChatService chatService;
     private final UserService userService;
+    private final ConcurrentMap<Long, Long> lastHeartbeatTimes = new ConcurrentHashMap<>();
 
     public ChatWebsocketController(SimpMessagingTemplate simpMessagingTemplate, MessageService messageService, ChatService chatService, UserService userService) {
         this.simpMessagingTemplate = simpMessagingTemplate;
@@ -57,14 +60,12 @@ public class ChatWebsocketController {
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(senderId), "/chat-summary", getChatSummaries(senderId));
     }
 
-    private ConcurrentMap<Long, Long> lastHeartbeatTimes = new ConcurrentHashMap<>();
-
     @MessageMapping("/heartbeat")
     public void receiveHeartbeat(@Payload Long userId) {
         System.out.println("BEAT: userID " + userId.toString());
         System.out.println(new Date(System.currentTimeMillis()));
-        if(!lastHeartbeatTimes.containsKey(userId)){
-            System.out.println("REVIVED: userID " + userId.toString());
+        if (!lastHeartbeatTimes.containsKey(userId)) {
+            System.out.println("REVIVED: userID " + userId);
             userLoggedIn(userId);
         }
         lastHeartbeatTimes.put(userId, System.currentTimeMillis());
@@ -78,7 +79,7 @@ public class ChatWebsocketController {
         lastHeartbeatTimes.forEach((userId, lastHeartbeatTime) -> {
             if (currentTime - lastHeartbeatTime > 15000) {
                 userLoggedOut(userId);
-                System.out.println("DEAD: userID " + userId.toString());
+                System.out.println("DEAD: userID " + userId);
                 lastHeartbeatTimes.remove(userId);
             }
         });
@@ -97,8 +98,6 @@ public class ChatWebsocketController {
 
     public List<ChatOutput> getChatSummaries(long userId) {
         List<ChatOutput> chatOutputs = chatService.getChatSummariesByUserId(userId);
-
-        // Return the chat summaries, sorted by the latest message time
         return chatOutputs.stream()
                 .sorted((o1, o2) -> o2.getLatest_message_time().compareTo(o1.getLatest_message_time()))
                 .collect(Collectors.toList());

@@ -35,7 +35,7 @@ public class ChatService {
     }
 
     public int getChatIdIfExists(long participant1Id, long participant2Id) {
-        return chatDao.getChatIdIfExists(participant1Id,participant2Id);
+        return chatDao.getChatIdIfExists(participant1Id, participant2Id);
     }
 
     public void deleteChat(long chatId) {

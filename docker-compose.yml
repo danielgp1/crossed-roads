@@ -11,3 +11,15 @@ services:
     ports:
       - "3306:3306"
     restart: unless-stopped
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: arm64v8/elasticsearch:8.8.1
+    environment:
+      - discovery.type=single-node
+      - "xpack.security.enabled=false"
+    volumes:
+      - ./data/elasticsearch:/data/elasticsearch
+    ports:
+      - "9200:9200"
+    restart: unless-stopped

@@ -3,15 +3,15 @@ import './ColorPicker.css';
 
 interface ColorPickerProps {
     setSelectedColor: (color: string) => void;
-  }
+}
 
 export default function ColorPicker({ setSelectedColor }: ColorPickerProps) {
     function setHashSymbol() {
         const colorInput = document.querySelector<HTMLInputElement>('#color-input');
-        if(colorInput)
-        if (colorInput.value.length === 0) {
-            colorInput.value = "#";
-        }
+        if (colorInput)
+            if (colorInput.value.length === 0) {
+                colorInput.value = "#";
+            }
     }
 
     useEffect(() => {

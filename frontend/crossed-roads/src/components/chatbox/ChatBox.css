@@ -76,7 +76,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
 }

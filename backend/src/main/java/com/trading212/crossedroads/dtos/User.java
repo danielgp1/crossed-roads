@@ -35,7 +35,7 @@ public class User implements UserDetails {
     public User(String first_name, String last_name, String password, String email, Date date_of_birth) {
         this.first_name = first_name;
         this.last_name = last_name;
-        this.profile_name = first_name.toLowerCase()+last_name.toLowerCase();
+        this.profile_name = first_name.toLowerCase() + last_name.toLowerCase();
         this.password = password;
         this.email = email;
         this.date_of_birth = date_of_birth;

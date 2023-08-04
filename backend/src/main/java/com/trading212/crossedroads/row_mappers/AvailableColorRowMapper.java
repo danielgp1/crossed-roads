@@ -1,8 +1,8 @@
 package com.trading212.crossedroads.row_mappers;
 
 import com.trading212.crossedroads.dtos.AvailableColor;
-
 import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

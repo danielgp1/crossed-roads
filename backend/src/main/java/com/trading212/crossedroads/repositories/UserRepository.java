@@ -15,7 +15,10 @@ import java.util.Optional;
 public class UserRepository implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
-    public UserRepository(JdbcTemplate jdbcTemplate){this.jdbcTemplate = jdbcTemplate;}
+
+    public UserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public User insertUser(User user) {
@@ -108,50 +111,50 @@ public class UserRepository implements UserDao {
     @Override
     public int updateUserProfilePicUrl(long id, String url) {
         var sql = """
-            UPDATE users
-            SET profile_pic_url = ?
-            WHERE id = ?
-            """;
+                UPDATE users
+                SET profile_pic_url = ?
+                WHERE id = ?
+                """;
         return jdbcTemplate.update(sql, url, id);
     }
 
     @Override
     public int updateLatLng(long id, double lat, double lng) {
         var sql = """
-            UPDATE users
-            SET latitude = ?, longitude = ?
-            WHERE id = ?
-            """;
+                UPDATE users
+                SET latitude = ?, longitude = ?
+                WHERE id = ?
+                """;
         return jdbcTemplate.update(sql, lat, lng, id);
     }
 
     @Override
     public int updateUserPassword(long id, String password) {
         var sql = """
-            UPDATE users
-            SET password = ?
-            WHERE id = ?
-            """;
+                UPDATE users
+                SET password = ?
+                WHERE id = ?
+                """;
         return jdbcTemplate.update(sql, password, id);
     }
 
     @Override
     public int updateCurrentColor(long id, String color) {
         var sql = """
-            UPDATE users
-            SET current_color = ?
-            WHERE id = ?
-            """;
+                UPDATE users
+                SET current_color = ?
+                WHERE id = ?
+                """;
         return jdbcTemplate.update(sql, color, id);
     }
 
     @Override
     public int updateOnlineStatus(long id, boolean isOnline) {
         var sql = """
-            UPDATE users
-            SET is_online = ?
-            WHERE id = ?
-            """;
+                UPDATE users
+                SET is_online = ?
+                WHERE id = ?
+                """;
         return jdbcTemplate.update(sql, isOnline, id);
     }
 

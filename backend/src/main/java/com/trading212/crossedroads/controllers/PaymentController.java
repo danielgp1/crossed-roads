@@ -34,6 +34,6 @@ public class PaymentController {
         // Create a PaymentIntent with the order amount and currency
         PaymentIntent paymentIntent = PaymentIntent.create(params);
 
-        return ResponseEntity.ok( new CreatePaymentResponse(paymentIntent.getClientSecret()));
+        return ResponseEntity.ok(new CreatePaymentResponse(paymentIntent.getClientSecret()));
     }
 }

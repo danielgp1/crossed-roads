@@ -7,7 +7,7 @@ import { isLoggedIn } from '../auth/auth';
 export default function Navbar() {
     const navigate = useNavigate();
 
-    const handleLogout = () => { 
+    const handleLogout = () => {
         navigate("/welcome");
         localStorage.clear()
     }
@@ -27,33 +27,33 @@ export default function Navbar() {
     return (
         <nav className="nav-horizontal">
             <div className='navbar-group1'>
-                <img 
-                    className='navbar-img' 
-                    src={logo} 
+                <img
+                    className='navbar-img'
+                    src={logo}
                     alt="Crossed Roads"
                     onClick={handleHome}>
                 </img>
-                <Searchbar/ >
+                <Searchbar />
             </div>
             <div className='navbar-group2'>
-                <button 
-                    className='navbar-btn' 
+                <button
+                    className='navbar-btn'
                     type='button'
                     onClick={handleGarage}>
                     Garage
                 </button>
-                <button 
-                    className='navbar-btn' 
+                <button
+                    className='navbar-btn'
                     type='button'
                     onClick={handleService}>
                     Service
                 </button>
-                <button 
-                className='navbar-btn' 
-                type='button'
-                onClick={handleLogout}>
-                Crash Out
-            </button>
+                <button
+                    className='navbar-btn'
+                    type='button'
+                    onClick={handleLogout}>
+                    Crash Out
+                </button>
             </div>
         </nav>
     )

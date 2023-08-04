@@ -10,11 +10,11 @@ interface BillboardProps {
     created_at: string;
     content: string;
     editable?: boolean;
-    onContentChange?: (content: string) => void; 
+    onContentChange?: (content: string) => void;
 }
 
 
-const Billboard: React.FC<BillboardProps> = ({ first_name, last_name, profile_picture_url, created_at, content, editable = false, onContentChange}: BillboardProps) => {
+const Billboard: React.FC<BillboardProps> = ({ first_name, last_name, profile_picture_url, created_at, content, editable = false, onContentChange }: BillboardProps) => {
     const [editedContent, setEditedContent] = useState(content);
 
     const handleContentChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

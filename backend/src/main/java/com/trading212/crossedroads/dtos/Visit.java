@@ -10,7 +10,8 @@ public class Visit {
     private long visitor_id;
     private ZonedDateTime visited_at;
 
-    public Visit() {};
+    public Visit() {
+    }
 
     public Visit(long visited_id, long visitor_id, ZonedDateTime visited_at) {
         this.visited_id = visited_id;

@@ -7,7 +7,6 @@ import com.trading212.crossedroads.outputs.PostOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PostService {

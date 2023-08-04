@@ -16,6 +16,7 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.enableSimpleBroker("/user");
         registry.setUserDestinationPrefix("/user");
     }
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();

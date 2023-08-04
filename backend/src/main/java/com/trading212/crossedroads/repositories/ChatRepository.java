@@ -57,24 +57,24 @@ public class ChatRepository implements ChatDao {
     @Override
     public Optional<List<ChatOutput>> getChatSummariesByUserId(long userId) {
         var sql = """
-        SELECT c.chat_id, c.participant1_id, c.participant2_id,
-               m.content AS latest_message_content, m.created_at AS latest_message_time, m.sender_id AS latest_message_sender_id,
-               CASE
-                   WHEN c.participant1_id = ? THEN u2.is_online
-                   ELSE u1.is_online
-               END AS friend_online
-        FROM chats c
-        JOIN messages m ON c.chat_id = m.chat_id
-        JOIN users u1 ON c.participant1_id = u1.id
-        JOIN users u2 ON c.participant2_id = u2.id
-        WHERE (c.participant1_id = ? OR c.participant2_id = ?)
-        AND m.message_id = (
-            SELECT MAX(message_id)
-            FROM messages
-            WHERE chat_id = c.chat_id
-        )
-        ORDER BY m.created_at DESC
-        """;
+                SELECT c.chat_id, c.participant1_id, c.participant2_id,
+                       m.content AS latest_message_content, m.created_at AS latest_message_time, m.sender_id AS latest_message_sender_id,
+                       CASE
+                           WHEN c.participant1_id = ? THEN u2.is_online
+                           ELSE u1.is_online
+                       END AS friend_online
+                FROM chats c
+                JOIN messages m ON c.chat_id = m.chat_id
+                JOIN users u1 ON c.participant1_id = u1.id
+                JOIN users u2 ON c.participant2_id = u2.id
+                WHERE (c.participant1_id = ? OR c.participant2_id = ?)
+                AND m.message_id = (
+                    SELECT MAX(message_id)
+                    FROM messages
+                    WHERE chat_id = c.chat_id
+                )
+                ORDER BY m.created_at DESC
+                """;
         List<ChatOutput> chats = jdbcTemplate.query(sql, new ChatOutputRowMapper(), userId, userId, userId);
         return Optional.of(chats);
     }
@@ -82,10 +82,10 @@ public class ChatRepository implements ChatDao {
     @Override
     public int getChatIdIfExists(long participant1Id, long participant2Id) {
         var sql = """
-            SELECT chat_id
-            FROM chats
-            WHERE (participant1_id = ? AND participant2_id = ?) OR (participant1_id = ? AND participant2_id = ?)
-            """;
+                SELECT chat_id
+                FROM chats
+                WHERE (participant1_id = ? AND participant2_id = ?) OR (participant1_id = ? AND participant2_id = ?)
+                """;
         List<Integer> chatIds = jdbcTemplate.query(sql, (rs, rowNum) -> rs.getInt("chat_id"), participant1Id, participant2Id, participant2Id, participant1Id);
         return chatIds.isEmpty() ? -1 : chatIds.get(0);
     }

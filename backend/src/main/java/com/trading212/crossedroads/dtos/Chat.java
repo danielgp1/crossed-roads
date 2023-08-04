@@ -10,6 +10,7 @@ public class Chat {
     private long participant1_id;
     private long participant2_id;
     private ZonedDateTime created_at;
+
     public Chat() {
 
     }

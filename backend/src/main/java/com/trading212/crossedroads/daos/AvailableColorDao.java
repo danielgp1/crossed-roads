@@ -9,7 +9,10 @@ public interface AvailableColorDao {
     AvailableColor insertAvailableColor(AvailableColor availableColor);
 
     List<AvailableColor> getAvailableColors();
+
     List<AvailableColor> getAvailableColorsByUserId(long userId);
+
     Optional<AvailableColor> getAvailableColorByUserIdAndColorHash(long userId, String colorHash);
+
     int deleteAvailableColor(long userId, String colorHash);
 }

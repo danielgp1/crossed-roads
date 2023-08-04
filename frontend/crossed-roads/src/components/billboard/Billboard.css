@@ -69,6 +69,8 @@
     padding: 2%;
     overflow-y: scroll;
     font-family: 'Jost';
+    font-size: 1.5rem;
+    color: #333333;
     background-color: #fabb5c;
     word-break: break-word;
 }
@@ -76,6 +78,8 @@
 .billboard-input-container {
     display: flex;
     font-family: 'Jost';
+    font-size: 1.5rem;
+    color: #333333;
     resize: none;
     border: 3px solid #ffa825;
     background-color: #fabb5c;

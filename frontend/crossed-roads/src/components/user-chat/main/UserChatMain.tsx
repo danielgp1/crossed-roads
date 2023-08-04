@@ -164,43 +164,43 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
         <div className='user-chat-grid'>
             <div className='wrapper'>
                 <Chat />
-            <div className='user-chat-container'>
-                <div className='user-chat-header '>{friend?.first_name} {friend?.last_name}</div>
-                <div className='user-chat-messages-body-grid'>
-                    <div className='user-chat-beginning'>
-                        <img onClick={handleOpenProfile} className='user-chat-beginning-pic' src={friend?.profile_pic_url ?? def} />
-                        <span className='user-chat-beginning-txt'>This Is The Beginning Of Your Journey Together</span>
-                    </div>
-                    <div className='user-chat-messages'>
-                        {messages.map((message, index) =>
-                            <div key={index} className={`user-chat-message ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
-                                {message.sender_id === Number(userID) && <img className='user-chat-img left' src={user?.profile_pic_url ?? def} alt='you'></img>}
-                                <div className={`user-chat-message-content ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
-                                    {message.content}
+                <div className='user-chat-container'>
+                    <div className='user-chat-header '>{friend?.first_name} {friend?.last_name}</div>
+                    <div className='user-chat-messages-body-grid'>
+                        <div className='user-chat-beginning'>
+                            <img onClick={handleOpenProfile} className='user-chat-beginning-pic' src={friend?.profile_pic_url ?? def} />
+                            <span className='user-chat-beginning-txt'>This Is The Beginning Of Your Journey Together</span>
+                        </div>
+                        <div className='user-chat-messages'>
+                            {messages.map((message, index) =>
+                                <div key={index} className={`user-chat-message ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
+                                    {message.sender_id === Number(userID) && <img className='user-chat-img left' src={user?.profile_pic_url ?? def} alt='you'></img>}
+                                    <div className={`user-chat-message-content ${message.sender_id === Number(userID) ? 'left' : 'right'}`}>
+                                        {message.content}
+                                    </div>
+                                    {message.sender_id !== Number(userID) && <img onClick={handleOpenProfile} className='user-chat-img right' src={friend?.profile_pic_url ?? def} alt='friend'></img>}
                                 </div>
-                                {message.sender_id !== Number(userID) && <img onClick={handleOpenProfile} className='user-chat-img right' src={friend?.profile_pic_url ?? def} alt='friend'></img>}
-                            </div>
-                        )}
-                        <div ref={messagesEndRef}></div>
+                            )}
+                            <div ref={messagesEndRef}></div>
+                        </div>
+                    </div>
+                    <div className='user-chat-footer'>
+                        <input
+                            className='user-chat-input'
+                            type='text'
+                            placeholder='Enter a message...'
+                            value={chatMessage || ''}
+                            onChange={(e) => setChatMessage(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    handleSendMessage();
+                                }
+                            }}
+                        />
+                        <button onClick={handleSendMessage} className='user-chat-btn' type='button'><FontAwesomeIcon icon={faCarSide} color='#333333' size='2x' /></button>
                     </div>
                 </div>
-                <div className='user-chat-footer'>
-                    <input
-                        className='user-chat-input'
-                        type='text'
-                        placeholder='Enter a message...'
-                        value={chatMessage || ''}
-                        onChange={(e) => setChatMessage(e.target.value)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                                e.preventDefault();
-                                handleSendMessage();
-                            }
-                        }}
-                    />
-                    <button onClick={handleSendMessage} className='user-chat-btn' type='button'><FontAwesomeIcon icon={faCarSide} color='#333333' size='2x'/></button>
-                </div>
-            </div>
 
             </div>
 

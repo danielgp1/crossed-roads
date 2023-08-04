@@ -6,7 +6,7 @@ import axios from 'axios';
 import def from '../assets/default_pic.png'
 
 interface MapsNavigationProps {
-    id:number;
+    id: number;
     first_name: string;
     last_name: string;
     profile_pic_url: string;
@@ -46,10 +46,10 @@ export default function MapsNavigation({ id, first_name, last_name, profile_pic_
     });
 
     useEffect(() => {
-        if(latitude && longitude) {
-            setToFriendLocation({lat: latitude, lng: longitude});
+        if (latitude && longitude) {
+            setToFriendLocation({ lat: latitude, lng: longitude });
         }
-    }, [latitude, longitude]); 
+    }, [latitude, longitude]);
 
     useEffect(() => {
         if (!isLoaded) return;
@@ -84,22 +84,22 @@ export default function MapsNavigation({ id, first_name, last_name, profile_pic_
                 updateUserLocation(newUserLocation.lat, newUserLocation.lng);
                 if (newUserLocation && toFriendLocation) {
                     directionsService.route(
-                      {
-                        origin: newUserLocation,
-                        destination: toFriendLocation,
-                        travelMode: window.google.maps.TravelMode.DRIVING,
-                      },
-                      (result: any, status: any) => {
-                        if (status === window.google.maps.DirectionsStatus.OK) {
-                          setDirections(result);
-                        } else {
-                          console.error(`error fetching directions ${result}`);
+                        {
+                            origin: newUserLocation,
+                            destination: toFriendLocation,
+                            travelMode: window.google.maps.TravelMode.DRIVING,
+                        },
+                        (result: any, status: any) => {
+                            if (status === window.google.maps.DirectionsStatus.OK) {
+                                setDirections(result);
+                            } else {
+                                console.error(`error fetching directions ${result}`);
+                            }
                         }
-                      }
                     );
-                  } else {
+                } else {
                     console.error('newUserLocation or toFriendLocation is null');
-                  }
+                }
 
             }, error => {
                 console.log(error);

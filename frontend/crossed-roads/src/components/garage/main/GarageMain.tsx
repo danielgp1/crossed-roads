@@ -11,7 +11,7 @@ interface Friend {
     current_color: string;
     profile_pic_url: string;
     longitude: number;
-    latitude : number;
+    latitude: number;
 }
 
 export default function GarageMain() {

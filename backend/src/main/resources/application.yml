@@ -6,6 +6,10 @@ spring:
     password: 12345678
     pool-size: 30
 
+  data:
+    elasticsearch:
+      cluster-node: localhost:9200
+
 server:
   error:
     include-binding-errors: always

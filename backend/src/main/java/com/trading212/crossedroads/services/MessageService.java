@@ -21,7 +21,7 @@ public class MessageService {
     public Message insertMessage(Message message) {
         long chatId = chatService.getChatIdIfExists(message.getSender_id(), message.getReceiver_id());
 
-        if(chatId == -1) {
+        if (chatId == -1) {
             Chat newChat = new Chat();
             newChat.setParticipant1_id(message.getSender_id());
             newChat.setParticipant2_id(message.getReceiver_id());
@@ -44,6 +44,7 @@ public class MessageService {
         return messageDao.getMessageById(messageId)
                 .orElseThrow(() -> new NotFoundException(String.format("Message with id %d not found", messageId)));
     }
+
     public List<Message> getChatMessages(long user1_id, long user2_id) {
         return messageDao.getChatMessages(user1_id, user2_id)
                 .orElseThrow(() -> new NotFoundException(String.format("No messages found between users %d and %d", user1_id, user2_id)));

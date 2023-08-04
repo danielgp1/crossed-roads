@@ -1,4 +1,5 @@
 package com.trading212.crossedroads.outputs.RowMappers;
+
 import com.trading212.crossedroads.outputs.ChatOutput;
 import org.springframework.jdbc.core.RowMapper;
 

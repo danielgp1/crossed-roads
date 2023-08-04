@@ -18,12 +18,12 @@ export default function ChangePassword({ setIsChangePasswordOpen }: ChangePasswo
     const [newPwd, setNewPwd] = useState('');
     const [confirmNewPwd, setConfirmNewPwd] = useState('');
 
-    
+
     const handleCloseChangePassword = () => {
         setIsChangePasswordOpen(false);
     };
 
-    const changePass = (event: React.FormEvent) => { 
+    const changePass = (event: React.FormEvent) => {
         event.preventDefault();
         handleCloseChangePassword();
     }

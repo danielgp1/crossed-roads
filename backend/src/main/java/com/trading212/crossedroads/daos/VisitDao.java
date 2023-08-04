@@ -11,6 +11,7 @@ public interface VisitDao {
     List<Visit> getVisits();
 
     Optional<List<Visit>> getVisitsByVisitedId(long visitedUserId);
+
     Optional<List<Visit>> getVisitsByVisitorId(long visitorUserId);
 
     boolean isUserVisited(long visitorId, long visitedId);

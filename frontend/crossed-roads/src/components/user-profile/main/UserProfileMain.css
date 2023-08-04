@@ -1,6 +1,6 @@
 .user-profile-main {
     position: absolute;
-    top:6%;
+    top: 6%;
     height: 94%;
     width: 100%;
     background-color: #333333;
@@ -90,4 +90,14 @@
     border: 2px solid #ffa825;
     border-radius: 5px;
     padding: 2%;
+}
+
+.no-posts {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Jost';
+    color: #ffa825;
+    font-size: 2rem;
 }

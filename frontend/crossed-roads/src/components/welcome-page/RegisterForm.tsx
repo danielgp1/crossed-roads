@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../contexts/UserContext';
 
 export function RegisterForm(
-    {formState}: { formState: any}
+    { formState }: { formState: any }
 ) {
     const { handleUserRegistration } = useUserContext(); // Use the handleUserLogin function from the context
     const navigate = useNavigate();

@@ -17,7 +17,7 @@ public class ChatOutput {
     public ChatOutput() {
     }
 
-    public ChatOutput(long chat_id, long participant1_id, long participant2_id, String latest_message_content, long latest_message_sender_id , ZonedDateTime latest_message_time, boolean friend_online) {
+    public ChatOutput(long chat_id, long participant1_id, long participant2_id, String latest_message_content, long latest_message_sender_id, ZonedDateTime latest_message_time, boolean friend_online) {
         this.chat_id = chat_id;
         this.participant1_id = participant1_id;
         this.participant2_id = participant2_id;

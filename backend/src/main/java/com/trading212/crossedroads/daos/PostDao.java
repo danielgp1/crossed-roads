@@ -10,9 +10,14 @@ public interface PostDao {
     Post insertPost(Post post);
 
     List<Post> getPosts();
+
     Optional<List<Post>> getPostsByUserId(long userId);
+
     Optional<Post> getPostById(long postId);
+
     List<PostOutput> getPostsByFriends(long userId);
+
     int updatePostContent(long postId, String content);
+
     int deletePost(long postId);
 }

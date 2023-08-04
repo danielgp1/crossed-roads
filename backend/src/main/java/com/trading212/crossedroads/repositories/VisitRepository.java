@@ -25,6 +25,7 @@ public class VisitRepository implements VisitDao {
                 """;
         return jdbcTemplate.query(sql, new VisitRowMapper());
     }
+
     @Override
     public Visit insertVisit(Visit visit) {
         var sql = """
@@ -57,7 +58,7 @@ public class VisitRepository implements VisitDao {
                 FROM visits
                 WHERE visitor_id = ?
                 """;
-        List<Visit> visits =jdbcTemplate.query(sql, new VisitRowMapper(), visitorId);
+        List<Visit> visits = jdbcTemplate.query(sql, new VisitRowMapper(), visitorId);
         return Optional.of(visits);
     }
 

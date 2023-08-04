@@ -53,7 +53,7 @@ export default function Searchbar() {
     const handleOpenProfilePage = (username: string) => () => {
         setSearchOpen(false);
         navigate(`/users/${username}`);
-      };
+    };
 
     return (
         <div className="search-box">
@@ -72,7 +72,7 @@ export default function Searchbar() {
                 <div className='search-results'>
                     {searchResults.length > 0 ? (
                         searchResults.map((user) => (
-                            <div key={user.id} className="result-item"  onMouseDown={e => e.preventDefault()} onClick={handleOpenProfilePage(user.profile_name)}>
+                            <div key={user.id} className="result-item" onMouseDown={e => e.preventDefault()} onClick={handleOpenProfilePage(user.profile_name)}>
                                 <img className="result-profile-pic" src={user.profile_pic_url ?? def} alt="Profile Pic" />
                                 <div className="result-user-info">
                                     <span className="result-user-name">{user.first_name} {user.last_name}</span>

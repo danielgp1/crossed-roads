@@ -9,7 +9,7 @@ export default function Welcome() {
   return (
     <div className="body-welcome">
       <div className="main">
-      <input type="checkbox" id="chk" aria-hidden="true" />
+        <input type="checkbox" id="chk" aria-hidden="true" />
         <RegisterForm formState={formState} />
         <LoginForm formState={formState} />
       </div>

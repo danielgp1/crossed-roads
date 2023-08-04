@@ -50,6 +50,7 @@ public class UserService {
         return userDao.getUsersByUsername(username)
                 .orElseThrow(() -> new NotFoundException(String.format("Users with username %s not found", username)));
     }
+
     public List<User> getFriendsById(long userId) {
         return userDao.getFriendsById(userId)
                 .orElseThrow(() -> new NotFoundException(String.format("User with id %s not found", userId)));
@@ -108,7 +109,7 @@ public class UserService {
             userDao.updateOnlineStatus(id, userInput.getOnlineStatus());
         }
 
-        if(userInput.getLatitude() != null && userInput.getLongitude() != null) {
+        if (userInput.getLatitude() != null && userInput.getLongitude() != null) {
             userDao.updateLatLng(id, userInput.getLatitude(), userInput.getLongitude());
         }
     }

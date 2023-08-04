@@ -10,8 +10,8 @@ const stripePromise = loadStripe("pk_test_51NYs8EGHqyz7OOkIA0Sdr1zl4kpYB7xcyGngx
 
 export default function Stripe() {
   const [clientSecret, setClientSecret] = useState("");
-    const userID = localStorage.getItem("userID");
-    const authToken = localStorage.getItem("userToken");
+  const userID = localStorage.getItem("userID");
+  const authToken = localStorage.getItem("userToken");
   useEffect(() => {
     axios
       .post(

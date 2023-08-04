@@ -49,7 +49,7 @@
     display: none;
 }
 
-.input-search:focus + .search-results {
+.input-search:focus+.search-results {
     display: block;
 }
 
@@ -84,7 +84,8 @@
     flex-direction: column;
 }
 
-.result-user-name, .no-results {
+.result-user-name,
+.no-results {
     color: #333333;
     font-family: 'Jost';
     font-size: 16px;

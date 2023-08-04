@@ -83,19 +83,19 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                             setProfileLoaded(true);
                         });
 
-                        try {
-                            const visitData = {
-                                visited_id: targetUserId,
-                                visitor_id: userID
-                            };
-                            await axios.post('http://10.16.6.25:8080/api/visits', visitData, {
-                                headers: {
-                                    Authorization: `Bearer ${authToken}`,
-                                },
-                            });
-                        } catch (error: any) {
-                            console.error("Error visiting:", error);
-                        }
+                    try {
+                        const visitData = {
+                            visited_id: targetUserId,
+                            visitor_id: userID
+                        };
+                        await axios.post('http://10.16.6.25:8080/api/visits', visitData, {
+                            headers: {
+                                Authorization: `Bearer ${authToken}`,
+                            },
+                        });
+                    } catch (error: any) {
+                        console.error("Error visiting:", error);
+                    }
 
 
                 })
@@ -133,6 +133,33 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
         )
             .then(() => {
                 setAreFriends(true);
+            })
+            .catch((error) => {
+                console.error('Error adding friendship:', error);
+            });
+    };
+
+
+    const handleRemoveFriend = () => {
+        const authToken = localStorage.getItem('userToken');
+        const userID = localStorage.getItem("userID");
+
+        const targetUserId = searchResults[0]?.id;
+        if (!targetUserId) {
+            console.error('No user found to remove friend.');
+            return;
+        }
+
+        axios.delete(
+            `http://10.16.6.25:8080/api/friendships/users/${userID}/${targetUserId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }
+        )
+            .then(() => {
+                setAreFriends(false);
             })
             .catch((error) => {
                 console.error('Error adding friendship:', error);
@@ -185,7 +212,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                                                     <label className='field-label'>Birthday:</label>
                                                     <span className='field-span'>{firstUser.date_of_birth}</span>
                                                 </div>
-                                                {areFriends ? "" : <button onClick={handleAddFriend} className="add-friend-btn">Cross Roads</button>}
+                                                {areFriends ? <button onClick={handleRemoveFriend} className="add-friend-btn">Unfriend</button> : <button onClick={handleAddFriend} className="add-friend-btn">Cross Roads</button>}
                                             </div>
                                             <div className='car-container'>
                                                 <Car color={firstUser.current_color} direction={"#f9d71c"} name={firstUser.first_name} pfp={firstUser.profile_pic_url ?? default_pic} />
@@ -195,19 +222,26 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                                 </div>
                             </div>
                             <span className="user-wisdom">{firstUser.first_name}'s Posts</span>
-                            <div className="user-posts-grid">
-                                {userPosts.map((post) => (
-                                    <div key={post.post_id} className='user-post'>
-                                        <Billboard
-                                            first_name={firstUser.first_name!}
-                                            last_name={firstUser.last_name!}
-                                            profile_picture_url={firstUser.profile_pic_url}
-                                            created_at={formatDateTime(post.created_at)}
-                                            content={post.content}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
+                            {userPosts.length > 0 ? (
+                                <div className="user-posts-grid">
+                                    {userPosts.map((post) => (
+                                        <div key={post.post_id} className='user-post'>
+                                            <Billboard
+                                                first_name={firstUser.first_name!}
+                                                last_name={firstUser.last_name!}
+                                                profile_picture_url={firstUser.profile_pic_url}
+                                                created_at={formatDateTime(post.created_at)}
+                                                content={post.content}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="no-posts">
+                                    Nothing To See Here
+                                </div>
+                            )}
+
                         </div>
                     ) : (
                         <PageNotFound />

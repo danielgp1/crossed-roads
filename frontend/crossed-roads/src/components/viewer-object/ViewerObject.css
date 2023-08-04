@@ -15,6 +15,7 @@
     height: 100%;
     width: 100%;
 }
+
 .viewer-object-buttons-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

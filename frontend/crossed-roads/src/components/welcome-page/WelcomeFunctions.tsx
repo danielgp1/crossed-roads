@@ -20,7 +20,7 @@ export function useFormState() {
 
   const [isLoginVisible, setLoginVisibility] = useState(false);
 
-  return {  
+  return {
     regPwdEyeClass,
     setRegPwdEyeClass,
     confirmPwdEyeClass,
