@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "../../chat/Chat";
 import Road from "../road/Road";
 import './Main.css'
@@ -7,7 +7,6 @@ import Billboard from "../../billboard/Billboard";
 import police from './assets/police.png';
 import policeSiren from './assets/siren.mp3'
 import elevatorMusic from './assets/elevator.mp3'
-import { clear } from "console";
 
 interface FriendPost {
     post_id: number,
@@ -135,7 +134,7 @@ export default function Main() {
             {showBreakMessage &&
                 <div className="break-background">
                     <div className="police-break">
-                        <img className="policeman" src={police}></img>
+                        <img className="policeman" src={police} alt="police"></img>
                         <div className="break-message">
                             <span>You have been driving for too long, take a break of 2 minutes.</span>
                             {showBreakMessage && !showContinueButton && (

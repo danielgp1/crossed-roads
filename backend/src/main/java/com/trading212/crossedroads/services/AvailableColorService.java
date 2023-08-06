@@ -28,7 +28,7 @@ public class AvailableColorService {
 
     public AvailableColor getAvailableColorByUserIdAndColorHash(long userId, String colorHash) {
         return availableColorDao.getAvailableColorByUserIdAndColorHash(userId, colorHash)
-                .orElse(null); // You can handle the case when the color is not found
+                .orElse(null);
     }
 
     public void deleteAvailableColor(long userId, String colorHash) {

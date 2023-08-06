@@ -11,7 +11,7 @@ interface CarProps {
 const Car: React.FC<CarProps> = ({ color, direction, name, pfp, onClick }: CarProps) => {
     const handleClick = () => {
         if (onClick) {
-            onClick(color); // Call the onClick event handler if provided
+            onClick(color);
         }
     };
     return (

@@ -3,7 +3,6 @@ import Car from "../car/Car"
 import "./PurchaseColor.css"
 import def from '../assets/default_pic.png'
 import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext";
-import { useNavigate } from "react-router-dom";
 import Stripe from "../stripe/Stripe";
 import { useState } from "react";
 
@@ -13,9 +12,8 @@ interface PurchaseColorProps {
 
 export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
   const { user } = useUserContext();
-  const { addColor, availableColors } = useAvailableColorsContext();
+  const { availableColors } = useAvailableColorsContext();
   const [showStripe, setShowStripe] = useState(false);
-  const navigate = useNavigate();
 
   const handlePurchaseColor = async () => {
     try {

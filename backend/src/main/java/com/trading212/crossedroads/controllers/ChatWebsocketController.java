@@ -108,7 +108,6 @@ public class ChatWebsocketController {
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(userId), "/online-status", true);
         updateUserOnlineStatus(userId, true);
 
-        // Notify each friend of the user that the user has logged in
         List<User> friends = userService.getFriendsById(userId);
         Map<String, Object> friendStatus = new HashMap<>();
         friendStatus.put("friend_id", userId);
@@ -118,12 +117,10 @@ public class ChatWebsocketController {
         }
     }
 
-    // This should be triggered when a WebSocket connection with a user is closed
     public void userLoggedOut(long userId) {
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(userId), "/online-status", false);
         updateUserOnlineStatus(userId, false);
 
-        // Notify each friend of the user that the user has logged out
         List<User> friends = userService.getFriendsById(userId);
         Map<String, Object> friendStatus = new HashMap<>();
         friendStatus.put("friend_id", userId);

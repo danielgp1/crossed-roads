@@ -75,31 +75,6 @@ export default function Profile() {
         return `${day}.${month}.${year}`;
     };
 
-    // const updateUserProfilePicUrl = async (imageUrl: string | null) => {
-    //     if (imageUrl) {
-    //         setImageURL(imageUrl);
-    //         const authToken = localStorage.getItem('userToken');
-    //         const userID = localStorage.getItem('userID');
-    //         if (authToken && userID) {
-    //             try {
-    //                 await axios.put(
-    //                     `http://10.16.6.25:8080/api/users/${userID}`,
-    //                     { profile_pic_url: imageUrl },
-    //                     {
-    //                         headers: {
-    //                             Authorization: `Bearer ${authToken}`,
-    //                         },
-    //                     }
-    //                 );
-    //                 console.log("Profile picture URL updated successfully");
-    //             } catch (error) {
-    //                 console.error("Error updating profile picture URL:", error);
-    //             }
-    //         }
-    //     }
-    // };
-
-
     return (
         <div className="profile-grid">
             <div className='profile-data'>

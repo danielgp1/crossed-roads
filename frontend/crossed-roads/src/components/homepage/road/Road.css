@@ -5,7 +5,6 @@
     border-left: 10px solid black;
     border-right: 10px solid black;
     background-image: url(./assets/asphat-road-texture-gray-color.jpg);
-    /* background-size: cover; */
     background-repeat: repeat-y;
     background-position: center;
     min-width: 317px;

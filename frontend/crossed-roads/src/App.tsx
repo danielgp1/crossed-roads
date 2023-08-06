@@ -10,7 +10,6 @@ import UserProvider from './contexts/UserContext';
 import AvailableColorsProvider from './contexts/AvailableColorsContext';
 import UserProfile from './components/user-profile/UserProfile';
 import Posts from './components/posts/Posts';
-import Stripe from './components/stripe/Stripe';
 import UserChat from './components/user-chat/UserChat';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
