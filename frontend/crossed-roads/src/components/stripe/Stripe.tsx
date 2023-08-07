@@ -18,7 +18,6 @@ export default function Stripe({ selectedColor }: StripeProps) {
   const userID = localStorage.getItem("userID");
   const authToken = localStorage.getItem("userToken");
   useEffect(() => {
-    console.log(process.env.REACT_APP_STRIPE_KEY);
     axios
       .post(
         "http://10.16.6.25:8080/api/create-payment-intent",
