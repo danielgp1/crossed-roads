@@ -36,9 +36,6 @@
     justify-content: space-around;
 }
 
-
-
-
 .break-background {
     position: fixed;
     top: 0;
@@ -51,7 +48,6 @@
     align-items: center;
     justify-content: center;
 }
-
 
 .police-break {
     position: relative;

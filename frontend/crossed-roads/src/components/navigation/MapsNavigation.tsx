@@ -39,7 +39,7 @@ export default function MapsNavigation({ id, first_name, last_name, profile_pic_
         minZoom: 4
     };
 
-    const mapApiKey = 'AIzaSyCJVeqgVHhDHkvuaOOCiwj9YzMM1_Zk7sc';
+    const mapApiKey = process.env.REACT_APP_MAPS_KEY!;
 
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: mapApiKey,

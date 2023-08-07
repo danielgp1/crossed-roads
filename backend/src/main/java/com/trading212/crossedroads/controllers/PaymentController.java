@@ -17,7 +17,7 @@ public class PaymentController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreatePaymentResponse> createPaymentIntent(@RequestBody CreatePayment createPayment) throws StripeException {
-        Stripe.apiKey = "sk_test_51NYs8EGHqyz7OOkIjkG4r72mbMhAwIVmw1WGUPaB4SD9a2AQb3XdEMWjU1NsLlNG8UK5MpyXq7HYTOomEvxErtXs00TNBPHXx3";
+        Stripe.apiKey = createPayment.getKey();
 
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
