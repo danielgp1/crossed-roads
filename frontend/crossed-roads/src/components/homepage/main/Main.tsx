@@ -159,7 +159,7 @@ export default function Main() {
                         {showStripe &&
                         <div className="bribe-stripe-background">
                             <Stripe type="bribe" setVisible={setShowStripe} />
-                            </div>
+                            </div> 
                         }
                     </div>
                 </div>
