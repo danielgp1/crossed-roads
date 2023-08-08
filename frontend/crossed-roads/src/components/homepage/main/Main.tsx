@@ -26,10 +26,10 @@ export default function Main() {
     const [showContinueButton, setShowContinueButton] = useState<boolean>(false);
     const [replay, setReplay] = useState<boolean>(false);
     const appUseInterval = 10 * 1000; // 10seconds
-    const breakInterval = 2 * 60 * 1000; // 2 mins
+    const breakInterval = 15 * 60 * 1000; // 15 mins
     const [audio] = useState(new Audio(policeSiren));
     const [elevatorAudio] = useState(new Audio(elevatorMusic));
-    const [remainingTime, setRemainingTime] = useState<number>(2 * 60 + 2);
+    const [remainingTime, setRemainingTime] = useState<number>(15 * 60 + 2);
     const [showStripe, setShowStripe] = useState(false);
 
     elevatorAudio.loop = true;
@@ -54,7 +54,7 @@ export default function Main() {
                 elevatorAudio.play();
             }, 2000);
             setShowBreakMessage(true);
-            setRemainingTime(2 * 60 + 2);
+            setRemainingTime(15 * 60 + 2);
             const breakTimer = setTimeout(() => {
                 setShowContinueButton(true);
                 setShowStripe(false);
@@ -80,7 +80,7 @@ export default function Main() {
         elevatorAudio.currentTime = 0;
         setShowBreakMessage(false);
         setShowContinueButton(false);
-        setRemainingTime(2 * 60 + 2);
+        setRemainingTime(15 * 60 + 2);
         setReplay(!replay);
     };
 
@@ -143,7 +143,7 @@ export default function Main() {
                     <div className="police-break">
                         <img className="policeman" src={police} alt="police"></img>
                         <div className="break-message">
-                            <span>You have been driving for too long, take a break of 2 minutes.</span>
+                            <span>You have been driving for too long, take a break of 15 minutes.</span>
                             {showBreakMessage && !showContinueButton && (
                                 <div className="countdown">
                                     <span className="bribe-txt">wait </span>
@@ -157,9 +157,9 @@ export default function Main() {
                             }
                         </div>
                         {showStripe &&
-                        <div className="bribe-stripe-background">
-                            <Stripe type="bribe" setVisible={setShowStripe} />
-                            </div> 
+                            <div className="bribe-stripe-background">
+                                <Stripe type="bribe" setVisible={setShowStripe} />
+                            </div>
                         }
                     </div>
                 </div>
