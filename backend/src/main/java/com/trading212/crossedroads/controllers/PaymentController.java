@@ -18,10 +18,10 @@ public class PaymentController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreatePaymentResponse> createPaymentIntent(@RequestBody CreatePayment createPayment) throws StripeException {
         Stripe.apiKey = createPayment.getKey();
-
+        long value = createPayment.getValue();
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
-                        .setAmount(500L)
+                        .setAmount(value*100)
                         .setCurrency("bgn")
                         .setAutomaticPaymentMethods(
                                 PaymentIntentCreateParams.AutomaticPaymentMethods

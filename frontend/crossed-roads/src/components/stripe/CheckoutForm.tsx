@@ -9,10 +9,12 @@ import { useAvailableColorsContext } from "../../contexts/AvailableColorsContext
 import { useNavigate } from "react-router-dom";
 
 interface CheckoutFormProps {
+    type: string,
     selectedColor: string;
+    setVisible:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
+export default function CheckoutForm({ type, selectedColor, setVisible }: CheckoutFormProps) {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
@@ -59,20 +61,38 @@ export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
         }
 
         setIsLoading(true);
-        await addColor(selectedColor);
-        const { error } = await stripe.confirmPayment({
-            elements,
-            confirmParams: {
-                return_url: "http://10.16.6.25:3000/payment-success",
-            },
-        });
+        if (type === "color") {
+            await addColor(selectedColor);
+            const { error } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: "http://10.16.6.25:3000/payment-success",
+                },
+            });
 
-        if (error.type === "card_error" || error.type === "validation_error") {
-            setMessage(error.message as string);
-        } else {
-            setMessage("An unexpected error occurred.");
+            if (error.type === "card_error" || error.type === "validation_error") {
+                setMessage(error.message as string);
+            } else {
+                setMessage("An unexpected error occurred.");
+            }
+            setIsLoading(false);
+        } else if (type === "bribe") {
+            const { error } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: "http://10.16.6.25:3000",
+                },
+            });
+
+            if (error.type === "card_error" || error.type === "validation_error") {
+                setMessage(error.message as string);
+            } else {
+                setMessage("An unexpected error occurred.");
+            }
+            setIsLoading(false);
         }
-        setIsLoading(false);
+
+
     };
 
     const paymentElementOptions: StripePaymentElementOptions = {
@@ -81,10 +101,15 @@ export default function CheckoutForm({selectedColor}: CheckoutFormProps) {
 
     const handleCancelPayment = (e: React.MouseEvent) => {
         e.preventDefault();
-        navigate("/payment-fail");
+        if(type === "color") {
+            navigate("/payment-fail");
+        }
+        else if (type === "bribe") {
+            setVisible(false);
+        }
     }
 
-    return (
+    return (  
         <form className="stripe-form" id="payment-form" onSubmit={handleSubmit}>
             <button type="button" onClick={handleCancelPayment} className="cancel-payment">Cancel Payment</button>
             <PaymentElement id="payment-element" options={paymentElementOptions} />

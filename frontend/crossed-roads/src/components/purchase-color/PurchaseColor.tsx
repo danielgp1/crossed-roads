@@ -40,7 +40,11 @@ export default function PurchaseColor({ selectedColor }: PurchaseColorProps) {
         <Car color={selectedColor} direction={"#f9d71c"} name={user?.first_name || ''} pfp={user?.profile_pic_url || def} />
       </div>
       <button className='purchase-button' onClick={handlePurchaseColor}>Pay 5.00 BGN</button>
-      {showStripe &&  <Stripe selectedColor={selectedColor}/>}
+      {showStripe &&
+        <div className="purchase-stripe-background">
+          <Stripe type="color" selectedColor={selectedColor} />
+        </div>
+      }
     </div>
   )
 }

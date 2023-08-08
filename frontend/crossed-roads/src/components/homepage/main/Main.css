@@ -43,7 +43,7 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
-    z-index: 1001;
+    z-index: 997;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,7 +57,7 @@
     justify-content: center;
     align-items: center;
     animation: slide-up 2s ease-out forwards;
-    z-index: 1002;
+    z-index: 998;
     margin-right: 5%;
 }
 
@@ -87,8 +87,8 @@
 
 
 .break-message {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     background-color: #fabb5c;
     border-radius: 20px;
     justify-content: center;
@@ -112,6 +112,33 @@
     color: #333333;
     cursor: pointer;
     background-color: #ffa825;
+    justify-self: center;
+}
+
+.bribe-btn {
+    width: 40%;
+    padding: 1%;
+    font-family: 'Jost';
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #ffa825;
+}
+
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Jost';
+}
+
+.bribe-txt {
+    margin: 0 5%;
+}
+
+.bribe-time {
+    font-size: 1.5rem;
 }
 
 
@@ -125,3 +152,10 @@
     }
 }
 
+.bribe-stripe-background {
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

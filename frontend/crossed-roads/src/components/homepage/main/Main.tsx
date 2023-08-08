@@ -7,6 +7,7 @@ import Billboard from "../../billboard/Billboard";
 import police from './assets/police.png';
 import policeSiren from './assets/siren.mp3'
 import elevatorMusic from './assets/elevator.mp3'
+import Stripe from "../../stripe/Stripe";
 
 interface FriendPost {
     post_id: number,
@@ -29,7 +30,7 @@ export default function Main() {
     const [audio] = useState(new Audio(policeSiren));
     const [elevatorAudio] = useState(new Audio(elevatorMusic));
     const [remainingTime, setRemainingTime] = useState<number>(2 * 60 + 2);
-
+    const [showStripe, setShowStripe] = useState(false);
 
     elevatorAudio.loop = true;
 
@@ -56,6 +57,7 @@ export default function Main() {
             setRemainingTime(2 * 60 + 2);
             const breakTimer = setTimeout(() => {
                 setShowContinueButton(true);
+                setShowStripe(false);
             }, breakInterval);
             return () => {
                 clearTimeout(audioStopTimer);
@@ -128,6 +130,11 @@ export default function Main() {
         return `${day}.${month}.${year} at ${hours}:${minutes}`;
     };
 
+    const handleBribe = (e: React.FormEvent) => {
+        e.preventDefault();
+        setShowStripe(true);
+    }
+
 
     return (
         <div className="main-grid">
@@ -139,16 +146,25 @@ export default function Main() {
                             <span>You have been driving for too long, take a break of 2 minutes.</span>
                             {showBreakMessage && !showContinueButton && (
                                 <div className="countdown">
-                                    {Math.floor(remainingTime / 60)}:{remainingTime % 60 < 10 ? '0' : ''}{remainingTime % 60}
+                                    <span className="bribe-txt">wait </span>
+                                    <span className="bribe-time">{Math.floor(remainingTime / 60)}:{remainingTime % 60 < 10 ? '0' : ''}{remainingTime % 60}</span>
+                                    <span className="bribe-txt">OR</span>
+                                    <button type="button" onClick={handleBribe} className="bribe-btn">Bribe 20 BGN</button>
                                 </div>
                             )}
                             {showContinueButton &&
                                 <button className="break-button" onClick={continueScrolling}>Continue Journey</button>
                             }
                         </div>
+                        {showStripe &&
+                        <div className="bribe-stripe-background">
+                            <Stripe type="bribe" setVisible={setShowStripe} />
+                            </div>
+                        }
                     </div>
                 </div>
             }
+
             <div className="main-content">
                 <div className="billboards-container-left">
                     {leftPosts.map((post) => (

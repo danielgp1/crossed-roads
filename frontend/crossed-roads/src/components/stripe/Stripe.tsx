@@ -9,11 +9,13 @@ import axios from "axios";
 const stripePromise = loadStripe("pk_test_51NYs8EGHqyz7OOkIA0Sdr1zl4kpYB7xcyGngx20xDvf9oQtmGoOiefS6pb14dvMTLi7206Ygdc0gFSwEGRhKscDV00Mnv7qJC5");
 
 interface StripeProps {
-  selectedColor:string;
+  type: string;
+  setVisible?:React.Dispatch<React.SetStateAction<boolean>>;
+  selectedColor?:string;
 }
 
 
-export default function Stripe({ selectedColor }: StripeProps) {
+export default function Stripe({ type, selectedColor, setVisible }: StripeProps) {
   const [clientSecret, setClientSecret] = useState("");
   const userID = localStorage.getItem("userID");
   const authToken = localStorage.getItem("userToken");
@@ -23,7 +25,7 @@ export default function Stripe({ selectedColor }: StripeProps) {
         "http://10.16.6.25:8080/api/create-payment-intent",
         {
           user_id: Number(userID),
-          color_hash: selectedColor,
+          value: type === "color" ? 5 : 20,
           key: process.env.REACT_APP_STRIPE_KEY
         },
         {
@@ -55,7 +57,7 @@ export default function Stripe({ selectedColor }: StripeProps) {
     <div className="stripe-body">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm selectedColor={selectedColor} />
+          <CheckoutForm type={type} selectedColor={selectedColor!} setVisible={setVisible!}/>
         </Elements>
       )}
     </div>
