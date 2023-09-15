@@ -25,7 +25,7 @@ export default function Main() {
     const [showBreakMessage, setShowBreakMessage] = useState<boolean>(false);
     const [showContinueButton, setShowContinueButton] = useState<boolean>(false);
     const [replay, setReplay] = useState<boolean>(false);
-    const appUseInterval = 10 * 1000; // 10seconds
+    const appUseInterval = 25 * 1000; // 25seconds
     const breakInterval = 15 * 60 * 1000; // 15 mins
     const [audio] = useState(new Audio(policeSiren));
     const [elevatorAudio] = useState(new Audio(elevatorMusic));
