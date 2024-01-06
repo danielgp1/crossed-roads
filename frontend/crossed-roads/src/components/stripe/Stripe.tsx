@@ -6,7 +6,7 @@ import CheckoutForm from "./CheckoutForm";
 import "./Stripe.css";
 import axios from "axios";
 
-const stripePromise = loadStripe("pk_test_51NYs8EGHqyz7OOkIA0Sdr1zl4kpYB7xcyGngx20xDvf9oQtmGoOiefS6pb14dvMTLi7206Ygdc0gFSwEGRhKscDV00Mnv7qJC5");
+const stripePromise = loadStripe("pk_test_51OVeg4KlGfwKnsf1LpwB8HM0SOpDOXd16Dt7jzTLdjs4w7uGlJ755ecDKxG1tPbOeldupcfh1JTKpMmuVLQYE18u00IipGOE5Z");
 
 interface StripeProps {
   type: string;
