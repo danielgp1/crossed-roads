@@ -33,7 +33,7 @@ export default function Chat() {
     }, []);
 
     const setupWebSocketConnection = () => {
-        const socket = new SockJS('http://10.16.6.25:8080/ws');
+        const socket = new SockJS('http://localhost:8080/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe(`/user/${userID}/chat-summary`, (messageOutput) => {
@@ -62,7 +62,7 @@ export default function Chat() {
     };
 
     const fetchChatSummaries = () => {
-        axios.get(`http://10.16.6.25:8080/api/chats/users/${userID}`, {
+        axios.get(`http://localhost:8080/api/chats/users/${userID}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('userToken')}`,
             },

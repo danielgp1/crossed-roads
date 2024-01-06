@@ -24,7 +24,7 @@ export default function Road() {
             const userID = localStorage.getItem("userID");
 
             await axios
-                .get(`http://10.16.6.25:8080/api/users/${userID}/friends-friends-not-friends`, {
+                .get(`http://localhost:8080/api/users/${userID}/friends-friends-not-friends`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },

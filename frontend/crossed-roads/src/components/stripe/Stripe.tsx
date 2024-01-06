@@ -22,7 +22,7 @@ export default function Stripe({ type, selectedColor, setVisible }: StripeProps)
   useEffect(() => {
     axios
       .post(
-        "http://10.16.6.25:8080/api/create-payment-intent",
+        "http://localhost:8080/api/create-payment-intent",
         {
           user_id: Number(userID),
           value: type === "color" ? 5 : 20,

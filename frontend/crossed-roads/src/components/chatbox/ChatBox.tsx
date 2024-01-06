@@ -27,7 +27,7 @@ export default function ChatBox({ friend_id, sender_id, content, is_online }: Ch
         const authToken = localStorage.getItem('userToken');
         if (friend_id && authToken) {
             axios
-                .get(`http://10.16.6.25:8080/api/users/${friend_id}`, {
+                .get(`http://localhost:8080/api/users/${friend_id}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },

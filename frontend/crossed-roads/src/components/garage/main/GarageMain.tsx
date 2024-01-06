@@ -21,7 +21,7 @@ export default function GarageMain() {
         const userID = localStorage.getItem('userID');
         if (userID) {
             axios
-                .get(`http://10.16.6.25:8080/api/users/${userID}/friends`, {
+                .get(`http://localhost:8080/api/users/${userID}/friends`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('userToken')}`,
                     },

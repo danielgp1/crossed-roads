@@ -61,7 +61,7 @@ export default function MapsNavigation({ id, first_name, last_name, profile_pic_
             const authToken = localStorage.getItem('userToken')
             const updateUserLocation = async (lat: number, lng: number) => {
                 try {
-                    await axios.put(`http://10.16.6.25:8080/api/users/${userID}`, {
+                    await axios.put(`http://localhost:8080/api/users/${userID}`, {
                         latitude: lat,
                         longitude: lng,
                     }, {

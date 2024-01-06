@@ -1,15 +1,15 @@
 services:
   mysql:
     container_name: mysql
-    image: arm64v8/mysql
+    image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABSE: crossed_roads
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: crossed_roads
 
     volumes:
       - ./data/mysql:/data/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     restart: unless-stopped
 
   elasticsearch:

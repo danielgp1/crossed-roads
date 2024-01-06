@@ -34,7 +34,7 @@ export default function PostsMain() {
                     Authorization: `Bearer ${userToken}`,
                 };
 
-                const response = await axios.get(`http://10.16.6.25:8080/api/posts/users/${userID}`, { headers });
+                const response = await axios.get(`http://localhost:8080/api/posts/users/${userID}`, { headers });
                 const sortedPosts = response.data.sort((a: Post, b: Post) => {
                     const dateA = new Date(a.created_at);
                     const dateB = new Date(b.created_at);
@@ -71,7 +71,7 @@ export default function PostsMain() {
         };
 
         axios
-            .delete(`http://10.16.6.25:8080/api/posts/${postId}`, { headers })
+            .delete(`http://localhost:8080/api/posts/${postId}`, { headers })
             .then(() => {
                 setUserPosts((prevPosts) => prevPosts!.filter((post) => post.post_id !== postId));
             })
@@ -99,7 +99,7 @@ export default function PostsMain() {
 
         try {
             await axios.put(
-                `http://10.16.6.25:8080/api/posts/${postId}`,
+                `http://localhost:8080/api/posts/${postId}`,
                 { content: editedContent },
                 { headers }
             );

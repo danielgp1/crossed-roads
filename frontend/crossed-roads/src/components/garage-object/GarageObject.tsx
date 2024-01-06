@@ -40,7 +40,7 @@ const GarageObject: React.FC<GarageObjectProps> = ({ id, first_name, last_name, 
         const userID = localStorage.getItem("userID");
 
         axios.delete(
-            `http://10.16.6.25:8080/api/friendships/users/${userID}/${id}`,
+            `http://localhost:8080/api/friendships/users/${userID}/${id}`,
             {
                 headers: {
                     Authorization: `Bearer ${authToken}`,

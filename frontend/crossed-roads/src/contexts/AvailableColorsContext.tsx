@@ -32,7 +32,7 @@ const AvailableColorsProvider: React.FC<{ children: ReactNode }> = ({ children }
 
     if (user) {
       axios
-        .get(`http://10.16.6.25:8080/api/available-colors/users/${user.id}`, {
+        .get(`http://localhost:8080/api/available-colors/users/${user.id}`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -54,7 +54,7 @@ const AvailableColorsProvider: React.FC<{ children: ReactNode }> = ({ children }
           color_hash: newColor,
         };
 
-        await axios.post('http://10.16.6.25:8080/api/available-colors', availableColor, {
+        await axios.post('http://localhost:8080/api/available-colors', availableColor, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },

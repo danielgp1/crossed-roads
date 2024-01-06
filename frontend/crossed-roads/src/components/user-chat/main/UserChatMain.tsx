@@ -46,7 +46,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
     const fetchMessages = async () => {
         if (userID) {
             await axios
-                .get(`http://10.16.6.25:8080/api/messages/users/${userID}/${friendid}`, {
+                .get(`http://localhost:8080/api/messages/users/${userID}/${friendid}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },
@@ -72,7 +72,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
 
         const fetchFriend = async () => {
             await axios
-                .get(`http://10.16.6.25:8080/api/users/${friendid}`, {
+                .get(`http://localhost:8080/api/users/${friendid}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },
@@ -93,7 +93,7 @@ export default function UserChatMain({ friendid }: UserChatMainProps) {
             });
         }
 
-        const socketInstance: WebSocket = new SockJS('http://10.16.6.25:8080/ws')
+        const socketInstance: WebSocket = new SockJS('http://localhost:8080/ws')
         const stompInstance: Stomp.Client = Stomp.over(socketInstance)
 
         stompInstance.connect(

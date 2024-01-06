@@ -66,7 +66,7 @@ export default function CheckoutForm({ type, selectedColor, setVisible }: Checko
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "http://10.16.6.25:3000/payment-success",
+                    return_url: "http://localhost:3000/payment-success",
                 },
             });
 
@@ -80,7 +80,7 @@ export default function CheckoutForm({ type, selectedColor, setVisible }: Checko
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: "http://10.16.6.25:3000",
+                    return_url: "http://localhost:3000",
                 },
             });
 

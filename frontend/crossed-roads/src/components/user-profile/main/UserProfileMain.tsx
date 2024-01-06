@@ -40,7 +40,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
             const userID = localStorage.getItem("userID");
 
             await axios
-                .get(`http://10.16.6.25:8080/api/users/search?username=${username}`, {
+                .get(`http://localhost:8080/api/users/search?username=${username}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
                     },
@@ -50,7 +50,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                     const targetUserId = response.data[0].id;
 
                     await axios
-                        .get(`http://10.16.6.25:8080/api/friendships/users/${userID}/friends/${targetUserId}`, {
+                        .get(`http://localhost:8080/api/friendships/users/${userID}/friends/${targetUserId}`, {
                             headers: {
                                 Authorization: `Bearer ${authToken}`,
                             },
@@ -64,7 +64,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                         });
 
                     await axios
-                        .get(`http://10.16.6.25:8080/api/posts/users/${targetUserId}`, {
+                        .get(`http://localhost:8080/api/posts/users/${targetUserId}`, {
                             headers: {
                                 Authorization: `Bearer ${authToken}`,
                             },
@@ -88,7 +88,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
                             visited_id: targetUserId,
                             visitor_id: userID
                         };
-                        await axios.post('http://10.16.6.25:8080/api/visits', visitData, {
+                        await axios.post('http://localhost:8080/api/visits', visitData, {
                             headers: {
                                 Authorization: `Bearer ${authToken}`,
                             },
@@ -120,7 +120,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
         }
 
         axios.post(
-            "http://10.16.6.25:8080/api/friendships",
+            "http://localhost:8080/api/friendships",
             {
                 user1_id: userID,
                 user2_id: targetUserId,
@@ -151,7 +151,7 @@ export default function UserProfileMain({ username }: UserProfileMainProps) {
         }
 
         axios.delete(
-            `http://10.16.6.25:8080/api/friendships/users/${userID}/${targetUserId}`,
+            `http://localhost:8080/api/friendships/users/${userID}/${targetUserId}`,
             {
                 headers: {
                     Authorization: `Bearer ${authToken}`,

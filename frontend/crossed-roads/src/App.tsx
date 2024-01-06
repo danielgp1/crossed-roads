@@ -34,7 +34,7 @@ const App = () => {
   }, [localStorage.getItem("userID")]);
 
   const setupWebSocketConnection = () => {
-    const socket = new SockJS('http://10.16.6.25:8080/ws');
+    const socket = new SockJS('http://localhost:8080/ws');
     stompClient = Stomp.over(socket);
 
     stompClient.connect({}, () => {

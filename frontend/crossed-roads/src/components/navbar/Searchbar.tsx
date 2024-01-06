@@ -36,7 +36,7 @@ export default function Searchbar() {
         const authToken = localStorage.getItem('userToken');
 
         axios
-            .get(`http://10.16.6.25:8080/api/users/search?username=${username}`, {
+            .get(`http://localhost:8080/api/users/search?username=${username}`, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },

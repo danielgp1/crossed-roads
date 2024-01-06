@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://10.16.6.25:3306/crossed_roads
+    jdbcUrl: jdbc:mysql://localhost:3307/crossed_roads
     username: root
-    password: 12345678
+    password: root
     pool-size: 30
 
   data:
